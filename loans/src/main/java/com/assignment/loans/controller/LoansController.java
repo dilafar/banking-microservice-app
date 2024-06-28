@@ -36,7 +36,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/api", produces = {MediaType.APPLICATION_JSON_VALUE})
 @Validated
 public class LoansController {
-    private ILoansService loansService;
+    private final ILoansService loansService;
 
     @Autowired
     public LoansController(ILoansService iLoansService){
@@ -46,10 +46,10 @@ public class LoansController {
     @Value("${build.version}")
     private String buildVersion;
 
-    @Autowired
+
     private Environment environment;
 
-    @Autowired
+
     private LoansContactInfo loansContactInfo;
 
     @Operation(

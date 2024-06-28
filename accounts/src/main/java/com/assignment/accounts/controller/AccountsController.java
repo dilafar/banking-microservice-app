@@ -14,7 +14,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -25,8 +24,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(
-        name = "CRUD REST APIs for Accounts in EazyBank",
-        description = "CRUD REST APIs in EazyBank to CREATE,UPDATE,FETCH AND DELETE account details"
+        name = "CRUD REST APIs for Accounts in Bank",
+        description = "CRUD REST APIs in Bank to CREATE,UPDATE,FETCH AND DELETE account details"
 )
 @RestController
 @RequestMapping(path = "/api",produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -38,10 +37,10 @@ public class AccountsController {
     @Value("${build.version}")
     private String buildVersion;
 
-    @Autowired
+
     private Environment environment;
 
-    @Autowired
+
     private AccountsContactInfo accountsContactInfo;
     @Autowired
     public AccountsController(IAccountsService iAccountsService){
@@ -50,7 +49,7 @@ public class AccountsController {
 
     @Operation(
             summary = "Create Account REST API",
-            description = "REST API to create new Customer & Account inside Eazybank"
+            description = "REST API to create new Customer & Account inside bank"
     )
     @ApiResponse(
             responseCode = "201",
@@ -64,7 +63,7 @@ public class AccountsController {
 
     @Operation(
             summary = "Fetch Account REST API",
-            description = "REST API to fetch Customer & Account inside Eazybank"
+            description = "REST API to fetch Customer & Account inside bank"
     )
     @ApiResponse(
             responseCode = "200",
@@ -80,7 +79,7 @@ public class AccountsController {
 
     @Operation(
             summary = "Update Account REST API",
-            description = "REST API to update Customer & Account inside Eazybank"
+            description = "REST API to update Customer & Account inside bank"
     )
     @ApiResponses({
             @ApiResponse(
@@ -116,7 +115,7 @@ public class AccountsController {
 
     @Operation(
             summary = "Delete Account REST API",
-            description = "REST API to delete Customer & Account inside Eazybank"
+            description = "REST API to delete Customer & Account inside bank"
     )
     @ApiResponses({
             @ApiResponse(
@@ -154,7 +153,7 @@ public class AccountsController {
 
     @Operation(
             summary = "Fetch Account REST API",
-            description = "REST API to fetch Customer & Account inside Eazybank"
+            description = "REST API to fetch Customer & Account inside bank"
     )
     @ApiResponses({
             @ApiResponse(
@@ -178,7 +177,7 @@ public class AccountsController {
 
     @Operation(
             summary = "Fetch Account REST API",
-            description = "REST API to fetch Customer & Account inside Eazybank"
+            description = "REST API to fetch Customer & Account inside bank"
     )
     @ApiResponses({
             @ApiResponse(
@@ -202,7 +201,7 @@ public class AccountsController {
 
     @Operation(
             summary = "Fetch Account REST API",
-            description = "REST API to fetch Customer & Account inside Eazybank"
+            description = "REST API to fetch Customer & Account inside bank"
     )
     @ApiResponses({
             @ApiResponse(
