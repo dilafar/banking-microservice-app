@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: "gatewayserver"
+  profiles:
+    active: "prod"
+  config:
+    import: "optional:configserver:http://localhost:8071/"
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          #enabled: true
+          enabled: false  # after custom Route Added
+          lower-case-service-id: true
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      enabled: true
+    gateway:
+      enabled: true
+  info:
+    env:
+      enabled: true
+
+
+info:
+  app:
+    name: "gatewayserver"
+    description: "Gateways Application"
+    version: "1.0.0"
+
+
+logging:
+  level:
+    com:
+      assignment:
+        gateway: DEBUG
+
