@@ -1,4 +1,36 @@
 services:
+  kafka:
+    image: bitnami/kafka:latest
+    ports:
+      - "9092:9092"
+    volumes:
+      - "./kafka_data:/bitnami/kafka"
+    environment:
+      - KAFKA_CFG_NODE_ID=0
+      - KAFKA_CFG_PROCESS_ROLES=controller,broker
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka:9093
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+    extends:
+      file: common-config.yml
+      service: network-deploy-service
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: kafka-ui
+    ports:
+      - "8050:8080"
+    depends_on:
+      - kafka
+    environment:
+      DYNAMIC_CONFIG_ENABLED: "true"
+      KAFKA_CLUSTERS_0_NAME: "kafka_ms_test"
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: "kafka:9092"
+    extends:
+      file: common-config.yml
+      service: network-deploy-service
+
   redis:
     image: redis
     ports:
@@ -10,10 +42,11 @@ services:
     extends:
       file: common-config.yml
       service: network-deploy-service
+
   accountsdb:
     container_name: accountsdb
     ports:
-      - 3306:3306
+      - 3309:3306
     environment:
       MYSQL_DATABASE: accountsdb
     extends:
@@ -39,8 +72,9 @@ services:
       extends:
         file: common-config.yml
         service: microservice-db-config
+
   configserver:
-    image: "fadhiljr/mssample:configserver-6.0"
+    image: "fadhiljr/mssample:configserver-8.0"
     container_name: configserver-ms
     ports:
       - "8071:8071"
@@ -55,7 +89,7 @@ services:
       service: microservice-base-config
 
   eurekaserver:
-    image: "fadhiljr/mssample:eurekaserver-6.0"
+    image: "fadhiljr/mssample:eurekaserver-8.0"
     container_name: eurekaserver-ms
     ports:
       - "8070:8070"
@@ -75,7 +109,7 @@ services:
       SPRING_APPLICATION_NAME: "eurekaserver"
 
   accounts:
-    image: "fadhiljr/mssample:accounts-7.0"
+    image: "fadhiljr/mssample:accounts-8.0"
     container_name: accounts-ms
     ports:
       - "8080:8080"
@@ -95,12 +129,13 @@ services:
     environment:
       SPRING_APPLICATION_NAME: "accounts"
       SPRING_DATASOURCE_URL: "jdbc:mysql://accountsdb:3306/accountsdb"
+      SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS: "kafka:9092"
     extends:
       file: common-config.yml
       service: microservice-eureka-config
 
   loans:
-    image: "fadhiljr/mssample:loans-7.0"
+    image: "fadhiljr/mssample:loans-8.0"
     container_name: loans-ms
     ports:
       - "8090:8090"
@@ -125,7 +160,7 @@ services:
       service: microservice-eureka-config
 
   cards:
-    image: "fadhiljr/mssample:cards-7.0"
+    image: "fadhiljr/mssample:cards-8.0"
     container_name: cards-ms
     ports:
       - "9000:9000"
@@ -150,7 +185,7 @@ services:
       service: microservice-eureka-config
 
   gatewayserver:
-    image: "fadhiljr/mssample:gatewayserver-6.0"
+    image: "fadhiljr/mssample:gatewayserver-8.0"
     container_name: gatewayserver-ms
     ports:
       - "8072:8072"
@@ -172,6 +207,15 @@ services:
     extends:
       file: common-config.yml
       service: microservice-eureka-config
+
+  message:
+    image: "fadhiljr/mssample:message-8.0"
+    container_name: message-ms
+    environment:
+      SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS: "kafka:9092"
+    extends:
+      file: common-config.yml
+      service: network-deploy-service
 
 networks:
   banks:
