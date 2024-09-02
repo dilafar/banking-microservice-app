@@ -6,6 +6,7 @@ import com.assignment.accounts.dto.CustomerDto;
 import com.assignment.accounts.dto.ErrorResponseDto;
 import com.assignment.accounts.dto.ResponseDto;
 import com.assignment.accounts.service.IAccountsService;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -194,10 +195,17 @@ public class AccountsController {
             )
     }
     )
+
+    @RateLimiter(name = "getJavaVersion",fallbackMethod = "getJavaVersionFallback" )
     @GetMapping("/java-version")
     public ResponseEntity<String> getJavaVersion(){
         return ResponseEntity.status(HttpStatus.OK).body(environment.getProperty("JAVA_HOME"));
     }
+
+    public ResponseEntity<String> getJavaVersionFallback(Throwable throwable){
+        return ResponseEntity.status(HttpStatus.OK).body("JAVA17");
+    }
+
 
     @Operation(
             summary = "Fetch Account REST API",
@@ -222,6 +230,9 @@ public class AccountsController {
     public ResponseEntity<AccountsContactInfo> getAccountsInfo(){
         return ResponseEntity.status(HttpStatus.OK).body(accountsContactInfo);
     }
+
+
+
 
 
 }
