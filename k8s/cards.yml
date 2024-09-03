@@ -1,0 +1,64 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cards
+  labels:
+    name: cards
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cards
+  template:
+    metadata:
+      labels:
+        app: cards
+    spec:
+      containers:
+        - name: cards
+          image: fadhiljr/mssample:cards-8.0
+          ports:
+            - containerPort: 9000
+          env:
+            - name: SPRING_APPLICATION_NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: CARDS_APPLICATION_NAME
+                  name: bank-cm
+            - name: SPRING_CONFIG_IMPORT
+              valueFrom:
+                configMapKeyRef:
+                  key: SPRING_CONFIG_IMPORT
+                  name: bank-cm
+            - name: SPRING_PROFILES_ACTIVE
+              valueFrom:
+                configMapKeyRef:
+                  key: SPRING_PROFILES_ACTIVE
+                  name: bank-cm
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: CARDS_DATASOURCE_URL
+                  name: bank-cm
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              valueFrom:
+                configMapKeyRef:
+                  key: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+                  name: bank-cm
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cards
+  labels:
+    name: cards
+spec:
+  selector:
+    app: cards
+  ports:
+    - port: 9000
+      targetPort: 9000
+      protocol: TCP
+  type: LoadBalancer

@@ -1,0 +1,58 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cardsdb
+  labels:
+    app: cardsdb
+spec:
+  selector:
+    matchLabels:
+      app: cardsdb
+  template:
+    metadata:
+      labels:
+        app: cardsdb
+    spec:
+      containers:
+        - name: cardsdb
+          image: mysql:latest
+          ports:
+            - containerPort: 3306
+          livenessProbe:
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            tcpSocket:
+              port: 3306
+          readinessProbe:
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            tcpSocket:
+              port: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: root
+            - name: MYSQL_DATABASE
+              value: cardsdb
+          volumeMounts:
+            - name: mysql-cards-db-vol
+              mountPath: "/var/lib/mysql"
+      volumes:
+        - name: mysql-cards-db-vol
+          persistentVolumeClaim:
+            claimName: cards-pvc
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cardsdb
+  labels:
+    name: cardsdb
+spec:
+  selector:
+    app: cardsdb
+  ports:
+    - port: 3308
+      targetPort: 3306
+      protocol: TCP

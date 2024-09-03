@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: message
+  labels:
+    name: message
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: message
+  template:
+    metadata:
+      labels:
+        app: message
+    spec:
+      containers:
+        - name: message
+          image: fadhiljr/mssample:message-8.0
+          ports:
+            - containerPort: 9010
+          env:
+            - name: SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS
+              valueFrom:
+                configMapKeyRef:
+                  key: SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS
+                  name: bank-cm
+
+

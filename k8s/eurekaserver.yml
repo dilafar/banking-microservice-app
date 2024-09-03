@@ -1,0 +1,54 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eurekaserver
+  labels:
+    name: eurekaserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eurekaserver
+  template:
+    metadata:
+      labels:
+        app: eurekaserver
+    spec:
+      containers:
+        - name: eurekaserver
+          image: fadhiljr/mssample:eurekaserver-8.0
+          ports:
+            - containerPort: 8070
+          env:
+            - name: SPRING_APPLICATION_NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: EUREKA_APPLICATION_NAME
+                  name: bank-cm
+            - name: SPRING_CONFIG_IMPORT
+              valueFrom:
+                configMapKeyRef:
+                  key: SPRING_CONFIG_IMPORT
+                  name: bank-cm
+            - name: SPRING_PROFILES_ACTIVE
+              valueFrom:
+                configMapKeyRef:
+                  key: SPRING_PROFILES_ACTIVE
+                  name: bank-cm
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: eurekaserver
+  labels:
+    name: eurekaserver
+spec:
+  selector:
+    app: eurekaserver
+  ports:
+    - port: 8070
+      targetPort: 8070
+      protocol: TCP
+  type: LoadBalancer
