@@ -1,0 +1,21 @@
+appName: loans
+appReplicas: 1
+appImage: fadhiljr/mssample
+appVersion: loans-8.0
+containerPort: 8090
+env_enabled: true
+service_enabled: true
+containerEnvVar:
+  - name: SPRING_APPLICATION_NAME
+    value: "loans"
+  - name: SPRING_CONFIG_IMPORT
+    value: "jdbc:mysql://loansdb:3306/loansdb"
+  - name: SPRING_PROFILES_ACTIVE
+    value: "default"
+  - name: SPRING_DATASOURCE_URL
+    value: "jdbc:mysql://accountsdb:3309/accountsdb"
+  - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+    value: "http://eurekaserver:8070/eureka/"
+volume_enabled: false
+servicePort: 8090
+serviceType: LoadBalancer

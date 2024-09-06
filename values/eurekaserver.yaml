@@ -1,0 +1,17 @@
+appName: eurekaserver
+appReplicas: 1
+appImage: fadhiljr/mssample
+appVersion: eurekaserver-8.0
+containerPort: 8070
+env_enabled: true
+service_enabled: true
+containerEnvVar:
+  - name: SPRING_APPLICATION_NAME
+    value: "eurekaserver"
+  - name: SPRING_CONFIG_IMPORT
+    value: "configserver:http://configserver:8071/"
+  - name: SPRING_PROFILES_ACTIVE
+    value: "default"
+volume_enabled: false
+servicePort: 8070
+serviceType: LoadBalancer

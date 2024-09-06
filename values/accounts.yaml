@@ -1,0 +1,23 @@
+appName: accounts
+appReplicas: 1
+appImage: fadhiljr/mssample
+appVersion: accounts-8.0
+containerPort: 8080
+env_enabled: true
+service_enabled: true
+containerEnvVar:
+  - name: SPRING_APPLICATION_NAME
+    value: "accounts"
+  - name: SPRING_CONFIG_IMPORT
+    value: "configserver:http://configserver:8071/"
+  - name: SPRING_PROFILES_ACTIVE
+    value: "default"
+  - name: SPRING_DATASOURCE_URL
+    value: "jdbc:mysql://accountsdb:3309/accountsdb"
+  - name: SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS
+    value: "kafka:9092"
+  - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+    value: "http://eurekaserver:8070/eureka/"
+volume_enabled: false
+servicePort: 8080
+serviceType: LoadBalancer

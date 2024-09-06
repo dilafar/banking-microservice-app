@@ -1,0 +1,19 @@
+appName: cardsdb
+appReplicas: 1
+appImage: mysql
+appVersion: latest
+containerPort: 3306
+env_enabled: true
+service_enabled: true
+containerEnvVar:
+  - name: MYSQL_ROOT_PASSWORD
+    value: "root"
+  - name: MYSQL_DATABASE
+    value: "cardsdb"
+volume_enabled: true
+pv_name: "cards-pv"
+pv_host_path: "/mnt/cards"
+claim_name: "cards-pvc"
+volume_name: "mysql-cards-db-vol"
+mount_path: "/var/lib/mysql"
+servicePort: 3308

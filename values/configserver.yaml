@@ -1,0 +1,10 @@
+appName: configserver
+appReplicas: 1
+appImage: fadhiljr/mssample
+appVersion: configserver-8.0
+containerPort: 8071
+env_enabled: false
+service_enabled: true
+volume_enabled: false
+servicePort: 8071
+serviceType: LoadBalancer

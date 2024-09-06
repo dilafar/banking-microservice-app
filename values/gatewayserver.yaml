@@ -1,0 +1,27 @@
+appName: gatewayserver
+appReplicas: 1
+appImage: fadhiljr/mssample
+appVersion: gatewayserver-8.0
+containerPort: 8072
+env_enabled: true
+service_enabled: true
+containerEnvVar:
+  - name: SPRING_APPLICATION_NAME
+    value: "gatewayserver"
+  - name: SPRING_CONFIG_IMPORT
+    value: "configserver:http://configserver:8071/"
+  - name: SPRING_PROFILES_ACTIVE
+    value: "default"
+  - name: SPRING_DATA_REDIS_CONNECT_TIMEOUT
+    value: "2s"
+  - name: SPRING_DATA_REDIS_HOST
+    value: "redis"
+  - name: SPRING_DATA_REDIS_PORT
+    value: "6379"
+  - name: SPRING_DATA_REDIS_TIMEOUT
+    value: "1s"
+  - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+    value: "http://eurekaserver:8070/eureka/"
+volume_enabled: false
+servicePort: 8072
+serviceType: LoadBalancer
