@@ -13,9 +13,6 @@ pipeline{
     agent any
     environment{
         NEW_VERSION = "1.3.0"
-        registryCredentials:
-        registry
-        appregistry:
     }
     tools{
         maven 'maven'
@@ -103,12 +100,13 @@ pipeline{
         stage("build and push image"){
             steps{
                 script{
-                    buildImage(:${IMAGE_NAME}")
+                    buildImage("fadhiljr/mssample:${IMAGE_NAME}")
                     dockerLogin()
                     dockerPush("fadhiljr/mssample:${IMAGE_NAME}")
                 }
             }
         }
+
 
         stage("deploy"){
             steps{
