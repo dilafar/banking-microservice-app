@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.*;
         name = "CRUD REST APIs for Accounts in Bank",
         description = "CRUD REST APIs in Bank to CREATE,UPDATE,FETCH AND DELETE account details"
 )
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping(path = "/api",produces = {MediaType.APPLICATION_JSON_VALUE})
 @Validated

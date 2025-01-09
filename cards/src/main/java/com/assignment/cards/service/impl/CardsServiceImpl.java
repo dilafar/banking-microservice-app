@@ -11,6 +11,8 @@ import com.assignment.cards.service.ICardsService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.concurrent.Callable;
@@ -40,7 +42,7 @@ public class CardsServiceImpl implements ICardsService {
         cards.setCardType(CardsConstants.CREDIT_CARD);
         cards.setTotalLimit(CardsConstants.NEW_CARD_LIMIT);
         cards.setAmountUsed(0);
-        cards.setTotalLimit(CardsConstants.NEW_CARD_LIMIT);
+        cards.setAvailableAmount(CardsConstants.NEW_CARD_LIMIT);
         return cards;
     }
 
@@ -81,5 +83,23 @@ public class CardsServiceImpl implements ICardsService {
       );
       cardsRepository.deleteById(cards.getCardId());
         return true;
+    }
+
+    /**
+     * @return list of cards details
+     */
+    @Override
+    public List<CardsDto> fetchCards() {
+        List<Cards> cards = cardsRepository.findAll();
+        List<CardsDto> cardsDtos = new ArrayList<>();
+        if (cards.isEmpty()){
+            throw new ResourceNotFoundException("Card", "mobileNumber", "[]");
+        }
+        for (Cards cards1: cards){
+           CardsDto cardsDto = CardsMapper.mapToCardsDto(cards1,new CardsDto());
+           cardsDtos.add(cardsDto);
+        }
+
+        return cardsDtos;
     }
 }

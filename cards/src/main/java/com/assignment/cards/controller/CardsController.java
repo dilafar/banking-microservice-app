@@ -25,6 +25,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @author Ahamed Fadhil
  */
@@ -32,6 +34,7 @@ import org.springframework.web.bind.annotation.*;
         name = "CRUD REST APIs for Cards in EazyBank",
         description = "CRUD REST APIs in EazyBank to CREATE, UPDATE, FETCH AND DELETE card details"
 )
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping(path = "/api", produces = {MediaType.APPLICATION_JSON_VALUE})
 @Validated
@@ -242,6 +245,29 @@ public class CardsController {
     @GetMapping("/cards-info")
     public ResponseEntity<CardsContactInfo> getCardsInfo(){
         return ResponseEntity.status(HttpStatus.OK).body(cardsContactInfo);
+    }
+
+    @Operation(
+            summary = "Fetch All Card Details REST API",
+            description = "REST API to fetch All card details"
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "HTTP Status OK"
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "HTTP Status Internal Server Error",
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponseDto.class)
+                    )
+            )
+    })
+    @GetMapping("/fetchallcards")
+    public ResponseEntity<List<CardsDto>> fetchCardDetails(){
+        List<CardsDto> cardsDtos = iCardsService.fetchCards();
+        return ResponseEntity.status(HttpStatus.OK).body(cardsDtos);
     }
 
 }
