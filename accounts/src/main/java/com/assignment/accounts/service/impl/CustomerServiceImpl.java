@@ -75,7 +75,7 @@ public class CustomerServiceImpl implements ICustomerService {
             if(null != cardDetails){
                 customerDetailsDto.setCardsDto(cardDetails.getBody());
             }
-            if(null == cardDetails){
+            if(cardDetails == null){
                 CardsDto cardsDto = new CardsDto();
                 cardsDto.setMobileNumber(customer.getMobileNumber());
                 cardsDto.setCardNumber("not added");
@@ -91,7 +91,7 @@ public class CustomerServiceImpl implements ICustomerService {
             if(null != loanDetails){
                 customerDetailsDto.setLoansDto(loanDetails.getBody());
             }
-            if(null == loanDetails){
+            if(loanDetails == null){
                 LoansDto loansDto = new LoansDto();
                 loansDto.setMobileNumber(customer.getMobileNumber());
                 loansDto.setLoanNumber("not added");

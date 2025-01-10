@@ -1,5 +1,12 @@
-FROM openjdk:17-jdk-slim
+FROM maven:3.9.9-amazoncorretto-17-alpine AS builder
+WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
+
+FROM amazoncorretto:17-alpine3.20-jdk
+RUN addgroup -S pipeline && adduser -S k8-user -G pipeline
+COPY --from=builder /app/target/*.jar /home/k8-user/app.jar
+USER k8-user
 EXPOSE 8090
-RUN apt update && apt install -y curl && rm -rf /var/lib/apt/lists/*
-COPY target/loans-0.0.1-SNAPSHOT.jar loans-0.0.1-SNAPSHOT.jar
-ENTRYPOINT ["java","-jar","loans-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "/home/k8-user/app.jar"]

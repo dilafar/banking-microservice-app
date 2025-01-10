@@ -34,7 +34,7 @@ import java.util.List;
         name = "CRUD REST APIs for Cards in EazyBank",
         description = "CRUD REST APIs in EazyBank to CREATE, UPDATE, FETCH AND DELETE card details"
 )
-@CrossOrigin(origins = "http://localhost:5173")
+//@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(path = "/api", produces = {MediaType.APPLICATION_JSON_VALUE})
 @Validated

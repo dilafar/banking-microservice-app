@@ -52,6 +52,16 @@ public class CardsServiceImpl implements ICardsService {
      */
     @Override
     public CardsDto fetchCard(String mobileNumber) {
+        if (cardsRepository.findByMobileNumber(mobileNumber).isEmpty()){
+            CardsDto cardsDto = new CardsDto();
+            cardsDto.setMobileNumber(mobileNumber);
+            cardsDto.setCardNumber("not added");
+            cardsDto.setCardType("not added");
+            cardsDto.setTotalLimit(0);
+            cardsDto.setAmountUsed(0);
+            cardsDto.setAvailableAmount(0);
+            return cardsDto;
+        }
         Cards cards = cardsRepository.findByMobileNumber(mobileNumber).orElseThrow(
                 ()-> new ResourceNotFoundException("Card", "mobileNumber", mobileNumber)
         );
@@ -67,6 +77,7 @@ public class CardsServiceImpl implements ICardsService {
         Cards cards = cardsRepository.findByCardNumber(cardsDto.getCardNumber()).orElseThrow(
                 ()-> new ResourceNotFoundException("Card", "CardNumber", cardsDto.getCardNumber())
         );
+
         CardsMapper.mapToCards(cardsDto,cards);
         cardsRepository.save(cards);
         return true;

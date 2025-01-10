@@ -15,6 +15,10 @@ spec:
       labels:
         app: loans
     spec:
+      initContainers:
+        - name: mydb-available
+          image: busybox:1.28
+          command: [ 'sh','-c',"until nslookup mysql; do echo waiting for database; sleep 4; done" ]
       containers:
         - name: loans
           image: fadhiljr/mssample:loans-8.0
@@ -37,10 +41,14 @@ spec:
                   key: SPRING_PROFILES_ACTIVE
                   name: bank-cm
             - name: SPRING_DATASOURCE_URL
+              value: "jdbc:mysql://mysql:3306/loansdb"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "admin"
+            - name: SPRING_DATASOURCE_PASSWORD
               valueFrom:
-                configMapKeyRef:
-                  key: LOANS_DATASOURCE_URL
-                  name: bank-cm
+                secretKeyRef:
+                  key: password
+                  name: mysql-db-password
             - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
               valueFrom:
                 configMapKeyRef:

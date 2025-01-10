@@ -2,6 +2,7 @@ package com.assignment.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.gateway.config.GlobalCorsProperties;
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
 import org.springframework.cloud.gateway.filter.ratelimit.RedisRateLimiter;
 import org.springframework.cloud.gateway.route.RouteLocator;
@@ -14,7 +15,6 @@ import reactor.core.publisher.Mono;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-@CrossOrigin(origins = "http://localhost:5173")
 @SpringBootApplication
 public class GatewayApplication {
 
@@ -23,43 +23,32 @@ public class GatewayApplication {
 	}
 
 	@Bean
-	public RouteLocator customRouteLocator(RouteLocatorBuilder builder){
+	public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
 		return builder.routes()
-					.route(p -> p
-								.path("/qncbank/accounts/**")
-								.filters(f -> f.rewritePath("/qncbank/accounts/(?<segment>.*)", "/${segment}")
-										.addResponseHeader("X-Response-Time", LocalDateTime.now().toString())
-										.circuitBreaker(config -> config.setName("accountsCircuitBreaker")
-												.setFallbackUri("forward:/contactSupport")))
-								.uri("lb://ACCOUNTS"))
-					.route(p -> p
-								.path("/qncbank/loans/**")
-								.filters(f -> f.rewritePath("/qncbank/loans/(?<segment>.*)", "/${segment}")
-										.addResponseHeader("X-Response-Time", LocalDateTime.now().toString())
-										.retry(retryConfig -> retryConfig.setRetries(3).setMethods(HttpMethod.GET)
-												.setBackoff(Duration.ofMillis(100),Duration.ofMillis(100),2,true)))
-								.uri("lb://LOANS"))
-					.route(p -> p
-								.path("/qncbank/cards/**")
-								.filters(f -> f.rewritePath("/qncbank/cards/(?<segment>.*)", "/${segment}")
-										.addResponseHeader("X-Response-Time", LocalDateTime.now().toString())
-										.requestRateLimiter(config -> config.setRateLimiter(redisRateLimiter())
-												.setKeyResolver(userKeyResolver())))
-								.uri("lb://CARDS"))
-					.build();
-
-
+				.route(p -> p
+						.path("/qncbank/accounts/**")
+						.filters(f -> f
+								.rewritePath("/qncbank/accounts/(?<segment>.*)", "/${segment}")
+								.addResponseHeader("X-Response-Time", LocalDateTime.now().toString()))
+						.uri("lb://ACCOUNTS"))
+				.route(p -> p
+						.path("/qncbank/loans/**")
+						.filters(f -> f
+								.rewritePath("/qncbank/loans/(?<segment>.*)", "/${segment}")
+								.addResponseHeader("X-Response-Time", LocalDateTime.now().toString()))
+						.uri("lb://LOANS"))
+				.route(p -> p
+						.path("/qncbank/cards/**")
+						.filters(f -> f
+								.rewritePath("/qncbank/cards/(?<segment>.*)", "/${segment}")
+								.addResponseHeader("X-Response-Time", LocalDateTime.now().toString()))
+						.uri("lb://CARDS"))
+				.build();
 	}
 
 	@Bean
-	public RedisRateLimiter redisRateLimiter(){
-		return new RedisRateLimiter(1,1,1);
-	}
-
-	@Bean
-	KeyResolver userKeyResolver(){
-		return exchange -> Mono.justOrEmpty(exchange.getRequest().getHeaders().getFirst("user"))
-				.defaultIfEmpty("anonymous");
+	public GlobalCorsProperties globalCorsProperties() {
+		return new GlobalCorsProperties();
 	}
 
 }

@@ -24,7 +24,7 @@ import java.util.List;
         name = "CRUD REST APIs for Accounts in Bank",
         description = "CRUD REST APIs in Bank to CREATE,UPDATE,FETCH AND DELETE account details"
 )
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(path = "/api",produces = {MediaType.APPLICATION_JSON_VALUE})
 @Validated

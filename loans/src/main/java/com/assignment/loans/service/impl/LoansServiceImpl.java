@@ -53,6 +53,16 @@ public class LoansServiceImpl implements ILoansService {
      */
     @Override
     public LoansDto fetchLoan(String mobileNumber) {
+        if (loansRepository.findByMobileNumber(mobileNumber).isEmpty()){
+            LoansDto loansDto = new LoansDto();
+            loansDto.setMobileNumber(mobileNumber);
+            loansDto.setLoanNumber("not added");
+            loansDto.setLoanType("not added");
+            loansDto.setTotalLoan(0);
+            loansDto.setAmountPaid(0);
+            loansDto.setOutstandingAmount(0);
+            return loansDto;
+        }
         Loans loans = loansRepository.findByMobileNumber(mobileNumber).orElseThrow(
                 ()-> new ResourceNotFoundException("Loan", "mobileNumber", mobileNumber)
         );
