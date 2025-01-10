@@ -11,6 +11,8 @@ import com.assignment.loans.service.ILoansService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
@@ -51,6 +53,16 @@ public class LoansServiceImpl implements ILoansService {
      */
     @Override
     public LoansDto fetchLoan(String mobileNumber) {
+        if (loansRepository.findByMobileNumber(mobileNumber).isEmpty()){
+            LoansDto loansDto = new LoansDto();
+            loansDto.setMobileNumber(mobileNumber);
+            loansDto.setLoanNumber("not added");
+            loansDto.setLoanType("not added");
+            loansDto.setTotalLoan(0);
+            loansDto.setAmountPaid(0);
+            loansDto.setOutstandingAmount(0);
+            return loansDto;
+        }
         Loans loans = loansRepository.findByMobileNumber(mobileNumber).orElseThrow(
                 ()-> new ResourceNotFoundException("Loan", "mobileNumber", mobileNumber)
         );
@@ -83,5 +95,22 @@ public class LoansServiceImpl implements ILoansService {
         );
         loansRepository.deleteById(loans.getLoanId());
         return true;
+    }
+
+    /**
+     * @return Loan details list
+     */
+    @Override
+    public List<LoansDto> fetchLoans() {
+        List<Loans> loans = loansRepository.findAll();
+        List<LoansDto> loansDtos = new ArrayList<>();
+        if(loans.isEmpty()){
+            throw new ResourceNotFoundException("Loan", "LoanNumber", "[]");
+        }
+        for(Loans loans1: loans){
+            LoansDto loansDto = LoansMapper.mapToLoansDto(loans1, new LoansDto());
+            loansDtos.add(loansDto);
+        }
+        return loansDtos;
     }
 }

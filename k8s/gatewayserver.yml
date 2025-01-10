@@ -36,26 +36,6 @@ spec:
                 configMapKeyRef:
                   key: SPRING_PROFILES_ACTIVE
                   name: bank-cm
-            - name: SPRING_DATA_REDIS_CONNECT_TIMEOUT
-              valueFrom:
-                configMapKeyRef:
-                  key: GATEWAY_DATA_REDIS_CONNECT_TIMEOUT
-                  name: bank-cm
-            - name: SPRING_DATA_REDIS_HOST
-              valueFrom:
-                configMapKeyRef:
-                  key: SPRING_DATA_REDIS_HOST
-                  name: bank-cm
-            - name: SPRING_DATA_REDIS_PORT
-              valueFrom:
-                configMapKeyRef:
-                  key: SPRING_DATA_REDIS_PORT
-                  name: bank-cm
-            - name: SPRING_DATA_REDIS_TIMEOUT
-              valueFrom:
-                configMapKeyRef:
-                  key: SPRING_DATA_REDIS_TIMEOUT
-                  name: bank-cm
             - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
               valueFrom:
                 configMapKeyRef:

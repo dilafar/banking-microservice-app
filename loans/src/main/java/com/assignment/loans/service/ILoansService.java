@@ -2,6 +2,8 @@ package com.assignment.loans.service;
 
 import com.assignment.loans.dto.LoansDto;
 
+import java.util.List;
+
 public interface ILoansService {
     /**
      *
@@ -29,5 +31,11 @@ public interface ILoansService {
      * @return boolean indicating if the delete of loan details is successful or not
      */
     boolean deleteLoan(String mobileNumber);
+
+    /**
+     *
+     *  @return Loan details list
+     */
+    List<LoansDto> fetchLoans();
 
 }

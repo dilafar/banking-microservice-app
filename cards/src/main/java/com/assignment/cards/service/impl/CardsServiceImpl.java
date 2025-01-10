@@ -11,6 +11,8 @@ import com.assignment.cards.service.ICardsService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.concurrent.Callable;
@@ -40,7 +42,7 @@ public class CardsServiceImpl implements ICardsService {
         cards.setCardType(CardsConstants.CREDIT_CARD);
         cards.setTotalLimit(CardsConstants.NEW_CARD_LIMIT);
         cards.setAmountUsed(0);
-        cards.setTotalLimit(CardsConstants.NEW_CARD_LIMIT);
+        cards.setAvailableAmount(CardsConstants.NEW_CARD_LIMIT);
         return cards;
     }
 
@@ -50,6 +52,16 @@ public class CardsServiceImpl implements ICardsService {
      */
     @Override
     public CardsDto fetchCard(String mobileNumber) {
+        if (cardsRepository.findByMobileNumber(mobileNumber).isEmpty()){
+            CardsDto cardsDto = new CardsDto();
+            cardsDto.setMobileNumber(mobileNumber);
+            cardsDto.setCardNumber("not added");
+            cardsDto.setCardType("not added");
+            cardsDto.setTotalLimit(0);
+            cardsDto.setAmountUsed(0);
+            cardsDto.setAvailableAmount(0);
+            return cardsDto;
+        }
         Cards cards = cardsRepository.findByMobileNumber(mobileNumber).orElseThrow(
                 ()-> new ResourceNotFoundException("Card", "mobileNumber", mobileNumber)
         );
@@ -65,6 +77,7 @@ public class CardsServiceImpl implements ICardsService {
         Cards cards = cardsRepository.findByCardNumber(cardsDto.getCardNumber()).orElseThrow(
                 ()-> new ResourceNotFoundException("Card", "CardNumber", cardsDto.getCardNumber())
         );
+
         CardsMapper.mapToCards(cardsDto,cards);
         cardsRepository.save(cards);
         return true;
@@ -81,5 +94,23 @@ public class CardsServiceImpl implements ICardsService {
       );
       cardsRepository.deleteById(cards.getCardId());
         return true;
+    }
+
+    /**
+     * @return list of cards details
+     */
+    @Override
+    public List<CardsDto> fetchCards() {
+        List<Cards> cards = cardsRepository.findAll();
+        List<CardsDto> cardsDtos = new ArrayList<>();
+        if (cards.isEmpty()){
+            throw new ResourceNotFoundException("Card", "mobileNumber", "[]");
+        }
+        for (Cards cards1: cards){
+           CardsDto cardsDto = CardsMapper.mapToCardsDto(cards1,new CardsDto());
+           cardsDtos.add(cardsDto);
+        }
+
+        return cardsDtos;
     }
 }

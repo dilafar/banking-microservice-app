@@ -2,6 +2,8 @@ package com.assignment.cards.service;
 
 import com.assignment.cards.dto.CardsDto;
 
+import java.util.List;
+
 public interface ICardsService {
     /**
      *
@@ -26,4 +28,10 @@ public interface ICardsService {
      * @return boolean indicating if the delete of card details is successful or not
      */
     boolean deleteCard(String mobileNumber);
+
+    /**
+     *
+     *  @return list of cards details
+     */
+    List<CardsDto> fetchCards();
 }

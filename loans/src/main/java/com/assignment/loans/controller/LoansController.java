@@ -26,6 +26,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @author Ahamed Fadhil
  */
@@ -34,9 +36,10 @@ import org.springframework.web.bind.annotation.*;
         name = "CRUD REST APIs for Loans in EazyBank",
         description = "CRUD REST APIs in EazyBank to CREATE, UPDATE, FETCH AND DELETE loan details"
 )
+//@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(path = "/api", produces = {MediaType.APPLICATION_JSON_VALUE})
-@Validated
+//@Validated
 public class LoansController {
 
     private static final Logger logger = LoggerFactory.getLogger(LoansController.class);
@@ -74,6 +77,7 @@ public class LoansController {
             )
     }
     )
+    @CrossOrigin(origins = "*")
     @PostMapping("/create")
     public ResponseEntity<ResponseDto> createLoan(@Valid @RequestParam
                                                   @Pattern(regexp="(^$|[0-9]{10})",message = "Mobile number must be 10 digits")
@@ -134,7 +138,8 @@ public class LoansController {
     }
     )
     @PutMapping("/update")
-    public ResponseEntity<ResponseDto> updateLoanDetails(@Valid @RequestBody LoansDto loansDto) {
+    public ResponseEntity<ResponseDto> updateLoanDetails(@RequestBody LoansDto loansDto) {
+        System.out.println("Received loan update request: " + loansDto);
         boolean isUpdated = loansService.updateLoan(loansDto);
         if(isUpdated) {
             return ResponseEntity
@@ -256,5 +261,29 @@ public class LoansController {
     @GetMapping("/loans-info")
     public ResponseEntity<LoansContactInfo> getLoansInfo(){
         return ResponseEntity.status(HttpStatus.OK).body(loansContactInfo);
+    }
+
+    @Operation(
+            summary = "Fetch All Loan Details REST API",
+            description = "REST API to fetch All loan details"
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "HTTP Status OK"
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "HTTP Status Internal Server Error",
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponseDto.class)
+                    )
+            )
+    }
+    )
+    @GetMapping("/fetchallloans")
+    public ResponseEntity<List<LoansDto>> fetchLoans(){
+        List<LoansDto> loansDtos = loansService.fetchLoans();
+        return ResponseEntity.status(HttpStatus.OK).body(loansDtos);
     }
 }

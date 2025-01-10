@@ -18,10 +18,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Tag(
         name = "CRUD REST APIs for Accounts in Bank",
         description = "CRUD REST APIs in Bank to CREATE,UPDATE,FETCH AND DELETE account details"
 )
+//@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(path = "/api",produces = {MediaType.APPLICATION_JSON_VALUE})
 @Validated
@@ -61,6 +64,33 @@ public class CustomerController {
         CustomerDetailsDto customerDetailsDto = iCustomerService.fetchCustomerDetails(mobileNumber,correlationId);
 
         return ResponseEntity.status(HttpStatus.OK).body(customerDetailsDto);
+
+    }
+
+    @Operation(
+            summary = "get all Customer datails REST API",
+            description = "REST API to update Customer & Account inside bank"
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "HTTP Status OK"
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "HTTP Status Internal Server Error",
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponseDto.class)
+                    )
+            )
+    }
+    )
+    @GetMapping("/fetchallCustomerDetails")
+    public ResponseEntity<List<CustomerDetailsDto>> fetchAllCustomerDetails(@RequestHeader("bank-correlation-id") String  correlationId){
+        logger.debug("correlation ID : ",correlationId);
+        List<CustomerDetailsDto> customerDetailsDtos = iCustomerService.fetchAllCustomerDetails(correlationId);
+
+        return ResponseEntity.status(HttpStatus.OK).body(customerDetailsDtos);
 
     }
 }
