@@ -21,6 +21,6 @@ spec:
         protocol: HTTPS
       hosts:
         - "*"
-      tls:
-        mode: SIMPLE
-        credentialName: gateway-tls
+    #  tls:
+     #   mode: SIMPLE
+     #   credentialName: gateway-tls

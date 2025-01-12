@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - db-external-secret.yml
   - frontend-virtual-service.yml
+  - backend-virtual-service.yml
