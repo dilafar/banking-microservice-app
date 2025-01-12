@@ -2,29 +2,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gatewayserver
+  name: eurekaserver
   labels:
-    name: gatewayserver
+    name: eurekaserver
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: gatewayserver
+      app: eurekaserver
   template:
     metadata:
       labels:
-        app: gatewayserver
+        app: eurekaserver
     spec:
       containers:
-        - name: gatewayserver
-          image: fadhiljr/mssample:gatewayserver-8.0
+        - name: eurekaserver
+          image: fadhiljr/mssample:eurekaserver-20.0
           ports:
-            - containerPort: 8072
+            - containerPort: 8070
           env:
             - name: SPRING_APPLICATION_NAME
               valueFrom:
                 configMapKeyRef:
-                  key: GATEWAY_APPLICATION_NAME
+                  key: EUREKA_APPLICATION_NAME
                   name: bank-cm
             - name: SPRING_CONFIG_IMPORT
               valueFrom:
@@ -36,24 +36,19 @@ spec:
                 configMapKeyRef:
                   key: SPRING_PROFILES_ACTIVE
                   name: bank-cm
-            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
-              valueFrom:
-                configMapKeyRef:
-                  key: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
-                  name: bank-cm
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: gatewayserver
+  name: eurekaserver
   labels:
-    name: gatewayserver
+    name: eurekaserver
 spec:
   selector:
-    app: gatewayserver
+    app: eurekaserver
   ports:
-    - port: 8072
-      targetPort: 8072
+    - port: 8070
+      targetPort: 8070
       protocol: TCP
   type: ClusterIP

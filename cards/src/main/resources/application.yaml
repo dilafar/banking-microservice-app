@@ -5,9 +5,9 @@ spring:
     url: jdbc:mysql://microservice-db.c3aema8a8skg.us-east-1.rds.amazonaws.com:3306/cardsdb
     username: admin
     password: pp57FYMKlrXTnj1DrXS5
-   # url: jdbc:mysql://localhost:3308/cardsdb
-   # username: root
-   # password: root
+    #url: jdbc:mysql://localhost:3308/cardsdb
+    #username: root
+    #password: root
   jpa:
     show-sql: true
   sql:

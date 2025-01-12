@@ -15,10 +15,18 @@ spring:
       globalcors:
         cors-configurations:
           '[/**]':
-              allowedOrigins: "http://localhost:5173"
-              allowedMethods: GET, POST, PUT, DELETE, OPTIONS
-              allowedHeaders: "*"
-              allowCredentials: true
+            allowedOrigins:
+              - "https://awsmc.cloud-net-mgmt.com"
+              - "http://localhost:5173"
+              - "https://localhost"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+            allowCredentials: true
 
   main:
     allow-bean-definition-overriding: true
@@ -52,4 +60,4 @@ logging:
       assignment:
         gateway: DEBUG
 
-
+#*.com
