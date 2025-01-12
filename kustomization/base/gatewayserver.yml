@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: gatewayserver
-          image: fadhiljr/mssample:gatewayserver-22.0
+          image: fadhiljr/mssample:gatewayserver-23.0
           ports:
             - containerPort: 8072
           env:

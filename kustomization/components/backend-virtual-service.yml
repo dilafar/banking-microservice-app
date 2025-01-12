@@ -4,7 +4,7 @@ metadata:
   name: backend
 spec:
   hosts:
-    - awsmctest.cncloudnet.com
+    - "awsmctest.cncloudnet.com"
   gateways:
     - istio-ingress/istio-gateway
   http:

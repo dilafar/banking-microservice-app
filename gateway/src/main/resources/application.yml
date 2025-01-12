@@ -16,6 +16,7 @@ spring:
         cors-configurations:
           '[/**]':
             allowedOrigins:
+              - "https://awsmc.cncloudnet.com"
               - "https://awsmc.cloud-net-mgmt.com"
               - "http://localhost:5173"
               - "https://localhost"
