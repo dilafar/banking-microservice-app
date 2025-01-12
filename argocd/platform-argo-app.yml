@@ -10,7 +10,7 @@ spec:
     namespace: default
   source:
     repoURL: https://github.com/dilafar/banking-microservice-app.git
-    path: platform
+    path: kustomization/platform
     targetRevision: main
   syncPolicy:
     automated:

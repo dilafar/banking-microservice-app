@@ -4,13 +4,13 @@ metadata:
   name: backend
 spec:
   hosts:
-    - "*"
+    - awsmctest.cncloudnet.com
   gateways:
     - istio-ingress/istio-gateway
   http:
     - route:
         - destination:
-            host: frontend
+            host: gatewayserver
             port:
               number: 80
       match:
