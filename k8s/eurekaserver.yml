@@ -51,4 +51,4 @@ spec:
     - port: 8070
       targetPort: 8070
       protocol: TCP
-  type: LoadBalancer
+  type: ClusterIP

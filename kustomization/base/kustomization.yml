@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: banking-ns
+resources:
+  - mysql-secret.yml
+  - mysql-externalName-service.yml
+  - configmap.yml
+  - configserver.yml
+  - eurekaserver.yml
+  - gatewayserver.yml
+  - accounts.yml
+  - cards.yml
+  - loans.yml
+  - frontend.yml

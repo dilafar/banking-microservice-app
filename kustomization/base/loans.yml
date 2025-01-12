@@ -2,33 +2,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: accounts
+  name: loans
   labels:
-    name: accounts
+    name: loans
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: accounts
+      app: loans
   template:
     metadata:
       labels:
-        app: accounts
+        app: loans
     spec:
       initContainers:
         - name: mydb-available
           image: busybox:1.28
           command: [ 'sh','-c',"until nslookup mysql; do echo waiting for database; sleep 4; done" ]
       containers:
-        - name: accounts
-          image: fadhiljr/mssample:accounts-8.0
+        - name: loans
+          image: fadhiljr/mssample:loans-21.0
           ports:
-            - containerPort: 8080
+            - containerPort: 8090
           env:
             - name: SPRING_APPLICATION_NAME
               valueFrom:
                 configMapKeyRef:
-                  key: ACCOUNTS_APPLICATION_NAME
+                  key: LOANS_APPLICATION_NAME
                   name: bank-cm
             - name: SPRING_CONFIG_IMPORT
               valueFrom:
@@ -41,14 +41,14 @@ spec:
                   key: SPRING_PROFILES_ACTIVE
                   name: bank-cm
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:mysql://mysql:3306/accountsdb"
+              value: "jdbc:mysql://mysql:3306/loansdb"
             - name: SPRING_DATASOURCE_USERNAME
               value: "admin"
             - name: SPRING_DATASOURCE_PASSWORD
               valueFrom:
-                  secretKeyRef:
-                    key: password
-                    name: mysql-db-password
+                secretKeyRef:
+                  key: password
+                  name: mysql-db-password
             - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
               valueFrom:
                 configMapKeyRef:
@@ -59,14 +59,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: accounts
+  name: loans
   labels:
-    name: accounts
+    name: loans
 spec:
   selector:
-    app: accounts
+    app: loans
   ports:
-    - port: 8080
-      targetPort: 8080
+    - port: 8090
+      targetPort: 8090
       protocol: TCP
   type: ClusterIP

@@ -6,7 +6,7 @@ metadata:
   labels:
     name: accounts
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: accounts
@@ -21,7 +21,7 @@ spec:
           command: [ 'sh','-c',"until nslookup mysql; do echo waiting for database; sleep 4; done" ]
       containers:
         - name: accounts
-          image: fadhiljr/mssample:accounts-8.0
+          image: fadhiljr/mssample:accounts-21.0
           ports:
             - containerPort: 8080
           env:
