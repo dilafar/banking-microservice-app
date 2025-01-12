@@ -22,5 +22,7 @@ spec:
       hosts:
         - "*"
       tls:
-        mode: SIMPLE
-        credentialName: gateway-tls
+        mode: PASSTHROUGH
+    #  tls:
+     #   mode: SIMPLE
+     #   credentialName: gateway-tls

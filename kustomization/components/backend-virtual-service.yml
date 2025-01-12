@@ -1,16 +1,16 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: frontend
+  name: backend
 spec:
   hosts:
-    - awsmc.cncloudnet.com
+    - awsmctest.cncloudnet.com
   gateways:
     - istio-ingress/istio-gateway
   http:
     - route:
         - destination:
-            host: banking-frontend-service
+            host: gatewayserver
             port:
               number: 80
       match:

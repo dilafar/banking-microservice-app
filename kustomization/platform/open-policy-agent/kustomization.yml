@@ -3,6 +3,6 @@ kind: Kustomization
 namespace: openpolicyagent
 resources:
   - block-nodeport-service.yml
-  - nodeport-constraint.yml
+  #- nodeport-constraint.yml
   - block-privileged-containers.yml
-  - privileged-container-constraint.yml
+  #- privileged-container-constraint.yml
