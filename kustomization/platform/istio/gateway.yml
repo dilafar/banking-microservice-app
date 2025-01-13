@@ -1,15 +1,15 @@
-apiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1
 kind: Gateway
 metadata:
   name: istio-gateway
-  namespace: istio-ingress
+  namespace: banking-ns
 spec:
   selector:
     istio: ingressgateway
   servers:
     - port:
         number: 80
-        name: http-80
+        name: http
         protocol: HTTP
       hosts:
         - "*"
@@ -22,7 +22,5 @@ spec:
       hosts:
         - "*"
       tls:
-        mode: PASSTHROUGH
-    #  tls:
-     #   mode: SIMPLE
-     #   credentialName: gateway-tls
+        mode: SIMPLE
+        credentialName: gateway-tls
