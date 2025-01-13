@@ -21,7 +21,7 @@ spec:
           command: [ 'sh','-c',"until nslookup mysql; do echo waiting for database; sleep 4; done" ]
       containers:
         - name: loans
-          image: fadhiljr/mssample:loans-21.0
+          image: fadhiljr/mssample:loans-22.0
           ports:
             - containerPort: 8090
           env:
