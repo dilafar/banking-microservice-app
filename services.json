@@ -1,0 +1,26 @@
+[
+  {
+    "service": "accounts",
+    "version": "1.0.0"
+  },
+  {
+    "service": "cards",
+    "version": "1.0.0"
+  },
+  {
+    "service": "loans",
+    "version": "1.0.0"
+  },
+  {
+    "service": "configserver",
+    "version": "1.0.0"
+  },
+  {
+    "service": "gateway",
+    "version": "1.0.0"
+  },
+  {
+    "service": "eurekaserver",
+    "version": "1.0.0"
+  }
+]
