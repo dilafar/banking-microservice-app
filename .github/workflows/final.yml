@@ -16,3 +16,15 @@ jobs:
     uses: ./.github/workflows/eurekaserver.yml
     with:
       build_number: ${{ github.run_number }}
+
+  gatewayserver:
+    needs: eurekaserver
+    uses: ./.github/workflows/gateway.yml
+    with:
+      build_number: ${{ github.run_number }}
+
+  accounts:
+    needs: gatewayserver
+    uses: ./.github/workflows/accounts.yml
+    with:
+      build_number: ${{ github.run_number }}
