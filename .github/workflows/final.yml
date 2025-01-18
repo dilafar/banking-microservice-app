@@ -1,4 +1,4 @@
-name: Final Workflow
+name: Final Full Workflow
 
 on:
   push:
