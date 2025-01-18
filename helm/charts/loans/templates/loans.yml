@@ -1,0 +1,72 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loans
+  labels:
+    name: loans
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: loans
+  template:
+    metadata:
+      labels:
+        app: loans
+    spec:
+      initContainers:
+        - name: mydb-available
+          image: busybox:1.28
+          command: [ 'sh','-c',"until nslookup mysql; do echo waiting for database; sleep 4; done" ]
+      containers:
+        - name: loans
+          image: fadhiljr/mssample:loans-22.0
+          ports:
+            - containerPort: 8090
+          env:
+            - name: SPRING_APPLICATION_NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: LOANS_APPLICATION_NAME
+                  name: bank-cm
+            - name: SPRING_CONFIG_IMPORT
+              valueFrom:
+                configMapKeyRef:
+                  key: SPRING_CONFIG_IMPORT
+                  name: bank-cm
+            - name: SPRING_PROFILES_ACTIVE
+              valueFrom:
+                configMapKeyRef:
+                  key: SPRING_PROFILES_ACTIVE
+                  name: bank-cm
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:mysql://mysql:3306/loansdb"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "admin"
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: mysql-db-password
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              valueFrom:
+                configMapKeyRef:
+                  key: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+                  name: bank-cm
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: loans
+  labels:
+    name: loans
+spec:
+  selector:
+    app: loans
+  ports:
+    - port: 8090
+      targetPort: 8090
+      protocol: TCP
+  type: ClusterIP
