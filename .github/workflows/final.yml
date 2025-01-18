@@ -1,0 +1,17 @@
+name: Final Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  frontend:
+    uses: ./.github/workflows/frontend.yml
+    with:
+      build_number: ${{ github.run_number }}
+
+  backend:
+    uses: ./.github/workflows/backend.yml
+    with:
+      build_number: ${{ github.run_number }}
