@@ -1,4 +1,4 @@
-name: EurekaServer Workflow
+name: Gateway Workflow
 
 on:
   workflow_call:

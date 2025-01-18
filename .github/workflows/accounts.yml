@@ -1,4 +1,4 @@
-name: EurekaServer Workflow
+name: Accounts Workflow
 
 on:
   workflow_call:
