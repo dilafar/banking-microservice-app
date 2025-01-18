@@ -6,12 +6,13 @@ on:
       - main
 
 jobs:
-  frontend:
-    uses: ./.github/workflows/frontend.yml
+  configserver:
+    uses: ./.github/workflows/configserver.yml
     with:
       build_number: ${{ github.run_number }}
 
-  backend:
-    uses: ./.github/workflows/backend.yml
+  eurekaserver:
+    needs: configserver
+    uses: ./.github/workflows/eurekaserver.yml
     with:
       build_number: ${{ github.run_number }}
