@@ -24,6 +24,10 @@ jobs:
           java-version: '17'
           distribution: 'corretto'
 
+      - name: Get public IP address
+        run: |
+          curl ifconfig.me
+
       - name: Increment app version
         run: |
           cd configserver
