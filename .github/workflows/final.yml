@@ -29,8 +29,14 @@ jobs:
     with:
       build_number: ${{ github.run_number }}
 
+  loans:
+    needs: gatewayserver
+    uses: ./.github/workflows/loans.yml
+    with:
+      build_number: ${{ github.run_number }}
+
   accounts:
-    needs: cards
+    needs: gatewayserver
     uses: ./.github/workflows/accounts.yml
     with:
       build_number: ${{ github.run_number }}

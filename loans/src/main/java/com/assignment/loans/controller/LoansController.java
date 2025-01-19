@@ -39,25 +39,23 @@ import java.util.List;
 //@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(path = "/api", produces = {MediaType.APPLICATION_JSON_VALUE})
-//@Validated
+@Validated
 public class LoansController {
 
     private static final Logger logger = LoggerFactory.getLogger(LoansController.class);
     private final ILoansService loansService;
 
+    private final Environment environment;
+
+
+    private final LoansContactInfo loansContactInfo;
+
     @Autowired
-    public LoansController(ILoansService iLoansService){
+    public LoansController(ILoansService iLoansService, Environment environment, LoansContactInfo loansContactInfo){
         this.loansService = iLoansService;
+        this.environment = environment;
+        this.loansContactInfo = loansContactInfo;
     }
-
-    @Value("${build.version}")
-    private String buildVersion;
-
-
-    private Environment environment;
-
-
-    private LoansContactInfo loansContactInfo;
 
     @Operation(
             summary = "Create Loan REST API",
@@ -138,7 +136,7 @@ public class LoansController {
     }
     )
     @PutMapping("/update")
-    public ResponseEntity<ResponseDto> updateLoanDetails(@RequestBody LoansDto loansDto) {
+    public ResponseEntity<ResponseDto> updateLoanDetails(@Valid @RequestBody LoansDto loansDto) {
         System.out.println("Received loan update request: " + loansDto);
         boolean isUpdated = loansService.updateLoan(loansDto);
         if(isUpdated) {
@@ -188,31 +186,6 @@ public class LoansController {
                     .status(HttpStatus.EXPECTATION_FAILED)
                     .body(new ResponseDto(LoansConstants.STATUS_417, LoansConstants.MESSAGE_417_DELETE));
         }
-    }
-
-
-    @Operation(
-            summary = "Fetch Account REST API",
-            description = "REST API to fetch Customer & Account inside Eazybank"
-    )
-    @ApiResponses({
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "HTTP Status OK"
-            ),
-
-            @ApiResponse(
-                    responseCode = "500",
-                    description = "HTTP Status Internal Server Error",
-                    content = @Content(
-                            schema = @Schema(implementation = ErrorResponseDto.class)
-                    )
-            )
-    }
-    )
-    @GetMapping("/build-info")
-    public ResponseEntity<String> getBuildInfo(){
-        return ResponseEntity.status(HttpStatus.OK).body(buildVersion);
     }
 
     @Operation(
