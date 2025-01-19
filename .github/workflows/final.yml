@@ -28,12 +28,22 @@ jobs:
     uses: ./.github/workflows/cards.yml
     with:
       build_number: ${{ github.run_number }}
+    secrets:
+      SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY_CARDS }}
+      SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      SONAR_URL: ${{ secrets.SONAR_URL }}
 
   loans:
     needs: gatewayserver
     uses: ./.github/workflows/loans.yml
     with:
       build_number: ${{ github.run_number }}
+    secrets:
+      SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY_LOANS }}
+      SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      SONAR_URL: ${{ secrets.SONAR_URL }}
 
   accounts:
     needs: gatewayserver
