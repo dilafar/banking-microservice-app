@@ -77,11 +77,10 @@ jobs:
             -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml \
             -Dsonar.java.binaries=target/test-classes/com/assignment/accounts/
 
-      - name: SonarQube Quality Gate check
+      - name: Change to backend directory and run SonarQube Quality Gate check
         id: sonarqube-quality-gate-check
-        uses: sonarsource/sonarqube-quality-gate-action@master
+        run: |
+          cd accounts
+          curl -sS -L https://github.com/SonarSource/sonarqube-quality-gate-action/releases/download/v1.0.0/sonarqube-quality-gate-action-linux-x86_64.tar.gz | tar -xz
+          ./sonarqube-quality-gate-action-linux-x86_64 --sonar-host-url="${{ secrets.SONAR_URL }}" --sonar-token="${{ secrets.SONAR_TOKEN }}"
         timeout-minutes: 5
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_URL }}
-        working-directory: accounts
