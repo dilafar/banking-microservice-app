@@ -1,4 +1,4 @@
-name: Accounts Workflow
+name: Accounts full Workflow
 
 on:
   workflow_call:
