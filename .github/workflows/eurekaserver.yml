@@ -43,3 +43,10 @@ jobs:
         run: |
           cd eurekaserver
           mvn test
+
+      - name: Start the eureka JAR
+        run: |
+          cd eurekaserver
+          java -jar target/*.jar &
+        env:
+          IMAGE_VERSION: ${{ env.IMAGE_VERSION }}
