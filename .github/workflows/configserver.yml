@@ -43,10 +43,3 @@ jobs:
           cd configserver
           mvn clean package
           mvn test
-
-      - name: Start the backend JAR
-        run: |
-          cd configserver
-          java -jar target/*.jar &
-        env:
-            IMAGE_VERSION: ${{ env.IMAGE_VERSION }}
