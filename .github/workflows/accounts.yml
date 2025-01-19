@@ -56,6 +56,8 @@ jobs:
         run: |
           cd accounts
           echo "Sonar project key: ${{ secrets.SONAR_PROJECT_KEY }}" 
+          echo "Sonar project key: ${{ secrets.SONAR_ORGANIZATION }}" 
+          echo "Sonar project key: ${{ secrets.SONAR_TOKEN }}" 
           sonar-scanner \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
