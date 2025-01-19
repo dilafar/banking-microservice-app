@@ -40,9 +40,10 @@ public class AccountsController {
     private String buildVersion;
 
 
+    @Autowired
     private Environment environment;
 
-
+    @Autowired
     private AccountsContactInfo accountsContactInfo;
     @Autowired
     public AccountsController(IAccountsService iAccountsService){
