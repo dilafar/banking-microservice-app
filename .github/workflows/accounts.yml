@@ -53,16 +53,18 @@ jobs:
         uses: warchant/setup-sonar-scanner@v7
 
       - name: SonarQube Scan
+        env:
+          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
+          SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           cd accounts
-          echo "Sonar project key: ${{ secrets.SONAR_PROJECT_KEY }}" 
-          echo "Sonar project key: ${{ secrets.SONAR_ORGANIZATION }}" 
-          echo "Sonar project key: ${{ secrets.SONAR_TOKEN }}" 
+          echo "$SONAR_ORGANIZATION"
           sonar-scanner \
             -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
-            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} \
-            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} \
+            -Dsonar.login="$SONAR_TOKEN" \
+            -Dsonar.organization="$SONAR_ORGANIZATION" \
+            -Dsonar.projectKey="$SONAR_PROJECT_KEY" \
             -Dsonar.sources=src/ \
             -Dsonar.junit.reportsPath=target/surefire-reports/ \
             -Dsonar.jacoco.reportsPath=target/jacoco.exec \
