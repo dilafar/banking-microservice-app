@@ -6,6 +6,14 @@ on:
       build_number:
         required: true
         type: string
+    secrets:
+      SONAR_PROJECT_KEY:
+        required: true
+      SONAR_ORGANIZATION:
+        required: true
+      SONAR_TOKEN:
+        required: true
+
 defaults:
   run:
     shell: bash
@@ -53,9 +61,5 @@ jobs:
         uses: warchant/setup-sonar-scanner@v7
 
       - name: SonarQube Scan
-        env:
-          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
-          SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          echo "SonarQube Organization: ${SONAR_ORGANIZATION}"
+          echo "SonarQube Organization: ${{ secrets.SONAR_ORGANIZATION }}"

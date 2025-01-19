@@ -40,3 +40,7 @@ jobs:
     uses: ./.github/workflows/accounts.yml
     with:
       build_number: ${{ github.run_number }}
+    secrets:
+      SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
+      SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
