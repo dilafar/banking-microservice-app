@@ -77,6 +77,11 @@ jobs:
             -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml \
             -Dsonar.java.binaries=target/test-classes/com/assignment/accounts/
 
+      - name: list all files
+        run: |
+          cd accounts
+          ls -a
+
       - name: SonarQube Quality Gate check
         id: sonarqube-quality-gate-check
         uses: sonarsource/sonarqube-quality-gate-action@master
