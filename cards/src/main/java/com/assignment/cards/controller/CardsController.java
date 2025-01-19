@@ -44,17 +44,16 @@ public class CardsController {
 
     private final ICardsService iCardsService;
 
-    @Autowired
-    private Environment environment;
+    private final Environment environment;
+
+    private final CardsContactInfo cardsContactInfo;
 
     @Autowired
-    private CardsContactInfo cardsContactInfo;
-
-    @Autowired
-    public CardsController(ICardsService iCardsService){
+    public CardsController(ICardsService iCardsService, CardsContactInfo cardsContactInfo , Environment environment){
         this.iCardsService = iCardsService;
+        this.cardsContactInfo =cardsContactInfo;
+        this.environment = environment;
     }
-
 
 
     @Operation(
