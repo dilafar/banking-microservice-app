@@ -36,18 +36,17 @@ public class AccountsController {
 
     private final IAccountsService iAccountsService;
 
-    @Value("${build.version}")
-    private String buildVersion;
+    private final Environment environment;
 
 
+    private final AccountsContactInfo accountsContactInfo;
     @Autowired
-    private Environment environment;
-
-    @Autowired
-    private AccountsContactInfo accountsContactInfo;
-    @Autowired
-    public AccountsController(IAccountsService iAccountsService){
+    public AccountsController(IAccountsService iAccountsService,
+                              AccountsContactInfo accountsContactInfo,
+                              Environment environment) {
         this.iAccountsService = iAccountsService;
+        this.accountsContactInfo = accountsContactInfo;
+        this.environment = environment;
     }
 
     @Operation(
@@ -153,31 +152,6 @@ public class AccountsController {
             );
         }
     }
-
-    @Operation(
-            summary = "Fetch Account REST API",
-            description = "REST API to fetch Customer & Account inside bank"
-    )
-    @ApiResponses({
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "HTTP Status OK"
-            ),
-
-            @ApiResponse(
-                    responseCode = "500",
-                    description = "HTTP Status Internal Server Error",
-                    content = @Content(
-                            schema = @Schema(implementation = ErrorResponseDto.class)
-                    )
-            )
-    }
-    )
-    @GetMapping("/build-info")
-    public ResponseEntity<String> getBuildInfo(){
-        return ResponseEntity.status(HttpStatus.OK).body(buildVersion);
-    }
-
     @Operation(
             summary = "Fetch Account REST API",
             description = "REST API to fetch Customer & Account inside bank"
@@ -198,7 +172,7 @@ public class AccountsController {
     }
     )
 
-    @RateLimiter(name = "getJavaVersion",fallbackMethod = "getJavaVersionFallback" )
+
     @GetMapping("/java-version")
     public ResponseEntity<String> getJavaVersion(){
         return ResponseEntity.status(HttpStatus.OK).body(environment.getProperty("JAVA_HOME"));

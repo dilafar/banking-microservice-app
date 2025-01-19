@@ -45,18 +45,17 @@ public class CardsController {
     private final ICardsService iCardsService;
 
     @Autowired
-    public CardsController(ICardsService iCardsService){
-        this.iCardsService = iCardsService;
-    }
-
-    @Value("${build.version}")
-    private String buildVersion;
-
-    @Autowired
     private Environment environment;
 
     @Autowired
     private CardsContactInfo cardsContactInfo;
+
+    @Autowired
+    public CardsController(ICardsService iCardsService){
+        this.iCardsService = iCardsService;
+    }
+
+
 
     @Operation(
             summary = "Create Card REST API",
@@ -172,31 +171,6 @@ public class CardsController {
         }else {
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseDto(CardsConstants.STATUS_417,CardsConstants.MESSAGE_417_DELETE));
         }
-    }
-
-
-    @Operation(
-            summary = "Fetch Account REST API",
-            description = "REST API to fetch Customer & Account inside Eazybank"
-    )
-    @ApiResponses({
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "HTTP Status OK"
-            ),
-
-            @ApiResponse(
-                    responseCode = "500",
-                    description = "HTTP Status Internal Server Error",
-                    content = @Content(
-                            schema = @Schema(implementation = ErrorResponseDto.class)
-                    )
-            )
-    }
-    )
-    @GetMapping("/build-info")
-    public ResponseEntity<String> getBuildInfo(){
-        return ResponseEntity.status(HttpStatus.OK).body(buildVersion);
     }
 
     @Operation(
