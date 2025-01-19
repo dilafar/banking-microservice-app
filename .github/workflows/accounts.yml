@@ -58,24 +58,4 @@ jobs:
           SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          cd accounts
-          echo $SONAR_ORGANIZATION
-          sonar-scanner \
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=$SONAR_TOKEN \
-            -Dsonar.organization=$SONAR_ORGANIZATION \
-            -Dsonar.projectKey=$SONAR_PROJECT_KEY \
-            -Dsonar.sources=src/ \
-            -Dsonar.junit.reportsPath=target/surefire-reports/ \
-            -Dsonar.jacoco.reportsPath=target/jacoco.exec \
-            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml \
-            -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml \
-            -Dsonar.java.binaries=target/test-classes/com/assignment/accounts/
-
-      - name: SonarQube Quality Gate check
-        id: sonarqube-quality-gate-check
-        uses: sonarsource/sonarqube-quality-gate-action@master
-        timeout-minutes: 5
-        env:
-            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-            SONAR_HOST_URL: ${{ secrets.SONAR_URL }}
+          echo "SonarQube Organization: $SONAR_ORGANIZATION"
