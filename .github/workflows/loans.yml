@@ -34,6 +34,20 @@ jobs:
           version=$(grep -oPm1 '(?<=<version>)[^<]+' pom.xml)
           echo "IMAGE_VERSION=$version-${{ inputs.build_number }}" >> $GITHUB_ENV
 
+      - name: Start the backend JAR
+        run: |
+          cd configserver
+          java -jar target/*.jar &
+        env:
+          IMAGE_VERSION: ${{ env.IMAGE_VERSION }}
+
+      - name: Start the backend JAR
+        run: |
+          cd eurekaserver
+          java -jar target/*.jar &
+        env:
+          IMAGE_VERSION: ${{ env.IMAGE_VERSION }}
+
       - name: Build and package
         run: |
           cd loans
