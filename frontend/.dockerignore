@@ -1,0 +1,7 @@
+node_modules
+.vscode
+.git
+e2e
+*.md
+.git
+*.env
