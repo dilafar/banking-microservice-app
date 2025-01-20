@@ -36,9 +36,28 @@ jobs:
           java-version: '17'
           distribution: 'corretto'
 
-      - name: Get public IP address
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+            node-version: '16'
+
+      - name: Application Version increment
+        id: read-version
         run: |
-          curl ifconfig.me
+              cd frontend
+              npm version patch --no-git-tag-version
+              package_version=$(node -p "require('./package.json').version")
+              echo "Application version: $package_version"
+              echo "version=$package_version" >> $GITHUB_ENV
+
+      - name: Install Dependencies
+        run: |
+              cd frontend
+              npm install
+
+      - name: Display Application Version
+        run: |
+          echo "The updated application version is: ${{ env.version }}"
 
       - name: Increment app version
         run: |
