@@ -110,5 +110,5 @@ jobs:
 
       - name: Trivy Scan Deployed Account Imange
         run: |
-          bash trivy-k8s-scan.sh ${{ env.ECR_REPOSITORY }}:eurekaserver-v${{ env.IMAGE_VERSION }} ${{ env.CACHE_DIR }}
+          bash trivy-k8s-scan.sh ${{ secrets.REGISTRY }}/${{ env.ECR_REPOSITORY }}:eurekaserver-v${{ env.IMAGE_VERSION }} ${{ env.CACHE_DIR }}
 
