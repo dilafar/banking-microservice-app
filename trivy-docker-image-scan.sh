@@ -7,6 +7,7 @@ if [[ -z $1 ]]; then
 fi
 
 filePath=$1
+cache_dir=$2
 
 # Check if file exists
 if [[ ! -f $filePath ]]; then
@@ -23,7 +24,7 @@ fi
 
 echo "Docker Image: $dockerImageName"
 
-trivy image -f json -o trivy.json --severity HIGH,CRITICAL --exit-code 1 $dockerImageName
+trivy image --severity HIGH,CRITICAL --exit-code 1 $dockerImageName --skip-db-update --cache-dir $cache_dir
 
 exit_code=$?
 
