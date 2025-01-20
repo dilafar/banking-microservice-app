@@ -24,7 +24,7 @@ fi
 
 echo "Docker Image: $dockerImageName"
 
-trivy image --severity HIGH,CRITICAL --exit-code 1 $dockerImageName --skip-db-update --cache-dir $cache_dir
+trivy image --severity HIGH,CRITICAL --exit-code 1 $dockerImageName --cache-dir $cache_dir
 
 exit_code=$?
 
