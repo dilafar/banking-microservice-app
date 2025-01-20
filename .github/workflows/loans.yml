@@ -133,7 +133,7 @@ jobs:
 
       - name: Trivy Scan Deployed Account Imange
         run: |
-          bash trivy-k8s-scan.sh ${{ env.ECR_REPOSITORY }}:loans-v${{ env.IMAGE_VERSION }} ${{ env.CACHE_DIR }}
+          bash trivy-k8s-scan.sh ${{ secrets.REGISTRY }}/${{ env.ECR_REPOSITORY }}:loans-v${{ env.IMAGE_VERSION }} ${{ env.CACHE_DIR }}
 
     #  - name: SonarQube Quality Gate check
     #    id: sonarqube-quality-gate-check
