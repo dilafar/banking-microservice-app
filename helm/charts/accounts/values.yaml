@@ -1,6 +1,6 @@
 appName: accounts
 appReplicas: 2
-appImage: fadhiljr/mssample
+appImage: 522814728991.dkr.ecr.us-east-1.amazonaws.com/banking-app
 appVersion: accounts-22.0
 containerPort: 8080
 servicePort: 8080

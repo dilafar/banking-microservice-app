@@ -1,6 +1,6 @@
 appName: configserver
 appReplicas: 2
-appImage: fadhiljr/mssample
+appImage: 522814728991.dkr.ecr.us-east-1.amazonaws.com/banking-app
 appVersion: configserver-20.0
 containerPort: 8071
 servicePort: 8071

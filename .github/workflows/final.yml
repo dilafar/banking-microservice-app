@@ -71,12 +71,24 @@ jobs:
       name: change version config
       steps:
         - run: echo ${{ needs.accounts.outputs.IMAGE_VERSION }}
-       # - name: Checkout repository
-       #   uses: actions/checkout@v3
+        - name: Checkout repository
+          uses: actions/checkout@v3
 
-       # - name: Set up environment
-       #   run: echo "IMAGE_VERSION=${{ github.sha }}" >> $GITHUB_ENV
-
-       # - name: Update chart versions
-       #   run: |
-       #       chmod +x chart-version-increment.sh
+        - name: Update chart versions
+          run: |
+              sed -i 's/^appVersion: .*/appVersion: accounts-v'"${{ needs.accounts.outputs.IMAGE_VERSION }}"'/g' helm/charts/accounts/values.yaml
+              sed -i 's/^appVersion: .*/appVersion: cards-v'"${{ needs.accounts.outputs.IMAGE_VERSION }}"'/g' helm/charts/cards/values.yaml
+              sed -i 's/^appVersion: .*/appVersion: configserver-v'"${{ needs.accounts.outputs.IMAGE_VERSION }}"'/g' helm/charts/configserver/values.yaml
+              sed -i 's/^appVersion: .*/appVersion: eurekaserver-v'"${{ needs.accounts.outputs.IMAGE_VERSION }}"'/g' helm/charts/eurekaserver/values.yaml
+              sed -i 's/^appVersion: .*/appVersion: gateway-v'"${{ needs.accounts.outputs.IMAGE_VERSION }}"'/g' helm/charts/gateway/values.yaml
+              sed -i 's/^appVersion: .*/appVersion: loans-v'"${{ needs.accounts.outputs.IMAGE_VERSION }}"'/g' helm/charts/loans/values.yaml
+              chmod +x chart-version-increment.sh
+              ./chart-version-increment.sh helm/Chart.yaml
+              ./chart-version-increment.sh helm/charts/accounts/Chart.yaml
+              ./chart-version-increment.sh helm/charts/configserver/Chart.yaml
+              ./chart-version-increment.sh helm/charts/eurekaserver/Chart.yaml
+              ./chart-version-increment.sh helm/charts/gateway/Chart.yaml
+              ./chart-version-increment.sh helm/charts/loans/Chart.yaml
+              ./chart-version-increment.sh helm/charts/cards/Chart.yaml
+              cat helm/charts/cards/Chart.yaml
+              cat helm/charts/loans/values.yaml

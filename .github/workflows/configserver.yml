@@ -6,6 +6,25 @@ on:
       build_number:
         required: true
         type: string
+    secrets:
+      SONAR_PROJECT_KEY:
+        required: true
+      SONAR_ORGANIZATION:
+        required: true
+      SONAR_TOKEN:
+        required: true
+      SONAR_URL:
+        required: true
+      AWS_ACCESS_KEY_ID:
+        required: true
+      AWS_SECRET_ACCESS_KEY:
+        required: true
+      REGISTRY:
+        required: true
+env:
+  AWS_REGION: us-east-1
+  ECR_REPOSITORY: banking-app
+  EKS_CLUSTER: banking-eks
 defaults:
   run:
     shell: bash
@@ -50,3 +69,41 @@ jobs:
           java -jar target/*.jar &
         env:
           IMAGE_VERSION: ${{ env.IMAGE_VERSION }}
+
+      - name: Install Trivy
+        run: |
+          sudo apt-get install wget apt-transport-https gnupg lsb-release
+          wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+          echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+          sudo apt-get update
+          sudo apt-get install trivy
+
+      - name: check Trivy
+        run: trivy --help
+
+      - name: Cache Trivy Database
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.CACHE_DIR }}
+          key: trivydb
+
+      - name: Trivy Scan
+        run: |
+          bash trivy-docker-image-scan.sh configserver/Dockerfile ${{ env.CACHE_DIR }}
+
+      - name: Build & Upload image to ECR
+        uses: appleboy/docker-ecr-action@master
+        with:
+          access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          registry: ${{ secrets.REGISTRY }}
+          repo: ${{ env.ECR_REPOSITORY }}
+          region: ${{ env.AWS_REGION }}
+          tags: configserver-v${{ env.IMAGE_VERSION }}
+          daemon_off: false
+          dockerfile: configserver/Dockerfile
+          context: configserver
+
+      - name: Trivy Scan Deployed Account Imange
+        run: |
+          bash trivy-k8s-scan.sh ${{ env.ECR_REPOSITORY }}:configserver-v${{ env.IMAGE_VERSION }} ${{ env.CACHE_DIR }}
