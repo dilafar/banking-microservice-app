@@ -17,6 +17,7 @@ env:
   AWS_REGION: us-east-1
   ECR_REPOSITORY: banking-app
   EKS_CLUSTER: banking-eks
+  CACHE_DIR: /home/runner/work/_temp/trivy
 defaults:
   run:
     shell: bash
