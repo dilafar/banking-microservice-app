@@ -103,8 +103,12 @@ jobs:
           sudo apt-get update
           sudo apt-get install trivy
 
-      - name: Install Trivy
+      - name: check Trivy
         run: trivy --help
+
+      - name: Trivy Scan
+        run: |
+          bash trivy-docker-image-scan.sh accounts/Dockerfile
 
       - name: Build & Upload image to ECR
         uses: appleboy/docker-ecr-action@master
