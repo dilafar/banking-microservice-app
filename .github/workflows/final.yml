@@ -10,18 +10,30 @@ jobs:
     uses: ./.github/workflows/configserver.yml
     with:
       build_number: ${{ github.run_number }}
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      REGISTRY: ${{ secrets.REGISTRY }}
 
   eurekaserver:
     needs: configserver
     uses: ./.github/workflows/eurekaserver.yml
     with:
       build_number: ${{ github.run_number }}
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      REGISTRY: ${{ secrets.REGISTRY }}
 
   gatewayserver:
     needs: eurekaserver
     uses: ./.github/workflows/gateway.yml
     with:
       build_number: ${{ github.run_number }}
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      REGISTRY: ${{ secrets.REGISTRY }}
 
   cards:
     needs: gatewayserver
