@@ -2,28 +2,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: accounts
+  name: {{ .Values.appName }}
   labels:
-    name: accounts
+    name: {{ .Values.appName }}
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: accounts
+      app: {{ .Values.appName }}
   template:
     metadata:
       labels:
-        app: accounts
+        app: {{ .Values.appName }}
     spec:
       initContainers:
         - name: mydb-available
           image: busybox:1.28
           command: [ 'sh','-c',"until nslookup mysql; do echo waiting for database; sleep 4; done" ]
       containers:
-        - name: accounts
-          image: fadhiljr/mssample:accounts-22.0
+        - name: {{ .Values.appName }}
+          image: "{{ .Values.appImage }}:{{ .Values.appVersion }}"
           ports:
-            - containerPort: 8080
+            - containerPort: {{ .Values.containerPort }}
           env:
             - name: SPRING_APPLICATION_NAME
               valueFrom:
@@ -59,14 +59,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: accounts
+  name: {{ .Values.appName }}
   labels:
-    name: accounts
+    name: {{ .Values.appName }}
 spec:
   selector:
-    app: accounts
+    app: {{ .Values.appName }}
   ports:
-    - port: 8080
-      targetPort: 8080
+    - port: {{ .Values.servicePort }}
+      targetPort: {{ .Values.containerPort }}
       protocol: TCP
-  type: ClusterIP
+  type: {{ .Values.serviceType }}

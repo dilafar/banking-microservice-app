@@ -2,37 +2,37 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: configserver
+  name: {{ .Values.appName }}
   labels:
-    name: configserver
+    name: {{ .Values.appName }}
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: configserver
+      app: {{ .Values.appName }}
   template:
     metadata:
       labels:
-        app: configserver
+        app: {{ .Values.appName }}
     spec:
       containers:
-        - name: configserver
-          image: fadhiljr/mssample:configserver-20.0
+        - name: {{ .Values.appName }}
+          image: "{{ .Values.appImage }}:{{ .Values.appVersion }}"
           ports:
-            - containerPort: 8071
+            - containerPort: {{ .Values.containerPort }}
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: configserver
+  name: {{ .Values.appName }}
   labels:
-    name: configserver
+    name: {{ .Values.appName }}
 spec:
   selector:
-    app: configserver
+    app: {{ .Values.appName }}
   ports:
-    - port: 8071
-      targetPort: 8071
+    - port: {{ .Values.servicePort }}
+      targetPort: {{ .Values.containerPort }}
       protocol: TCP
-  type: ClusterIP
+  type: {{ .Values.serviceType }}

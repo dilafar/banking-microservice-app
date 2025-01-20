@@ -2,24 +2,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: eurekaserver
+  name: {{ .Values.appName }}
   labels:
-    name: eurekaserver
+    name: {{ .Values.appName }}
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: eurekaserver
+      app: {{ .Values.appName }}
   template:
     metadata:
       labels:
-        app: eurekaserver
+        app: {{ .Values.appName }}
     spec:
       containers:
-        - name: eurekaserver
-          image: fadhiljr/mssample:eurekaserver-20.0
+        - name: {{ .Values.appName }}
+          image: "{{ .Values.appImage }}:{{ .Values.appVersion }}"
           ports:
-            - containerPort: 8070
+            - containerPort: {{ .Values.containerPort }}
           env:
             - name: SPRING_APPLICATION_NAME
               valueFrom:
@@ -41,14 +41,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: eurekaserver
+  name: {{ .Values.appName }}
   labels:
-    name: eurekaserver
+    name: {{ .Values.appName }}
 spec:
   selector:
-    app: eurekaserver
+    app: {{ .Values.appName }}
   ports:
-    - port: 8070
-      targetPort: 8070
+    - port: {{ .Values.servicePort }}
+      targetPort: {{ .Values.containerPort }}
       protocol: TCP
-  type: ClusterIP
+  type: {{ .Values.serviceType }}

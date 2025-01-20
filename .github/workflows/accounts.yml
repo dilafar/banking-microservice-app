@@ -1,6 +1,10 @@
 name: Accounts Workflow
 on:
   workflow_call:
+    outputs:
+      IMAGE_VERSION:
+        description: "The first output string"
+        value: ${{ jobs.build-and-push.outputs.output1 }}
     inputs:
       build_number:
         required: true
@@ -33,6 +37,9 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
 
+    outputs:
+      output1: ${{ steps.imageVersion.outputs.IMAGE_VERSION }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -52,6 +59,9 @@ jobs:
               versions:commit
           version=$(grep -oPm1 '(?<=<version>)[^<]+' pom.xml)
           echo "IMAGE_VERSION=$version-${{ inputs.build_number }}" >> $GITHUB_ENV
+
+      - id: imageVersion
+        run: echo "IMAGE_VERSION=${{ env.IMAGE_VERSION }}" >> $GITHUB_OUTPUT
 
       - name: Build and package
         run: |
@@ -95,9 +105,6 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_URL }}
-
-      - name: dependeny scan
-        run: mvn org.owasp:dependency-check-maven:check
 
       - name: Install Trivy
         run: |
