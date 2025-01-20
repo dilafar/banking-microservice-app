@@ -1,6 +1,6 @@
 appName: gatewayserver
 appReplicas: 2
-appImage: fadhiljr/mssample
+appImage: 522814728991.dkr.ecr.us-east-1.amazonaws.com/banking-app
 appVersion: gatewayserver-23.0
 containerPort: 8072
 servicePort: 80
