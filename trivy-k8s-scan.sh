@@ -3,7 +3,7 @@
 echo $1
 cache_dir=$2
 
-trivy image -f json -o trivy-k8s-image.json --severity HIGH,CRITICAL --exit-code 1 $1 --cache-dir $cache_dir
+trivy image --severity HIGH,CRITICAL --exit-code 1 $1 --cache-dir $cache_dir
 
 exit_code=$?
 
