@@ -2,24 +2,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gatewayserver
+  name: {{ .Values.appName }}
   labels:
-    name: gatewayserver
+    name: {{ .Values.appName }}
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: gatewayserver
+      app: {{ .Values.appName }}
   template:
     metadata:
       labels:
-        app: gatewayserver
+        app: {{ .Values.appName }}
     spec:
       containers:
-        - name: gatewayserver
-          image: fadhiljr/mssample:gatewayserver-23.0
+        - name: {{ .Values.appName }}
+          image: "{{ .Values.appImage }}:{{ .Values.appVersion }}"
           ports:
-            - containerPort: 8072
+            - containerPort: {{ .Values.containerPort }}
           env:
             - name: SPRING_APPLICATION_NAME
               valueFrom:
@@ -46,16 +46,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: gatewayserver
+  name: {{ .Values.appName }}
   labels:
-    name: gatewayserver
-  annotations:
-    alb.ingress.kubernetes.io/healthcheck-path: /actuator/health
+    name: {{ .Values.appName }}
 spec:
   selector:
-    app: gatewayserver
+    app: {{ .Values.appName }}
   ports:
-    - port: 80
-      targetPort: 8072
+    - port: {{ .Values.servicePort }}
+      targetPort: {{ .Values.containerPort }}
       protocol: TCP
-  type: ClusterIP
+  type: {{ .Values.serviceType }}
