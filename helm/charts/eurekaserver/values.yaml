@@ -1,7 +1,7 @@
 appName: eurekaserver
 appReplicas: 2
 appImage: 522814728991.dkr.ecr.us-east-1.amazonaws.com/banking-app
-appVersion: eurekaserver-v3.3.5-74
+appVersion: eurekaserver-v3.3.5-75
 containerPort: 8070
 servicePort: 8070
 serviceType: ClusterIP
