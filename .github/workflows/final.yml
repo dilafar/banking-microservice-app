@@ -122,13 +122,15 @@ jobs:
               cat helm/charts/cards/Chart.yaml
               cat helm/charts/loans/values.yaml
               cat helm/charts/frontend/Chart.yaml
-              sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${{ secrets.REGISTRY }}/banking-app:accounts-v'"${{ needs.accounts.outputs.IMAGE_VERSION }}"'|g" kustomization/base/accounts.yml 
-              sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${{ secrets.REGISTRY }}/banking-app:cards-v'"${{ needs.accounts.outputs.IMAGE_VERSION }}"'|g" kustomization/base/cards.yml 
-              sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${{ secrets.REGISTRY }}/banking-app:configserver-v'"${{ needs.accounts.outputs.IMAGE_VERSION }}"'|g" kustomization/base/configserver.yml 
-              sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${{ secrets.REGISTRY }}/banking-app:eurekaserver-v'"${{ needs.accounts.outputs.IMAGE_VERSION }}"'|g" kustomization/base/eurekaserver.yml 
-              sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${{ secrets.REGISTRY }}/banking-app:gateway-v'"${{ needs.accounts.outputs.IMAGE_VERSION }}"'|g" kustomization/base/gatewayserver.yml 
-              sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${{ secrets.REGISTRY }}/banking-app:loans-v'"${{ needs.accounts.outputs.IMAGE_VERSION }}"'|g" kustomization/base/loans.yml 
-              sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${{ secrets.REGISTRY }}/banking-app:frontend-v'"${{ needs.accounts.outputs.IMAGE_VERSION }}"'|g" kustomization/base/frontend.yml 
+              export REGISTRY=${{ secrets.REGISTRY }}
+              export IMAGE_VERSION=${{ needs.accounts.outputs.IMAGE_VERSION }}
+              sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${REGISTRY}/banking-app:accounts-v${IMAGE_VERSION}|g" kustomization/base/accounts.yml
+              sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${REGISTRY}/banking-app:cards-v${IMAGE_VERSION}|g" kustomization/base/cards.yml 
+              sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${REGISTRY}/banking-app:configserver-v${IMAGE_VERSION}|g" kustomization/base/configserver.yml 
+              sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${REGISTRY}/banking-app:eurekaserver-v${IMAGE_VERSION}|g" kustomization/base/eurekaserver.yml 
+              sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${REGISTRY}/banking-app:gateway-v${IMAGE_VERSION}|g" kustomization/base/gatewayserver.yml 
+              sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${REGISTRY}/banking-app:loans-v${IMAGE_VERSION}|g" kustomization/base/loans.yml 
+              sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${REGISTRY}/banking-app:frontend-v${IMAGE_VERSION}|g" kustomization/base/frontend.yml 
               cat kustomization/base/accounts.yml
 
         - name: Configure Git
