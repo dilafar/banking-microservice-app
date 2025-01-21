@@ -15,9 +15,12 @@ spec:
       labels:
         app: configserver
     spec:
+      imagePullSecrets:
+        - name: aws-registry-key
       containers:
         - name: configserver
           image: fadhiljr/mssample:configserver-20.0
+          imagePullPolicy: Always
           ports:
             - containerPort: 8071
 

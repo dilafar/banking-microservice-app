@@ -15,9 +15,12 @@ spec:
       labels:
         app: gatewayserver
     spec:
+      imagePullSecrets:
+        - name: aws-registry-key
       containers:
         - name: gatewayserver
           image: fadhiljr/mssample:gatewayserver-23.0
+          imagePullPolicy: Always
           ports:
             - containerPort: 8072
           env:
