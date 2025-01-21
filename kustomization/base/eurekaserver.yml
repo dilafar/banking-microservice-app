@@ -15,9 +15,12 @@ spec:
       labels:
         app: eurekaserver
     spec:
+      imagePullSecrets:
+        - name: aws-registry-key
       containers:
         - name: eurekaserver
           image: fadhiljr/mssample:eurekaserver-20.0
+          imagePullPolicy: Always
           ports:
             - containerPort: 8070
           env:
