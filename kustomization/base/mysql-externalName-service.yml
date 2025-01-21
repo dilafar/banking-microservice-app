@@ -4,4 +4,4 @@ metadata:
   name: mysql
 spec:
   type: ExternalName
-  externalName: microservice-dev.c3aema8a8skg.us-east-1.rds.amazonaws.com
+  externalName: microservice-db-dev.c3aema8a8skg.us-east-1.rds.amazonaws.com
