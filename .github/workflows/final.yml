@@ -89,7 +89,7 @@ jobs:
 
   changeChart:
       runs-on: ubuntu-latest
-      needs: accounts
+      needs: [accounts, frontend]
       name: change version config
       steps:
         - run: echo ${{ needs.accounts.outputs.IMAGE_VERSION }}
@@ -104,6 +104,7 @@ jobs:
               sed -i 's/^appVersion: .*/appVersion: eurekaserver-v'"${{ needs.accounts.outputs.IMAGE_VERSION }}"'/g' helm/charts/eurekaserver/values.yaml
               sed -i 's/^appVersion: .*/appVersion: gateway-v'"${{ needs.accounts.outputs.IMAGE_VERSION }}"'/g' helm/charts/gatewayserver/values.yaml
               sed -i 's/^appVersion: .*/appVersion: loans-v'"${{ needs.accounts.outputs.IMAGE_VERSION }}"'/g' helm/charts/loans/values.yaml
+              sed -i 's/^appVersion: .*/appVersion: frontend-v'"${{ needs.frontend.outputs.VERSION }}"'/g' helm/charts/frontend/values.yaml
               chmod +x chart-version-increment.sh
               ./chart-version-increment.sh helm/Chart.yaml
               ./chart-version-increment.sh helm/charts/accounts/Chart.yaml
@@ -112,5 +113,7 @@ jobs:
               ./chart-version-increment.sh helm/charts/gatewayserver/Chart.yaml
               ./chart-version-increment.sh helm/charts/loans/Chart.yaml
               ./chart-version-increment.sh helm/charts/cards/Chart.yaml
+              ./chart-version-increment.sh helm/charts/frontend/Chart.yaml
               cat helm/charts/cards/Chart.yaml
               cat helm/charts/loans/values.yaml
+              cat helm/charts/frontend/Chart.yaml
