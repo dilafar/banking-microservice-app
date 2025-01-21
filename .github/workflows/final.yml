@@ -124,13 +124,14 @@ jobs:
               cat helm/charts/frontend/Chart.yaml
               export REGISTRY=${{ secrets.REGISTRY }}
               export IMAGE_VERSION=${{ needs.accounts.outputs.IMAGE_VERSION }}
+              export VERSION=${{ needs.frontend.outputs.VERSION }}
               sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${REGISTRY}/banking-app:accounts-v${IMAGE_VERSION}|g" kustomization/base/accounts.yml
               sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${REGISTRY}/banking-app:cards-v${IMAGE_VERSION}|g" kustomization/base/cards.yml 
               sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${REGISTRY}/banking-app:configserver-v${IMAGE_VERSION}|g" kustomization/base/configserver.yml 
               sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${REGISTRY}/banking-app:eurekaserver-v${IMAGE_VERSION}|g" kustomization/base/eurekaserver.yml 
               sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${REGISTRY}/banking-app:gateway-v${IMAGE_VERSION}|g" kustomization/base/gatewayserver.yml 
               sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${REGISTRY}/banking-app:loans-v${IMAGE_VERSION}|g" kustomization/base/loans.yml 
-              sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${REGISTRY}/banking-app:frontend-v${IMAGE_VERSION}|g" kustomization/base/frontend.yml 
+              sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${REGISTRY}/banking-app:frontend-v${VERSION}|g" kustomization/base/frontend.yml 
               cat kustomization/base/accounts.yml
 
         - name: Configure Git
@@ -174,7 +175,6 @@ jobs:
             curl -LO https://github.com/helm/chart-releaser/releases/download/v1.7.0/chart-releaser_1.7.0_linux_amd64.tar.gz
             tar -xzf chart-releaser_1.7.0_linux_amd64.tar.gz
             sudo mv cr /usr/local/bin/
-            cr --version
 
       - name:  Pull Latest Changes
         run: |
