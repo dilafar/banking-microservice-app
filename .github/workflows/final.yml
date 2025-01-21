@@ -116,6 +116,12 @@ jobs:
               cat helm/charts/loans/values.yaml
               cat helm/charts/frontend/Chart.yaml
 
+        - name: Upload updated Helm charts
+          uses: actions/upload-artifact@v3
+          with:
+            name: updated-helm-charts
+            path: helm/
+
   eks-deployment:
     needs: changeChart
     uses: ./.github/workflows/eks_cluster_deploy.yml
