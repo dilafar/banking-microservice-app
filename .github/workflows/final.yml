@@ -116,11 +116,18 @@ jobs:
               cat helm/charts/loans/values.yaml
               cat helm/charts/frontend/Chart.yaml
 
-        - name: Upload updated Helm charts
-          uses: actions/upload-artifact@v3
-          with:
-            name: updated-helm-charts
-            path: helm/
+        - name: Configure Git
+          run: |
+            git config --global user.name "github-actions[bot]"
+            git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+        - name: Commit and Push Changes
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          run: |
+            git add .
+            git commit -m "Automated commit by GitHub Actions"
+            git push origin main
 
   eks-deployment:
     needs: changeChart
@@ -132,7 +139,7 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       REGISTRY: ${{ secrets.REGISTRY }}
 
-  commit-changes:
-    needs: eks-deployment
-    uses: ./.github/workflows/commit-changes.yml
+  ##commit-changes:
+   # needs: eks-deployment
+  #  uses: ./.github/workflows/commit-changes.yml
 
