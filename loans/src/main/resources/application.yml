@@ -2,9 +2,9 @@ server:
   port: 8090
 spring:
   datasource:
-    url: jdbc:mysql://microservice-dev.c3aema8a8skg.us-east-1.rds.amazonaws.com:3306/loansdb
+    url: jdbc:mysql://microservice-db-dev.c3aema8a8skg.us-east-1.rds.amazonaws.com:3306/loansdb
     username: admin
-    password: nu3Xu4VYyHXCNlfTd268
+    password: NPDQZn9JSCsQOPCHnERc
     #url: jdbc:mysql://localhost:3307/loansdb
     #username: root
     #password: root
