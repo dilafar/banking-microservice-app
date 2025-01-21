@@ -1,7 +1,7 @@
 appName: accounts
 appReplicas: 2
 appImage: 522814728991.dkr.ecr.us-east-1.amazonaws.com/banking-app
-appVersion: accounts-v3.3.5-75
+appVersion: accounts-v3.3.5-77
 containerPort: 8080
 servicePort: 8080
 serviceType: ClusterIP

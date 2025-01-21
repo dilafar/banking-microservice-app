@@ -19,7 +19,7 @@ spec:
         - name: aws-registry-key
       containers:
         - name: configserver
-          image: fadhiljr/mssample:configserver-20.0
+          image: 588738570846.dkr.ecr.us-east-1.amazonaws.com/banking-app:configserver-v3.3.5-77
           imagePullPolicy: Always
           ports:
             - containerPort: 8071
