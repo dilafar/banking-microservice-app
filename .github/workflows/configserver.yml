@@ -120,6 +120,19 @@ jobs:
           dockerfile: configserver/Dockerfile
           context: configserver
 
+      - name: Build & Upload image to ECR
+        uses: appleboy/docker-ecr-action@master
+        with:
+          access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          registry: ${{ secrets.REGISTRY }}
+          repo: ${{ env.ECR_REPOSITORY }}
+          region: ${{ env.AWS_REGION }}
+          tags: frontend-v${{ env.version }}
+          daemon_off: false
+          dockerfile: frontend/Dockerfile
+          context: frontend
+
       - name: Configure AWS CLI
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -134,3 +147,8 @@ jobs:
       - name: Trivy Scan Deployed Account Imange
         run: |
           bash trivy-k8s-scan.sh ${{ secrets.REGISTRY }}/${{ env.ECR_REPOSITORY }}:configserver-v${{ env.IMAGE_VERSION }} ${{ env.CACHE_DIR }}
+
+      - name: Trivy Scan Deployed Account Imange
+        run: |
+          bash trivy-k8s-scan.sh ${{ secrets.REGISTRY }}/${{ env.ECR_REPOSITORY }}:frontend-v${{ env.version }} ${{ env.CACHE_DIR }}
+
