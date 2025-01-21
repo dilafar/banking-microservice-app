@@ -29,6 +29,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Download updated Helm charts
+        uses: actions/download-artifact@v3
+        with:
+            name: updated-helm-charts
+
       - name: Configure AWS CLI
         uses: aws-actions/configure-aws-credentials@v2
         with:
