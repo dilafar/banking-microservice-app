@@ -1,4 +1,4 @@
-name: Final Full Workflow
+name: Final full Workflow
 
 on:
   workflow_dispatch:
