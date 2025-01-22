@@ -99,7 +99,7 @@ jobs:
 
         - name: Pull Latest Changes
           run: |
-            git pull origin main || true
+            git pull origin main
 
         - name: Update chart versions
           run: |
