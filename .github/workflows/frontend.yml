@@ -49,7 +49,7 @@ jobs:
           npm version patch --no-git-tag-version
           package_version=$(node -p "require('./package.json').version")
           echo "Application version: $package_version"
-          echo "version=$package_version" >> $GITHUB_ENV
+          echo "version=$package_version-${{ inputs.build_number }}" >> $GITHUB_ENV
 
       - id: imageVersion
         run: echo "VERSION=${{ env.version }}" >> $GITHUB_OUTPUT
