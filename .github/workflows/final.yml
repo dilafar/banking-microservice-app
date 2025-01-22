@@ -109,7 +109,7 @@ jobs:
               sed -i 's/^appVersion: .*/appVersion: eurekaserver-v'"${{ needs.accounts.outputs.IMAGE_VERSION }}"'/g' helm/charts/eurekaserver/values.yaml
               sed -i 's/^appVersion: .*/appVersion: gateway-v'"${{ needs.accounts.outputs.IMAGE_VERSION }}"'/g' helm/charts/gatewayserver/values.yaml
               sed -i 's/^appVersion: .*/appVersion: loans-v'"${{ needs.accounts.outputs.IMAGE_VERSION }}"'/g' helm/charts/loans/values.yaml
-              sed -i 's/^appVersion: .*/appVersion: frontend-v'"${{ needs.frontend.outputs.VERSION }}"'/g' helm/charts/frontend/values.yaml
+     #         sed -i 's/^appVersion: .*/appVersion: frontend-v'"${{ needs.frontend.outputs.VERSION }}"'/g' helm/charts/frontend/values.yaml
               chmod +x chart-version-increment.sh
               ./chart-version-increment.sh helm/Chart.yaml
               ./chart-version-increment.sh helm/charts/accounts/Chart.yaml
@@ -131,7 +131,7 @@ jobs:
               sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${REGISTRY}/banking-app:eurekaserver-v${IMAGE_VERSION}|g" kustomization/base/eurekaserver.yml 
               sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${REGISTRY}/banking-app:gateway-v${IMAGE_VERSION}|g" kustomization/base/gatewayserver.yml 
               sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${REGISTRY}/banking-app:loans-v${IMAGE_VERSION}|g" kustomization/base/loans.yml 
-              sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${REGISTRY}/banking-app:frontend-v${VERSION}|g" kustomization/base/frontend.yml 
+   #           sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${REGISTRY}/banking-app:frontend-v${VERSION}|g" kustomization/base/frontend.yml
               cat kustomization/base/accounts.yml
 
         - name: Configure Git
