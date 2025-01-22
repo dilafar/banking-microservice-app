@@ -64,15 +64,15 @@ function MainNav() {
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to="/bookings">
+          <StyledNavLink to="/accounts">
             <HiOutlineCalendarDays />
-            <span>Bookings</span>
+            <span>Accounts</span>
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to="/cabins">
+          <StyledNavLink to="/cards">
             <HiOutlineHomeModern />
-            <span>Cabins</span>
+            <span>Cards</span>
           </StyledNavLink>
         </li>
         <li>
@@ -82,9 +82,9 @@ function MainNav() {
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to="/settings">
+          <StyledNavLink to="/loans">
             <HiOutlineCog6Tooth />
-            <span>Settings</span>
+            <span>Loans</span>
           </StyledNavLink>
         </li>
       </NavList>

@@ -23,7 +23,6 @@ function LoansTable() {
         <Table.Header>
           
           <div>loanNumber</div>
-          <div>mobileNumber</div>
           <div>loanType</div>
           <div>totalLoan</div>
           <div>amountPaid</div>

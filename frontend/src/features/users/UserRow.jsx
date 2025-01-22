@@ -21,16 +21,16 @@ const Cabin = styled.div`
   font-family: 'Sono';
 `;
 
-const Price = styled.div`
-  font-family: 'Sono';
-  font-weight: 600;
-`;
+//const Price = styled.div`
+ // font-family: 'Sono';
+ // font-weight: 600;
+//`/;
 
-const Discount = styled.div`
-  font-family: 'Sono';
-  font-weight: 500;
-  color: var(--color-green-700); 
-`;
+//const Discount = styled.div`
+//  font-family: 'Sono';
+//  font-weight: 500;
+//  color: var(--color-green-700); 
+//`;
 //isLoading,
 function UserRow({ cabin }) {
  
@@ -39,10 +39,9 @@ function UserRow({ cabin }) {
       <TableRow role="row">
         <Cabin>{cabin.name}</Cabin>
         <Cabin>{cabin.email}</Cabin>
-        <div>fit to maximum</div>
-        <Price>{cabin.phone}</Price>
-        <Discount>{cabin.jobTitle}</Discount>
-       
+        <Cabin>{cabin.loansDto.loanNumber}</Cabin>
+        <Cabin>{cabin.cardsDto.cardNumber}</Cabin>
+        <Cabin>{cabin.accountsDto.accountNumber}</Cabin>
       </TableRow>
    
   );

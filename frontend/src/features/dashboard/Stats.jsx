@@ -14,25 +14,25 @@ function Stats() {
     <>
       <Stat
         icon={<HiOutlineBriefcase />}
-        title='Bookings'
-        value={10}
+        title='Accounts'
+        value={3}
         color='blue'
       />
       <Stat
         icon={<HiOutlineBanknotes />}
-        title='Sales'
-        value={10}
+        title='Saving'
+        value={1000000}
         color='green'
       />
       <Stat
         icon={<HiOutlineCalendarDays />}
-        title='Check ins'
-        value={12}
+        title='Loans'
+        value={100000}
         color='indigo'
       />
       <Stat
         icon={<HiOutlineChartBar />}
-        title='Occupancy rate'
+        title='Interest rate'
         value={14}
         color='yellow'
       />

@@ -18,10 +18,10 @@ function CreateBookingForm({cabinToEdit = {},onCloseModel}) {
   console.log(errors);
 
   const {createEmployee, isCreating} = useCreateEmployee();
-  const {updateEmployee, isEditing} = useUpdateEmployee();
+  const {updateEmployee} = useUpdateEmployee();
 
   
-  const isWorking = isCreating || isEditing;
+  //const isWorking = isCreating || isEditing;
 
   function onSubmit(data) {
     if(isEditSession){
@@ -63,12 +63,6 @@ function CreateBookingForm({cabinToEdit = {},onCloseModel}) {
         })}/>
       </FormRow>
 
-      <FormRow label="Job Title" error={errors?.name?.message}>
-        <Input type="text" id="jobTitle"  {...register("jobTitle",{
-          required: "This field is required",
-        })}/>
-      </FormRow>
-
       <FormRow label="Phone" error={errors?.name?.message}>
         <Input type="number" id="phone"  {...register("phone",{
           required: "This field is required",
@@ -79,19 +73,13 @@ function CreateBookingForm({cabinToEdit = {},onCloseModel}) {
         })}/>
       </FormRow>
 
-      <FormRow label="Image URL" error={errors?.name?.message}>
-        <Input type="text" id="imageUrl" disabled={isWorking} {...register("imageUrl",{
-          required: "This field is required",
-        })}/>
-      </FormRow>
-
       <FormRow>
         {/* type is an HTML attribute! */}
         <Button variation="secondary" type="reset" onClick={() => onCloseModel?.()}>
           Cancel
         </Button>
         <Button disabled={isCreating}>
-          {isEditSession ? "Edit cabin": "Create new Employee"}</Button>
+          {isEditSession ? "Edit": "Create Account"}</Button>
       </FormRow>
     </Form>
   );

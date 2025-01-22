@@ -2,14 +2,16 @@ import styled from 'styled-components';
 import Stats from './Stats';
 import SalesChart from './SalesChart';
 import DurationChart from './DurationChart';
+import DurationBarChart from './BarChart';
 //import TodayActivity from '../check-in-out/TodayActivity';
 
 const StyledDashboardLayout = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: auto 34rem auto;
-  gap: 2.4rem;
+  gap: 2.0rem;
 `;
+
 
 /*
 We need to distinguish between two types of data here:
@@ -21,9 +23,11 @@ function DashboardLayout() {
 
   return (
     <StyledDashboardLayout>
-      <Stats />
-      <div>Chart sales</div>
-      <DurationChart />
+        <Stats />
+        <DurationBarChart />
+        <DurationChart /> 
+          
+             
      <SalesChart />
     </StyledDashboardLayout>
   );

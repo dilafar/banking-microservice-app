@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import CreateCabinForm from './CreateCabinForm';
 import { useDeleteEmployee } from '../../hooks/useDeleteEmployee';
-import { HiPencil, HiTrash } from 'react-icons/hi2';
+import { HiTrash } from 'react-icons/hi2';
 import Modal from '../../ui/Modal';
 import ConfirmDelete from '../../ui/ConfirmDelete';
 import Menus from '../../ui/Menus';
@@ -11,9 +12,9 @@ import Menus from '../../ui/Menus';
  const TableRow = styled.div`
    display: grid;
    grid-template-columns: 0.6fr 1.8fr 2.2fr 1fr 1fr 1fr;
-   column-gap: 2.4rem;
+   column-gap: 1.9rem;
    align-items: center;
-   padding: 1.4rem 2.4rem;
+   padding: 1.1rem 2.2rem;
 
    &:not(:last-child) {
      border-bottom: 1px solid var(--color-grey-100);
@@ -27,16 +28,16 @@ const Cabin = styled.div`
   font-family: 'Sono';
 `;
 
-const Price = styled.div`
-  font-family: 'Sono';
-  font-weight: 600;
-`;
+//const Price = styled.div`
+ // font-family: 'Sono';
+  //font-weight: 600;
+//`;
 
-const Discount = styled.div`
-  font-family: 'Sono';
-  font-weight: 500;
-  color: var(--color-green-700); 
-`;
+//const Discount = styled.div`
+ // font-family: 'Sono';
+ // font-weight: 500;
+ // color: var(--color-green-700); 
+//`;
 //isLoading,
 function CabinRow({ cabin }) {
   const {isDeleting, deleteEmployee} = useDeleteEmployee();
@@ -45,20 +46,16 @@ function CabinRow({ cabin }) {
   return (
 
       <TableRow role="row">
-        <Cabin>{cabin.name}</Cabin>
-        <Cabin>{cabin.email}</Cabin>
-        <div>fit to maximum</div>
-        <Price>{cabin.phone}</Price>
-        <Discount>{cabin.jobTitle}</Discount>
+        <Cabin>{cabin.cardsDto.cardNumber}</Cabin>
+        <Cabin>{cabin.cardsDto.cardType}</Cabin>
+        <Cabin>{cabin.cardsDto.totalLimit}</Cabin>
+        <Cabin>{cabin.cardsDto.amountUsed}</Cabin>
+        <Cabin>{cabin.cardsDto.availableAmount}</Cabin>
         <div>
           <Modal>
             <Menus.Menu>
               <Menus.Toggle id={employeeId}/>
               <Menus.List id={employeeId}>
-                <Modal.Open opens="edit">
-                   <Menus.Button icon={<HiPencil />} >Edit</Menus.Button>
-                </Modal.Open>
-
                 <Modal.Open opens="delete">
                   <Menus.Button icon={<HiTrash />} >Delete</Menus.Button>
                 </Modal.Open>
