@@ -98,6 +98,7 @@ jobs:
 
         - name: Update Chart Versions
           run: |
+            git pull origin main || true
             export REGISTRY=${{ secrets.REGISTRY }}
             export IMAGE_VERSION=${{ needs.accounts.outputs.IMAGE_VERSION }}
             export FRONTEND_VERSION=${{ needs.frontend.outputs.VERSION }}
@@ -157,6 +158,7 @@ jobs:
 
         - name: Update Helm Chart Versions
           run: |
+            git pull origin gh-pages || true
             export IMAGE_VERSION=${{ needs.accounts.outputs.IMAGE_VERSION }}
             export FRONTEND_VERSION=${{ needs.frontend.outputs.VERSION }}
 
