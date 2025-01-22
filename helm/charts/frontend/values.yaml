@@ -1,7 +1,7 @@
 appName: banking-frontend
 appReplicas: 2
 appImage: 522814728991.dkr.ecr.us-east-1.amazonaws.com/banking-app
-appVersion: frontend-v0.0.1-82
+appVersion: frontend-v0.0.1-92
 containerPort: 80
 servicePort: 80
 serviceType: ClusterIP
