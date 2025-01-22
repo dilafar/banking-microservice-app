@@ -26,17 +26,6 @@ const Cabin = styled.div`
   color: var(--color-grey-600);
   font-family: 'Sono';
 `;
-
-const Price = styled.div`
-  font-family: 'Sono';
-  font-weight: 600;
-`;
-
-const Discount = styled.div`
-  font-family: 'Sono';
-  font-weight: 500;
-  color: var(--color-green-700); 
-`;
 //isLoading,
 function BookingRow({ cabin }) {
   const {isDeleting, deleteEmployee} = useDeleteEmployee();
@@ -45,11 +34,10 @@ function BookingRow({ cabin }) {
   return (
 
       <TableRow role="row">
-        <Cabin>{cabin.name}</Cabin>
         <Cabin>{cabin.email}</Cabin>
-        <div>fit to maximum</div>
-        <Price>{cabin.phone}</Price>
-        <Discount>{cabin.jobTitle}</Discount>
+        <Cabin>{cabin.accountsDto.accountNumber}</Cabin>
+        <Cabin>{cabin.accountsDto.accountType}</Cabin>
+        <Cabin>{cabin.accountsDto.branchAddress}</Cabin>
         <div>
           <Modal>
             <Menus.Menu>

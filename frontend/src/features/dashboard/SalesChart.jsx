@@ -66,7 +66,7 @@ const OLDdata = [
   return (
     <StyledSalesChart>
       <Heading as='h2'>
-          Sales
+          Loans Summary
       </Heading>
       <ResponsiveContainer height={300} width="100%">
       <AreaChart data={OLDdata} height={300} width={700}>

@@ -32,10 +32,10 @@ function App() {
         <Route element={<AppLayout />}>
           <Route index element={<Navigate replace to="dashboard" />} />    
           <Route path="dashboard" element={<Dashboard />} />
-          <Route path="cabins" element={<Cabins />} />
-          <Route path="bookings" element={<Bookings/>} />
+          <Route path="cards" element={<Cabins />} />
+          <Route path="accounts" element={<Bookings/>} />
           <Route path="users" element={<NewUsers />} />
-          <Route path="settings" element={<Settings />} />
+          <Route path="loans" element={<Settings />} />
           <Route path="account" element={<Account/>} />
         </Route>       
         <Route path="login" element={<Login />} />

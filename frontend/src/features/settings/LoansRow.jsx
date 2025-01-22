@@ -46,7 +46,6 @@ function LoansRow({ loan }) {
 
       <TableRow role="row">
         <Cabin>{loan.loanNumber}</Cabin>
-        <Cabin>{loan.mobileNumber}</Cabin>
         <Cabin>{loan.loanType}</Cabin>
         <Price>{loan.totalLoan}</Price>
         <Discount>{loan.amountPaid}</Discount>
