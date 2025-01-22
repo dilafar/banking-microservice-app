@@ -23,7 +23,7 @@ spec:
         - name: aws-registry-key
       containers:
         - name: loans
-          image: 588738570846.dkr.ecr.us-east-1.amazonaws.com/banking-app:loans-v3.3.5-79
+          image: 588738570846.dkr.ecr.us-east-1.amazonaws.com/banking-app:loans-v3.3.5-80
           imagePullPolicy: Always
           ports:
             - containerPort: 8090
