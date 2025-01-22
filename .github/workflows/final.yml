@@ -97,9 +97,8 @@ jobs:
           with:
             fetch-depth: 0
 
-        - name: Pull Latest Changes
-          run: |
-            git pull origin main
+    #    - name: Pull Latest Changes
+    ##        git pull origin main
 
         - name: Update chart versions
           run: |
