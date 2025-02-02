@@ -23,7 +23,7 @@ spec:
         - name: aws-registry-key
       containers:
         - name: accounts
-          image: 588738570846.dkr.ecr.us-east-1.amazonaws.com/banking-app:accounts-v3.3.5-94
+          image: 588738570846.dkr.ecr.us-east-1.amazonaws.com/banking-app:accounts-v3.3.5-95
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
