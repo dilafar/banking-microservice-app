@@ -110,6 +110,7 @@ jobs:
             sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${REGISTRY}/banking-app:configserver-v${IMAGE_VERSION}|g" kustomization/base/configserver.yml 
             sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${REGISTRY}/banking-app:eurekaserver-v${IMAGE_VERSION}|g" kustomization/base/eurekaserver.yml 
             sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${REGISTRY}/banking-app:gateway-v${IMAGE_VERSION}|g" kustomization/base/gatewayserver.yml 
+            sed -i "/containers:/,/^[^ ]/s|image:.*|image: ${REGISTRY}/banking-app:frontend-v${FRONTEND_VERSION}|g" kustomization/base/frontend.yml
 
             # Update Helm values
             sed -i 's/^appVersion: .*/appVersion: accounts-v'"${IMAGE_VERSION}"'/g' helm/charts/accounts/values.yaml
