@@ -18,7 +18,7 @@ spec:
       initContainers:
         - name: mydb-available
           image: busybox:1.28
-          command: [ 'sh','-c',"until nslookup 34.229.123.81; do echo waiting for database; sleep 4; done" ]
+          command: [ 'sh','-c',"until nslookup 34.201.147.73; do echo waiting for database; sleep 4; done" ]
       imagePullSecrets:
         - name: aws-registry-key
       containers:
@@ -44,7 +44,7 @@ spec:
                   key: SPRING_PROFILES_ACTIVE
                   name: bank-cm
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:mysql://34.229.123.81:3306/accountsdb"
+              value: "jdbc:mysql://34.201.147.73:3306/accountsdb"
             - name: SPRING_DATASOURCE_USERNAME
               value: "admin"
             - name: SPRING_DATASOURCE_PASSWORD
