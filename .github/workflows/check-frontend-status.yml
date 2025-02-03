@@ -53,6 +53,7 @@ jobs:
           target: ${{ env.TARGET_URL }}
           fail_action: false
           allow_issue_writing: false
+          artifact_name: zap-scan-report
 
       - name: Upload ZAP Scan Report
         uses: actions/upload-artifact@v4
