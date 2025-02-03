@@ -11,7 +11,7 @@ on:
 env:
   AWS_REGION: us-east-1
   ECR_REPOSITORY: banking-app
-  EKS_CLUSTER: banking-eks
+  EKS_CLUSTER: eks-terraform-2
 defaults:
   run:
     shell: bash
