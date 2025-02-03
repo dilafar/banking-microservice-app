@@ -1,0 +1,281 @@
+
+1.0banking-app24JavaFrontend"1738625551187*java2.B£	
+?
+:src/main/java/com/assignment/accounts/entity/Customer.java2
+
+package4
+#
+com.assignment.accounts.entity5
+,
+'com.assignment.accounts.entity.Customer7
+
+
+class8
+
+access9
+
+public10
+
+simple name11
+
+Customer12
+/
+)com.assignment.accounts.entity.BaseEntity14
+
+unknown15
+
+extends16
+
+Entity18
+
+annotated by19
+$
+Recovered#typeBindingLEntity;021
+
+
+uses22
+
+Getter24
+$
+Recovered#typeBindingLGetter;026
+
+Setter28
+$
+Recovered#typeBindingLSetter;030
+
+ToString32
+&
+ Recovered#typeBindingLToString;034
+
+AllArgsConstructor36
+0
+*Recovered#typeBindingLAllArgsConstructor;038
+
+NoArgsConstructor40
+/
+)Recovered#typeBindingLNoArgsConstructor;042
+8
+2com.assignment.accounts.entity.Customer.customerId44
+
+field45
+
+private46
+
+
+customerId47
+
+Id49
+ 
+Recovered#typeBindingLId;051
+
+GeneratedValue53
+,
+&Recovered#typeBindingLGeneratedValue;055
+
+Column57
+$
+Recovered#typeBindingLColumn;059
+2
+,com.assignment.accounts.entity.Customer.name61
+
+
+name62
+3
+-com.assignment.accounts.entity.Customer.email64
+
+email65
+:
+4com.assignment.accounts.entity.Customer.mobileNumber67
+
+mobileNumber68J
+
+1
+12Z
+
+3	
+354jø
+
+39
+394015
+
+17
+171815
+
+58
+585915
+
+35
+353615
+
+23
+232415
+
+13
+131415
+
+25
+252615
+
+37
+373815
+
+41
+414215
+
+29
+293015
+
+52
+525315
+@
+66:
+666745 *
+1 (26:3B
+	
+9
+46
+
+
+11
+68
+@
+60:
+606145 *
+1 (26:3B
+	
+9
+46
+
+
+11
+62
+
+20
+202115
+
+56
+565715
+9
+64
+678 *
+1 (:3B
+	
+9
+10
+
+
+11
+12
+
+54
+545515
+@
+63:
+636445 *
+1 (26:3B
+	
+9
+46
+
+
+11
+65
+
+27
+272815
+
+33
+333415
+@
+43:
+434445 *
+1	 	(26:3B
+	
+9
+46
+
+
+11
+47
+
+48
+484915
+
+31
+313215
+
+50
+505115r›
+
+61316*
+1 ()
+
+61719*
+1 (
+
+62022*
+1 (
+
+62319*
+1 (
+
+62522*
+1 (
+
+62719*
+1 (	
+
+62922*
+1	 (
+
+63119*
+1 (
+
+63322*
+1 (
+
+63519*
+1 (
+
+63722*
+1 (+
+
+63919*
+1+ (,
+
+64122*
+1, (=
+
+6622*
+1 (
+
+61322*
+1 ()
+
+434819*
+1	 	(
+
+435022*
+1	 	(
+
+435219*
+1
+ 
+(
+
+435422*
+1
+ 
+(
+
+435619*
+1 (
+
+435822*
+1 (
+
+665619*
+1 (
+
+665822*
+1 (

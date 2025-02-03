@@ -1,0 +1,144 @@
+
+1.0banking-app24JavaFrontend"1738625550928*java2.Bý
+?
+:src/main/java/com/assignment/accounts/dto/ResponseDto.java2
+
+package4
+ 
+com.assignment.accounts.dto5
+,
+'com.assignment.accounts.dto.ResponseDto7
+
+
+class8
+
+access9
+
+public10
+
+simple name11
+
+ResponseDto12
+
+Schema14
+
+unknown15
+
+annotated by16
+$
+Recovered#typeBindingLSchema;018
+
+
+uses19
+
+
+Data21
+"
+Recovered#typeBindingLData;023
+
+AllArgsConstructor25
+0
+*Recovered#typeBindingLAllArgsConstructor;027
+8
+2com.assignment.accounts.dto.ResponseDto.statusCode29
+
+field30
+
+private31
+
+
+statusCode32
+7
+1com.assignment.accounts.dto.ResponseDto.statusMsg34
+
+	statusMsg35J
+
+1
+12Z
+
+3	
+354j·
+
+24
+242515
+
+17
+171815
+
+13
+131415
+9
+64
+678 *
+1 (:3B
+	
+9
+10
+
+
+11
+12
+@
+28:
+282930 *
+1 (26:3B
+	
+9
+31
+
+
+11
+32
+
+20
+202115
+
+26
+262715
+
+22
+222315
+@
+33:
+333430 *
+1 (26:3B
+	
+9
+31
+
+
+11
+35r¡
+
+61316*
+1 (
+
+61719*
+1 (
+
+62016*
+1 (
+
+62219*
+1 (
+
+62416*
+1 (
+
+62619*
+1 (
+
+6619*
+1 (
+
+281316*
+1 (
+
+281719*
+1 (
+
+331316*
+1 (
+
+331719*
+1 (

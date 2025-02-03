@@ -1,0 +1,7 @@
+com.assignment.accounts.controller.AccountsController#updateAccountsDetails(Lcom/assignment/accounts/dto/CustomerDto;)LResponseEntity;
+false
+6236196b321b74352d2c90ada1635d63
+com.assignment.accounts.dto.ResponseDto#instance-init#
+==
+!unknownMethod! !unknownMethod!
+updateAccount com.assignment.accounts.service.IAccountsService#updateAccount(Lcom/assignment/accounts/dto/CustomerDto;)Z

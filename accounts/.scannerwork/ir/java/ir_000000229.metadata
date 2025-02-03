@@ -1,0 +1,6 @@
+com.assignment.accounts.controller.AccountsController#fetchAccountDetails(Ljava/lang/String;)LResponseEntity;
+false
+041c377740d8dfe53c2791a694a64c92
+==
+!unknownMethod! !unknownMethod!
+fetchAccount com.assignment.accounts.service.IAccountsService#fetchAccount(Ljava/lang/String;)Lcom/assignment/accounts/dto/CustomerDto;

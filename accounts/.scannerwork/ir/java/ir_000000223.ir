@@ -1,0 +1,22 @@
+
+Ê
+mapToAccounts¸com.assignment.accounts.mapper.AccountsMapper#mapToAccounts(Lcom/assignment/accounts/dto/AccountsDto;Lcom/assignment/accounts/entity/Accounts;)Lcom/assignment/accounts/entity/Accounts;…BaccountsDto) (@"'com.assignment.accounts.dto.AccountsDto?accountsB (S"'com.assignment.accounts.entity.AccountsBaccountsDto) (@"'com.assignment.accounts.dto.AccountsDto?accountsB (S"'com.assignment.accounts.entity.Accounts"Ç2
+0
+" (@"
+getAccountNumber*2	!Unknown!83
+1
+ (A"
+setAccountNumber*2	!Unknown!80
+.
+  (<"
+getAccountType*2	!Unknown!81
+/
+ (="
+setAccountType*2	!Unknown!82
+0
+" (@"
+getBranchAddress*2	!Unknown!83
+1
+ (A"
+setBranchAddress*2	!Unknown!8
+ (*/home/runner/work/banking-microservice-app/banking-microservice-app/accounts/src/main/java/com/assignment/accounts/mapper/AccountsMapper.java

@@ -1,0 +1,28 @@
+
+–
+mapToCustomerDtoªcom.assignment.accounts.mapper.CustomerMapper#mapToCustomerDto(Lcom/assignment/accounts/entity/Customer;Lcom/assignment/accounts/dto/CustomerDto;)Lcom/assignment/accounts/dto/CustomerDto;Ö?customer	/ 	(@"'com.assignment.accounts.entity.CustomerBcustomerDto	A 	(X"'com.assignment.accounts.dto.CustomerDto?customer	/ 	(@"'com.assignment.accounts.entity.CustomerBcustomerDto	A 	(X"'com.assignment.accounts.dto.CustomerDto"ß)
+'
+
+ 
+(."	
+getName*2	!Unknown!8*
+(
+
+ 
+(/"	
+setName*2	!Unknown!8*
+(
+ (0"
+
+getEmail*2	!Unknown!8+
+)
+ (1"
+
+setEmail*2	!Unknown!81
+/
+$ (>"
+getMobileNumber*2	!Unknown!82
+0
+ (?"
+setMobileNumber*2	!Unknown!8
+ (*ç/home/runner/work/banking-microservice-app/banking-microservice-app/accounts/src/main/java/com/assignment/accounts/mapper/CustomerMapper.java

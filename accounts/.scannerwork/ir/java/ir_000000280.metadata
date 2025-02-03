@@ -1,0 +1,16 @@
+com.assignment.accounts.service.impl.CustomerServiceImpl#fetchCustomerDetails(Ljava/lang/String;Ljava/lang/String;)Lcom/assignment/accounts/dto/CustomerDetailsDto;
+false
+63b0bc3888f7eceb1067e4018f4a5a3e
+com.assignment.accounts.dto.AccountsDto#<init>()V
+com.assignment.accounts.dto.AccountsDto#instance-init#
+com.assignment.accounts.dto.CustomerDetailsDto#<init>()V
+com.assignment.accounts.dto.CustomerDetailsDto#instance-init#
+com.assignment.accounts.mapper.AccountsMapper#mapToAccountsDto(Lcom/assignment/accounts/entity/Accounts;Lcom/assignment/accounts/dto/AccountsDto;)Lcom/assignment/accounts/dto/AccountsDto;
+com.assignment.accounts.mapper.CustomerMapper#mapToCustomerDetailsDto(Lcom/assignment/accounts/entity/Customer;Lcom/assignment/accounts/dto/CustomerDetailsDto;)Lcom/assignment/accounts/dto/CustomerDetailsDto;
+java.util.Optional#orElseThrow(Ljava/util/function/Supplier;)Ljava/lang/Object;
+==
+!unknownMethod! !unknownMethod!
+fetchCardDetails com.assignment.accounts.service.client.CardsFeignClient#fetchCardDetails(Ljava/lang/String;Ljava/lang/String;)LResponseEntity;
+fetchLoanDetails com.assignment.accounts.service.client.LoansFeignClient#fetchLoanDetails(Ljava/lang/String;Ljava/lang/String;)LResponseEntity;
+findByCustomerId com.assignment.accounts.repository.AccountsRepository#findByCustomerId(Ljava/lang/Long;)Ljava/util/Optional;
+findByMobileNumber com.assignment.accounts.repository.CustomerRepository#findByMobileNumber(Ljava/lang/String;)Ljava/util/Optional;

@@ -1,0 +1,7 @@
+com.assignment.accounts.controller.AccountsController#deleteAccountsDetails(Ljava/lang/String;)LResponseEntity;
+false
+da72a8f92a4f5182d1d8abf86ead0131
+com.assignment.accounts.dto.ResponseDto#instance-init#
+==
+!unknownMethod! !unknownMethod!
+deleteAccount com.assignment.accounts.service.IAccountsService#deleteAccount(Ljava/lang/String;)Z

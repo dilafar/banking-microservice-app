@@ -1,0 +1,12 @@
+
+∏com.assignment.accounts.mapper.CustomerMapper#mapToCustomer(Lcom/assignment/accounts/dto/CustomerDto;Lcom/assignment/accounts/entity/Customer;)Lcom/assignment/accounts/entity/Customer;ò
+ç/home/runner/work/banking-microservice-app/banking-microservice-app/accounts/src/main/java/com/assignment/accounts/mapper/CustomerMapper.java (("1*P
+1 ("A
+ (5
+3
+customer'com.assignment.accounts.entity.Customer:B
+) (A6
+customerDto'com.assignment.accounts.dto.CustomerDto:?
+B (S3
+customer'com.assignment.accounts.entity.CustomerB1"/
+-com.assignment.accounts.mapper.CustomerMapperH

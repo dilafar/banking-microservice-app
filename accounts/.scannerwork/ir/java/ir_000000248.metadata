@@ -1,0 +1,8 @@
+com.assignment.accounts.service.impl.AccountsServiceImpl#deleteAccount(Ljava/lang/String;)Z
+false
+d92ea09e7ef3dfe9e6727c2d4009c43d
+java.util.Optional#orElseThrow(Ljava/util/function/Supplier;)Ljava/lang/Object;
+==
+!unknownMethod! !unknownMethod!
+deleteByCustomerId com.assignment.accounts.repository.AccountsRepository#deleteByCustomerId(Ljava/lang/Long;)V
+findByMobileNumber com.assignment.accounts.repository.CustomerRepository#findByMobileNumber(Ljava/lang/String;)Ljava/util/Optional;

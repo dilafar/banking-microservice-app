@@ -1,0 +1,24 @@
+com.assignment.accounts.service.impl.CustomerServiceImpl#fetchAllCustomerDetails(Ljava/lang/String;)Ljava/util/List;
+false
+40322b1a6d043d394640243be44133dc
+com.assignment.accounts.dto.AccountsDto#<init>()V
+com.assignment.accounts.dto.AccountsDto#instance-init#
+com.assignment.accounts.dto.CardsDto#<init>()V
+com.assignment.accounts.dto.CardsDto#instance-init#
+com.assignment.accounts.dto.CustomerDetailsDto#<init>()V
+com.assignment.accounts.dto.CustomerDetailsDto#instance-init#
+com.assignment.accounts.dto.LoansDto#<init>()V
+com.assignment.accounts.dto.LoansDto#instance-init#
+com.assignment.accounts.exception.ResourceNotFoundException#<init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+com.assignment.accounts.exception.ResourceNotFoundException#instance-init#
+com.assignment.accounts.mapper.AccountsMapper#mapToAccountsDto(Lcom/assignment/accounts/entity/Accounts;Lcom/assignment/accounts/dto/AccountsDto;)Lcom/assignment/accounts/dto/AccountsDto;
+com.assignment.accounts.mapper.CustomerMapper#mapToCustomerDetailsDto(Lcom/assignment/accounts/entity/Customer;Lcom/assignment/accounts/dto/CustomerDetailsDto;)Lcom/assignment/accounts/dto/CustomerDetailsDto;
+java.util.ArrayList#<init>()V
+java.util.ArrayList#instance-init#
+==
+!unknownMethod! !unknownMethod!
+add java.util.List#add(Ljava/lang/Object;)Z
+fetchCardDetails com.assignment.accounts.service.client.CardsFeignClient#fetchCardDetails(Ljava/lang/String;Ljava/lang/String;)LResponseEntity;
+fetchLoanDetails com.assignment.accounts.service.client.LoansFeignClient#fetchLoanDetails(Ljava/lang/String;Ljava/lang/String;)LResponseEntity;
+findByCustomerId com.assignment.accounts.repository.AccountsRepository#findByCustomerId(Ljava/lang/Long;)Ljava/util/Optional;
+isEmpty java.util.List#isEmpty()Z

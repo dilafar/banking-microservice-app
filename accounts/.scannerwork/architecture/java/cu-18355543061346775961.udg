@@ -1,0 +1,165 @@
+
+1.0banking-app24JavaFrontend"1738625550914*java2.B­
+H
+Csrc/main/java/com/assignment/accounts/service/IAccountsService.java2
+
+package4
+$
+com.assignment.accounts.service5
+5
+0com.assignment.accounts.service.IAccountsService7
+
+	interface8
+
+access9
+
+public10
+
+simple name11
+
+IAccountsService12
+
+
+uses13
+p
+jcom.assignment.accounts.service.IAccountsService#createAccount(Lcom/assignment/accounts/dto/CustomerDto;)V15
+
+method16
+
+createAccount17
+-
+'com.assignment.accounts.dto.CustomerDto19
+
+unknown20
+
+	has param21
+
+is type22
+€
+zcom.assignment.accounts.service.IAccountsService#fetchAccount(Ljava/lang/String;)Lcom/assignment/accounts/dto/CustomerDto;24
+
+fetchAccount25
+
+returns26
+p
+jcom.assignment.accounts.service.IAccountsService#updateAccount(Lcom/assignment/accounts/dto/CustomerDto;)Z28
+
+updateAccount29
+Y
+Scom.assignment.accounts.service.IAccountsService#deleteAccount(Ljava/lang/String;)Z31
+
+deleteAccount32
+c
+]com.assignment.accounts.service.IAccountsService#updateCommunicationStatus(Ljava/lang/Long;)Z34
+
+updateCommunicationStatus35J
+
+1
+12Z
+
+3	
+354j™
+9
+64
+678 *
+1 (":3B
+	
+9
+10
+
+
+11
+12
+@
+30:
+303116 *
+1 (26:3B
+	
+9
+10
+
+
+11
+32
+@
+23:
+232416 *
+1 (26:3B
+	
+9
+10
+
+
+11
+25
+
+18
+181920
+@
+14:
+141516 *
+1
+ 
+(	26:3B
+	
+9
+10
+
+
+11
+17
+@
+33:
+333416 *
+1 (26:3B
+	
+9
+10
+
+
+11
+35
+@
+27:
+272816 *
+1 (26:3B
+	
+9
+10
+
+
+11
+29rñ
+
+6613*
+1 ("
+
+141821*
+1
+ 
+(#
+
+141822*
+1
+$ 
+(/
+
+141813*
+1
+ 
+(#
+
+231826*
+1 (
+
+231813*
+1 (
+
+271821*
+1 (&
+
+271822*
+1' (2
+
+271813*
+1 (&

@@ -1,0 +1,298 @@
+
+1.0banking-app24JavaFrontend"1738625551262*java2.B’	
+?
+:src/main/java/com/assignment/accounts/entity/Accounts.java2
+
+package4
+#
+com.assignment.accounts.entity5
+,
+'com.assignment.accounts.entity.Accounts7
+
+
+class8
+
+access9
+
+public10
+
+simple name11
+
+Accounts12
+/
+)com.assignment.accounts.entity.BaseEntity14
+
+unknown15
+
+extends16
+
+Entity18
+
+annotated by19
+$
+Recovered#typeBindingLEntity;021
+
+
+uses22
+
+Getter24
+$
+Recovered#typeBindingLGetter;026
+
+Setter28
+$
+Recovered#typeBindingLSetter;030
+
+ToString32
+&
+ Recovered#typeBindingLToString;034
+
+AllArgsConstructor36
+0
+*Recovered#typeBindingLAllArgsConstructor;038
+
+NoArgsConstructor40
+/
+)Recovered#typeBindingLNoArgsConstructor;042
+8
+2com.assignment.accounts.entity.Accounts.customerId44
+
+field45
+
+private46
+
+
+customerId47
+
+Column49
+$
+Recovered#typeBindingLColumn;051
+;
+5com.assignment.accounts.entity.Accounts.accountNumber53
+
+accountNumber54
+
+Id56
+ 
+Recovered#typeBindingLId;058
+9
+3com.assignment.accounts.entity.Accounts.accountType60
+
+accountType61
+;
+5com.assignment.accounts.entity.Accounts.branchAddress63
+
+branchAddress64
+=
+7com.assignment.accounts.entity.Accounts.communicationSw66
+
+communicationSw67J
+
+1
+12Z
+
+3	
+354jŸ
+
+39
+394015
+
+17
+171815
+9
+64
+678 *
+1 (:3B
+	
+9
+10
+
+
+11
+12
+
+50
+505115
+
+35
+353615
+
+23
+232415
+
+13
+131415
+
+25
+252615
+
+37
+373815
+
+41
+414215
+@
+62:
+626345 *
+1 (26:3B
+	
+9
+46
+
+
+11
+64
+
+29
+293015
+@
+52:
+525345 *
+1 (26:3B
+	
+9
+46
+
+
+11
+54
+@
+43:
+434445 *
+1 (26:3B
+	
+9
+46
+
+
+11
+47
+
+20
+202115
+
+48
+484915
+
+27
+272815
+
+33
+333415
+
+55
+555615
+@
+59:
+596045 *
+1 (26:3B
+	
+9
+46
+
+
+11
+61
+@
+65:
+656645 *
+1 (26:3B
+	
+9
+46
+
+
+11
+67
+
+31
+313215
+
+57
+575815r…
+
+61316*
+1 ()
+
+61719*
+1 (
+
+62022*
+1 (
+
+62319*
+1 (
+
+62522*
+1 (
+
+62719*
+1 (
+
+62922*
+1 (
+
+63119*
+1	 	(
+
+63322*
+1	 	(
+
+
+63519*
+1
+ 
+(
+
+63722*
+1
+ 
+(
+
+63919*
+1 (
+
+64122*
+1 (
+
+6622*
+1 (
+
+61322*
+1 ()
+
+434819*
+1 (
+
+435022*
+1 (
+
+525519*
+1 (
+
+525722*
+1 (
+
+524819*
+1 (
+
+525022*
+1 (
+
+594819*
+1 (
+
+595022*
+1 (
+
+624819*
+1 (
+
+625022*
+1 (
+
+654819*
+1 (
+
+655022*
+1 (

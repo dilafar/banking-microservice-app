@@ -1,0 +1,6 @@
+com.assignment.accounts.controller.CustomerController#fetchAllCustomerDetails(Ljava/lang/String;)LResponseEntity;
+false
+e84e95a7613b6b148875ab6315a12415
+==
+!unknownMethod! !unknownMethod!
+fetchAllCustomerDetails com.assignment.accounts.service.ICustomerService#fetchAllCustomerDetails(Ljava/lang/String;)Ljava/util/List;

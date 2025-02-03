@@ -1,0 +1,94 @@
+
+1.0banking-app24JavaFrontend"1738625551233*java2.BÕ
+H
+Csrc/main/java/com/assignment/accounts/service/ICustomerService.java2
+
+package4
+$
+com.assignment.accounts.service5
+5
+0com.assignment.accounts.service.ICustomerService7
+
+	interface8
+
+access9
+
+public10
+
+simple name11
+
+ICustomerService12
+
+
+uses13
+¢
+õcom.assignment.accounts.service.ICustomerService#fetchCustomerDetails(Ljava/lang/String;Ljava/lang/String;)Lcom/assignment/accounts/dto/CustomerDetailsDto;15
+
+method16
+
+fetchCustomerDetails17
+4
+.com.assignment.accounts.dto.CustomerDetailsDto19
+
+unknown20
+
+returns21
+r
+lcom.assignment.accounts.service.ICustomerService#fetchAllCustomerDetails(Ljava/lang/String;)Ljava/util/List;23
+
+fetchAllCustomerDetails24J
+
+1
+12Z
+
+3	
+354j”
+@
+22:
+222316 *
+1	 	(	26:3B
+	
+9
+10
+
+
+11
+24
+9
+64
+678 *
+1 (":3B
+	
+9
+10
+
+
+11
+12
+@
+14:
+141516 *
+1 (26:3B
+	
+9
+10
+
+
+11
+17
+
+18
+181920rj
+
+6613*
+1 ("
+
+141821*
+1 (
+
+141813*
+1 (
+
+221813*
+1	
+ 	(

@@ -1,0 +1,12 @@
+
+∏com.assignment.accounts.mapper.AccountsMapper#mapToAccounts(Lcom/assignment/accounts/dto/AccountsDto;Lcom/assignment/accounts/entity/Accounts;)Lcom/assignment/accounts/entity/Accounts;ò
+ç/home/runner/work/banking-microservice-app/banking-microservice-app/accounts/src/main/java/com/assignment/accounts/mapper/AccountsMapper.java (("1*P
+1 ("A
+ (5
+3
+accounts'com.assignment.accounts.entity.Accounts:B
+) (A6
+accountsDto'com.assignment.accounts.dto.AccountsDto:?
+B (S3
+accounts'com.assignment.accounts.entity.AccountsB1"/
+-com.assignment.accounts.mapper.AccountsMapperH

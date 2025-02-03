@@ -1,0 +1,165 @@
+
+1.0banking-app24JavaFrontend"1738625551758*java2.B¡
+A
+<src/main/java/com/assignment/accounts/dto/AccountMsgDto.java2
+
+package4
+ 
+com.assignment.accounts.dto5
+.
+)com.assignment.accounts.dto.AccountMsgDto7
+
+record8
+
+access9
+
+public10
+
+simple name11
+
+AccountMsgDto12
+
+
+uses13
+=
+7com.assignment.accounts.dto.AccountMsgDto.accountNumber15
+
+field16
+
+	protected17
+
+accountNumber18
+O
+Icom.assignment.accounts.dto.AccountMsgDto#accountNumber()Ljava/lang/Long;20
+
+method21
+
+
+references22
+4
+.com.assignment.accounts.dto.AccountMsgDto.name24
+
+
+name25
+H
+Bcom.assignment.accounts.dto.AccountMsgDto#name()Ljava/lang/String;27
+5
+/com.assignment.accounts.dto.AccountMsgDto.email29
+
+email30
+I
+Ccom.assignment.accounts.dto.AccountMsgDto#email()Ljava/lang/String;32
+<
+6com.assignment.accounts.dto.AccountMsgDto.mobileNumber34
+
+mobileNumber35
+P
+Jcom.assignment.accounts.dto.AccountMsgDto#mobileNumber()Ljava/lang/String;37J
+
+1
+12Z
+
+3	
+354jŸ
+5
+19/
+192021 *
+1	 	(!26:3B
+
+
+11
+18
+@
+33:
+333416 *
+1	L 	(R26:3B
+	
+9
+17
+
+
+11
+35
+@
+23:
+232416 *
+1	0 	(626:3B
+	
+9
+17
+
+
+11
+25
+5
+26/
+262721 *
+1	0 	(626:3B
+
+
+11
+25
+@
+28:
+282916 *
+1	= 	(C26:3B
+	
+9
+17
+
+
+11
+30
+@
+14:
+141516 *
+1	 	(!26:3B
+	
+9
+17
+
+
+11
+18
+5
+31/
+313221 *
+1	= 	(C26:3B
+
+
+11
+30
+5
+36/
+363721 *
+1	L 	(R26:3B
+
+
+11
+35
+9
+64
+678 *
+1	 	(:3B
+	
+9
+10
+
+
+11
+12r…
+
+6613*
+1	 	(
+
+191422*
+1	 	(!
+
+262322*
+1	0 	(6
+
+312822*
+1	= 	(C
+
+363322*
+1	L 	(R
