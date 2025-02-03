@@ -13,10 +13,13 @@ on:
         required: true
       REGISTRY:
         required: true
+      GITHUB_TOKEN:
+        required: true
 env:
   AWS_REGION: us-east-1
   ECR_REPOSITORY: banking-app
   EKS_CLUSTER: banking-eks
+  AWS_S3_BUCKET: banking-microservice-jar
   CACHE_DIR: /home/runner/work/_temp/trivy
 defaults:
   run:
@@ -56,6 +59,11 @@ jobs:
           cd eurekaserver
           mvn test
 
+      - name: Upload JAR to S3
+        run: |
+          cd eurekaserver
+          aws s3 cp target/*.jar s3://${{ env.AWS_S3_BUCKET }}/eurekaserver-v${{ env.IMAGE_VERSION }}.jar
+
       - name: Start the eureka JAR
         run: |
           cd eurekaserver
@@ -84,6 +92,16 @@ jobs:
         run: |
           bash trivy-docker-image-scan.sh eurekaserver/Dockerfile ${{ env.CACHE_DIR }}
 
+      - name: Run OPA Docker Scan
+        run: |
+          cd eurekaserver
+          docker run --rm -v $(pwd):/project openpolicyagent/conftest test --policy dockerfile-security.rego Dockerfile
+
+      - name: Lint Dockerfile with Hadolint
+        run: |
+          cd eurekaserver
+          docker run --rm -i hadolint/hadolint < Dockerfile | tee reports/docker-lint/hadolint_eurekaserver.txt
+
       - name: Build & Upload image to ECR
         uses: appleboy/docker-ecr-action@master
         with:
@@ -110,5 +128,23 @@ jobs:
 
       - name: Trivy Scan Deployed Account Imange
         run: |
-          bash trivy-k8s-scan.sh ${{ secrets.REGISTRY }}/${{ env.ECR_REPOSITORY }}:eurekaserver-v${{ env.IMAGE_VERSION }} ${{ env.CACHE_DIR }}
+          bash trivy-k8s-scan.sh ${{ secrets.REGISTRY }}/${{ env.ECR_REPOSITORY }}:eurekaserver-v${{ env.IMAGE_VERSION }} ${{ env.CACHE_DIR }} trivy-eurekaserver.json
+
+      - name: Run CIS Docker Benchmark
+        run: |
+          bash trivy-docker-bench.sh ${{ secrets.REGISTRY }}/${{ env.ECR_REPOSITORY }}:eurekaserver-v${{ env.IMAGE_VERSION }} trivy-bench-eurekaserver.json
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit and Push Changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git pull origin main || true
+          git add .
+          git commit -m "eurekaserver microservice changes updated by GitHub Actions"
+          git push origin main
 
