@@ -121,7 +121,7 @@ jobs:
       - name: Lint Dockerfile with Hadolint
         run: |
           cd loans
-          docker run --rm -i hadolint/hadolint < Dockerfile | tee reports/docker-lint/hadolint_loans.txt
+          docker run --rm -i hadolint/hadolint < Dockerfile | tee hadolint_loans.txt
 
       - name: Build & Upload image to ECR
         uses: appleboy/docker-ecr-action@master
@@ -165,6 +165,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git pull origin main || true
+          cp loans/hadolint_loans.txt reports/docker-lint/hadolint_loans.txt
           git add .
           git commit -m "loans microservice changes updated by GitHub Actions"
           git push origin main
