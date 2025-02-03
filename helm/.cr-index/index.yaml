@@ -3,7 +3,17 @@ entries:
   helm:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-02-03T00:18:38.61879799Z"
+    created: "2025-02-03T16:25:40.903893241Z"
+    description: A Helm chart for Kubernetes
+    digest: 07bd44af666d864c6f16f92dde0a8dfbc1344c5a40b3a7e8acfb7e9444d77ce3
+    name: helm
+    type: application
+    urls:
+    - https://github.com/dilafar/banking-microservice-app/releases/download/helm-0.1.10/helm-0.1.10.tgz
+    version: 0.1.10
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-02-03T16:25:41.558395053Z"
     description: A Helm chart for Kubernetes
     digest: e6666df15983239d6cd8c85a42110bdae6ff16abf697b91b05b702a73de571eb
     name: helm
@@ -13,7 +23,7 @@ entries:
     version: 0.1.9
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-02-03T00:18:38.494944977Z"
+    created: "2025-02-03T16:25:41.471021175Z"
     description: A Helm chart for Kubernetes
     digest: 57d2a67f4c7f144d5ddf34b68b9083df5879b211ddd33246891678c2ee92d258
     name: helm
@@ -23,7 +33,7 @@ entries:
     version: 0.1.8
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-02-03T00:18:38.351620784Z"
+    created: "2025-02-03T16:25:41.388850106Z"
     description: A Helm chart for Kubernetes
     digest: 61dd5723c3b6d6f10c5baf7d414b769313e9d32eb86d009064cf88958c5a9b54
     name: helm
@@ -33,7 +43,7 @@ entries:
     version: 0.1.7
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-02-03T00:18:38.230394533Z"
+    created: "2025-02-03T16:25:41.307832234Z"
     description: A Helm chart for Kubernetes
     digest: 7c31e2b1cc22123e45a3148bf5bcf689f969fa0736fe2501fd563b42ca36b022
     name: helm
@@ -43,7 +53,7 @@ entries:
     version: 0.1.6
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-02-03T00:18:38.115557476Z"
+    created: "2025-02-03T16:25:41.229884835Z"
     description: A Helm chart for Kubernetes
     digest: 0e838cc6228fa66b263fa5046fac25addf98f65f6b16a98a3ca25f633623face
     name: helm
@@ -53,7 +63,7 @@ entries:
     version: 0.1.5
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-02-03T00:18:38.002524645Z"
+    created: "2025-02-03T16:25:41.155252187Z"
     description: A Helm chart for Kubernetes
     digest: cb2bd1fdf9c9eeba46d1e92bd7fc58ee27afef4c8263b51f4614bafcc13709e0
     name: helm
@@ -63,7 +73,7 @@ entries:
     version: 0.1.4
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-02-03T00:18:37.859141351Z"
+    created: "2025-02-03T16:25:41.056971578Z"
     description: A Helm chart for Kubernetes
     digest: edd9b5f185941c179e8c0299b077ff906cae95991ae982f2b1f0c48cbe190fe3
     name: helm
@@ -73,7 +83,7 @@ entries:
     version: 0.1.3
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-02-03T00:18:37.721285281Z"
+    created: "2025-02-03T16:25:40.979849679Z"
     description: A Helm chart for Kubernetes
     digest: 5354300e320bf6ca325357fe87353e9a288fdda6d5224db96919bb5a82d1f83a
     name: helm
@@ -83,7 +93,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-02-03T00:18:37.580954354Z"
+    created: "2025-02-03T16:25:40.816425027Z"
     description: A Helm chart for Kubernetes
     digest: fc2b5f1b967de44c8cf81aaf445a0b85b12ebd57e8caf723c46a5ea9f7a01292
     name: helm
@@ -91,4 +101,4 @@ entries:
     urls:
     - https://github.com/dilafar/banking-microservice-app/releases/download/helm-0.1.1/helm-0.1.1.tgz
     version: 0.1.1
-generated: "2025-02-03T00:18:38.618849606Z"
+generated: "2025-02-03T16:25:41.558483768Z"
