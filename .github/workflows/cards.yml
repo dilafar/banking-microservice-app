@@ -21,8 +21,6 @@ on:
         required: true
       REGISTRY:
         required: true
-      GITHUB_TOKEN:
-        required: true
 env:
   AWS_REGION: us-east-1
   ECR_REPOSITORY: banking-app
