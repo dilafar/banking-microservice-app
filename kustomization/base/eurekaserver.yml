@@ -39,6 +39,9 @@ spec:
                 configMapKeyRef:
                   key: SPRING_PROFILES_ACTIVE
                   name: bank-cm
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 100
 
 ---
 apiVersion: v1
