@@ -21,10 +21,13 @@ on:
         required: true
       REGISTRY:
         required: true
+      GITHUB_TOKEN:
+        required: true
 env:
   AWS_REGION: us-east-1
   ECR_REPOSITORY: banking-app
   EKS_CLUSTER: banking-eks
+  AWS_S3_BUCKET: banking-microservice-jar
   CACHE_DIR: /home/runner/work/_temp/trivy
 defaults:
   run:
@@ -63,6 +66,11 @@ jobs:
         run: |
           cd cards
           mvn test
+
+      - name: Upload JAR to S3
+        run: |
+          cd cards
+          aws s3 cp target/*.jar s3://${{ env.AWS_S3_BUCKET }}/cards-v${{ env.IMAGE_VERSION }}.jar
 
       - name: Checkstyle
         run: |
@@ -107,6 +115,17 @@ jobs:
       - name: Trivy Scan
         run: |
           bash trivy-docker-image-scan.sh cards/Dockerfile ${{ env.CACHE_DIR }}
+
+      - name: Run OPA Docker Scan
+        run: |
+          cd cards
+          docker run --rm -v $(pwd):/project openpolicyagent/conftest test --policy dockerfile-security.rego Dockerfile
+
+
+      - name: Lint Dockerfile with Hadolint
+        run: |
+          cd cards
+          docker run --rm -i hadolint/hadolint < Dockerfile | tee reports/docker-lint/hadolint_cards.txt
       
 
       #  - name: SonarQube Quality Gate check
@@ -144,4 +163,22 @@ jobs:
 
       - name: Trivy Scan Deployed Account Imange
         run: |
-          bash trivy-k8s-scan.sh ${{ secrets.REGISTRY }}/${{ env.ECR_REPOSITORY }}:cards-v${{ env.IMAGE_VERSION }} ${{ env.CACHE_DIR }}
+          bash trivy-k8s-scan.sh ${{ secrets.REGISTRY }}/${{ env.ECR_REPOSITORY }}:cards-v${{ env.IMAGE_VERSION }} ${{ env.CACHE_DIR }} trivy-cards.json
+
+      - name: Run CIS Docker Benchmark
+        run: |
+          bash trivy-docker-bench.sh ${{ secrets.REGISTRY }}/${{ env.ECR_REPOSITORY }}:cards-v${{ env.IMAGE_VERSION }} trivy-bench-cards.json
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit and Push Changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git pull origin main || true
+          git add .
+          git commit -m "cards microservice changes updated by GitHub Actions"
+          git push origin main

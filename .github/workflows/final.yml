@@ -12,6 +12,7 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       REGISTRY: ${{ secrets.REGISTRY }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   eurekaserver:
     needs: configserver
@@ -22,6 +23,7 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       REGISTRY: ${{ secrets.REGISTRY }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   gatewayserver:
     needs: eurekaserver
@@ -32,6 +34,7 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       REGISTRY: ${{ secrets.REGISTRY }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   cards:
     needs: gatewayserver
@@ -46,6 +49,7 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       REGISTRY: ${{ secrets.REGISTRY }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   loans:
     needs: gatewayserver
@@ -60,6 +64,7 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       REGISTRY: ${{ secrets.REGISTRY }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   accounts:
     needs: gatewayserver
@@ -74,6 +79,7 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       REGISTRY: ${{ secrets.REGISTRY }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   frontend:
     needs: gatewayserver
@@ -84,6 +90,7 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       REGISTRY: ${{ secrets.REGISTRY }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
   changeChart:
@@ -205,3 +212,4 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       REGISTRY: ${{ secrets.REGISTRY }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

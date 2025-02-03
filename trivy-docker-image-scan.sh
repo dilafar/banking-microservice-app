@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Ensure filePath is provided
 if [[ -z $1 ]]; then
     echo "Usage: $0 <filePath>"
     exit 1
@@ -9,13 +8,11 @@ fi
 filePath=$1
 cache_dir=$2
 
-# Check if file exists
 if [[ ! -f $filePath ]]; then
     echo "Error: File '$filePath' does not exist."
     exit 1
 fi
 
-# Extract Docker image name from the file
 dockerImageName=$(awk 'NR==1 {print $2}' "$filePath")
 if [[ -z $dockerImageName ]]; then
     echo "Error: Could not extract Docker image name from '$filePath'."

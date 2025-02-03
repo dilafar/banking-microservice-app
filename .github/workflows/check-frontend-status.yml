@@ -8,6 +8,8 @@ on:
         required: true
       REGISTRY:
         required: true
+      GITHUB_TOKEN:
+        required: true
 env:
   AWS_REGION: us-east-1
   ECR_REPOSITORY: banking-app
@@ -47,15 +49,19 @@ jobs:
         run: |
           echo "✅ Successfully deployed at $(date)"
 
-      - name: Run OWASP ZAP Baseline Scan
-        uses: zaproxy/action-baseline@v0.10.0
-        with:
-          target: ${{ env.TARGET_URL }}
-          fail_action: false
-          allow_issue_writing: false
+      - name: Run ZAP Scan
+        run: docker run -v $(pwd):/zap/workdir/:rw --network=host -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t https://awsbanking.cncloudnet.com -g gen.conf | tee reports/zap.conf || true
 
-      - name: Upload ZAP Scan Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: zap-scan-report
-          path: report_json.json
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit and Push Changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git pull origin main || true
+          git add .
+          git commit -m "zap config changes updated by GitHub Actions"
+          git push origin main
