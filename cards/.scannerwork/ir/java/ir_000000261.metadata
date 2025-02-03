@@ -1,0 +1,6 @@
+com.assignment.cards.controller.CardsController#fetchCardDetails(Ljava/lang/String;Ljava/lang/String;)LResponseEntity;
+false
+cbe71615e67fba20d5cdf1f0cfce32f5
+==
+!unknownMethod! !unknownMethod!
+fetchCard com.assignment.cards.service.ICardsService#fetchCard(Ljava/lang/String;)Lcom/assignment/cards/dto/CardsDto;

@@ -1,0 +1,7 @@
+com.assignment.cards.controller.CardsController#deleteCardDetails(Ljava/lang/String;)LResponseEntity;
+false
+350c67880f742e6db5371a3435ab4852
+com.assignment.cards.dto.ResponseDto#instance-init#
+==
+!unknownMethod! !unknownMethod!
+deleteCard com.assignment.cards.service.ICardsService#deleteCard(Ljava/lang/String;)Z

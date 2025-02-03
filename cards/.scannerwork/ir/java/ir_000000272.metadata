@@ -1,0 +1,7 @@
+com.assignment.cards.exception.GlobalExceptionHandler#handleMethodArgumentNotValid(LMethodArgumentNotValidException;LHttpHeaders;LHttpStatusCode;LWebRequest;)LResponseEntity;
+false
+5546891a1112faca876dc7ffd4d7c787
+java.util.HashMap#<init>()V
+java.util.HashMap#instance-init#
+==
+!unknownMethod! !unknownMethod!

@@ -1,0 +1,8 @@
+com.assignment.cards.exception.GlobalExceptionHandler#handleResourceNotFoundException(Lcom/assignment/cards/exception/ResourceNotFoundException;LWebRequest;)LResponseEntity;
+false
+128f8c9cbcc7fc975660301fe0217d38
+com.assignment.cards.dto.ErrorResponseDto#instance-init#
+java.time.LocalDateTime#now()Ljava/time/LocalDateTime;
+==
+!unknownMethod! !unknownMethod!
+getMessage java.lang.Throwable#getMessage()Ljava/lang/String;

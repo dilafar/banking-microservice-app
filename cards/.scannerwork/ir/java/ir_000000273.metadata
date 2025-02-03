@@ -1,0 +1,8 @@
+com.assignment.cards.exception.GlobalExceptionHandler#handleCardAlreadyExistsException(Lcom/assignment/cards/exception/CardAlreadyExistsException;LWebRequest;)LResponseEntity;
+false
+0fa76cbcd4f7717228ed048d4654e7df
+com.assignment.cards.dto.ErrorResponseDto#instance-init#
+java.time.LocalDateTime#now()Ljava/time/LocalDateTime;
+==
+!unknownMethod! !unknownMethod!
+getMessage java.lang.Throwable#getMessage()Ljava/lang/String;
