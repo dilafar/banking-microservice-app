@@ -1,0 +1,134 @@
+
+1.0&banking-microservice_banking-app-loansJavaFrontend"1738625541698*java2.B˝
+G
+Bsrc/main/java/com/assignment/loans/repository/LoansRepository.java2
+
+package4
+$
+com.assignment.loans.repository5
+4
+/com.assignment.loans.repository.LoansRepository7
+
+	interface8
+
+access9
+
+public10
+
+simple name11
+
+LoansRepository12
++
+%Recovered#typeBindingLJpaRepository;014
+
+unknown15
+
+
+implements16
+
+
+Repository18
+
+annotated by19
+(
+"Recovered#typeBindingLRepository;021
+
+
+uses22
+'
+!com.assignment.loans.entity.Loans24
+p
+jcom.assignment.loans.repository.LoansRepository#findByMobileNumber(Ljava/lang/String;)Ljava/util/Optional;26
+
+method27
+
+findByMobileNumber28
+n
+hcom.assignment.loans.repository.LoansRepository#findByLoanNumber(Ljava/lang/String;)Ljava/util/Optional;30
+
+findByLoanNumber31J
+
+1
+12Z
+
+3	
+354jè
+
+13
+131415
+@
+29:
+293027 *
+1 (26:3B
+	
+9
+10
+
+
+11
+31
+
+17
+171815
+
+20
+202115
+9
+64
+678 *
+1
+ 
+(!:3B
+	
+9
+10
+
+
+11
+12
+@
+25:
+252627 *
+1 (26:3B
+	
+9
+10
+
+
+11
+28
+
+23
+232415r—
+
+61316*
+1
+* 
+(7
+
+61719*
+1	 	(
+
+62022*
+1	 	(
+
+6622*
+1
+ 
+(!
+
+61322*
+1
+* 
+(7
+
+62322*
+1
+8 
+(=
+
+252322*
+1 (
+
+292322*
+1 (

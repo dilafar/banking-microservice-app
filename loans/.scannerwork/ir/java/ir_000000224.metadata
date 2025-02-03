@@ -1,0 +1,8 @@
+com.assignment.loans.controller.LoansController#updateLoanDetails(Lcom/assignment/loans/dto/LoansDto;)LResponseEntity;
+false
+2904f986462ab9e0eef522487a163c49
+com.assignment.loans.dto.ResponseDto#instance-init#
+==
+!unknownMethod! !unknownMethod!
+println java.io.PrintStream#println(Ljava/lang/String;)V
+updateLoan com.assignment.loans.service.ILoansService#updateLoan(Lcom/assignment/loans/dto/LoansDto;)Z

@@ -1,0 +1,208 @@
+
+1.0&banking-microservice_banking-app-loansJavaFrontend"1738625541626*java2.Bå	
+E
+@src/main/java/com/assignment/loans/constants/LoansConstants.java2
+
+package4
+#
+com.assignment.loans.constants5
+2
+-com.assignment.loans.constants.LoansConstants7
+
+
+class8
+
+access9
+
+public10
+
+simple name11
+
+LoansConstants12
+
+
+uses13
+=
+7com.assignment.loans.constants.LoansConstants#<init>()V15
+
+method16
+
+private17
+
+calls18
+=
+7com.assignment.loans.constants.LoansConstants.HOME_LOAN20
+
+field21
+
+	HOME_LOAN22
+B
+<com.assignment.loans.constants.LoansConstants.NEW_LOAN_LIMIT24
+
+NEW_LOAN_LIMIT25
+>
+8com.assignment.loans.constants.LoansConstants.STATUS_20127
+
+
+STATUS_20128
+?
+9com.assignment.loans.constants.LoansConstants.MESSAGE_20130
+
+MESSAGE_20131
+>
+8com.assignment.loans.constants.LoansConstants.STATUS_20033
+
+
+STATUS_20034
+?
+9com.assignment.loans.constants.LoansConstants.MESSAGE_20036
+
+MESSAGE_20037
+>
+8com.assignment.loans.constants.LoansConstants.STATUS_41739
+
+
+STATUS_41740
+F
+@com.assignment.loans.constants.LoansConstants.MESSAGE_417_UPDATE42
+
+MESSAGE_417_UPDATE43
+F
+@com.assignment.loans.constants.LoansConstants.MESSAGE_417_DELETE45
+
+MESSAGE_417_DELETE46J
+
+1
+12Z
+
+3	
+354jœ
+@
+29:
+293021 *
+1 (26:3B
+	
+9
+10
+
+
+11
+31
+@
+38:
+383921 *
+1 (26:3B
+	
+9
+10
+
+
+11
+40
+@
+14:
+141516 *
+1 (26:3B
+	
+9
+17
+
+
+11
+12
+@
+19:
+192021 *
+1 (26:3B
+	
+9
+10
+
+
+11
+22
+@
+35:
+353621 *
+1 (26:3B
+	
+9
+10
+
+
+11
+37
+@
+23:
+232421 *
+1	 	(26:3B
+	
+9
+10
+
+
+11
+25
+9
+64
+678 *
+1 (":3B
+	
+9
+10
+
+
+11
+12
+@
+32:
+323321 *
+1 (26:3B
+	
+9
+10
+
+
+11
+34
+@
+26:
+262721 *
+1
+ 
+(26:3B
+	
+9
+10
+
+
+11
+28
+@
+41:
+414221 *
+1 (26:3B
+	
+9
+10
+
+
+11
+43
+@
+44:
+444521 *
+1 (26:3B
+	
+9
+10
+
+
+11
+46r3
+
+6613*
+1 ("
+
+14618*
+1 (

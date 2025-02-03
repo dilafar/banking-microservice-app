@@ -1,0 +1,10 @@
+com.assignment.loans.service.impl.LoansServiceImpl#createLoan(Ljava/lang/String;)V
+false
+4fea808578d99a10a19eb548432c6437
+com.assignment.loans.exception.LoanAlreadyExistsException#<init>(Ljava/lang/String;)V
+com.assignment.loans.exception.LoanAlreadyExistsException#instance-init#
+com.assignment.loans.service.impl.LoansServiceImpl#createNewLoan(Ljava/lang/String;)Lcom/assignment/loans/entity/Loans;
+java.util.Optional#isPresent()Z
+==
+!unknownMethod! !unknownMethod!
+findByMobileNumber com.assignment.loans.repository.LoansRepository#findByMobileNumber(Ljava/lang/String;)Ljava/util/Optional;

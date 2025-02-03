@@ -1,0 +1,4 @@
+com.assignment.loans.audit.AuditAwareImpl#getCurrentAuditor()Ljava/util/Optional;
+false
+2229eee588096e867ec35529bc04e0a4
+java.util.Optional#of(Ljava/lang/Object;)Ljava/util/Optional;

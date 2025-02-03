@@ -1,0 +1,14 @@
+com.assignment.loans.service.impl.LoansServiceImpl#fetchLoans()Ljava/util/List;
+false
+4e6b63f57437f4d943e1cf6be4fd4f7a
+com.assignment.loans.dto.LoansDto#<init>()V
+com.assignment.loans.dto.LoansDto#instance-init#
+com.assignment.loans.exception.ResourceNotFoundException#<init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+com.assignment.loans.exception.ResourceNotFoundException#instance-init#
+com.assignment.loans.mapper.LoansMapper#mapToLoansDto(Lcom/assignment/loans/entity/Loans;Lcom/assignment/loans/dto/LoansDto;)Lcom/assignment/loans/dto/LoansDto;
+java.util.ArrayList#<init>()V
+java.util.ArrayList#instance-init#
+==
+!unknownMethod! !unknownMethod!
+add java.util.List#add(Ljava/lang/Object;)Z
+isEmpty java.util.List#isEmpty()Z

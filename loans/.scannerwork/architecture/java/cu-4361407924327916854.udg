@@ -1,0 +1,156 @@
+
+1.0&banking-microservice_banking-app-loansJavaFrontend"1738625541685*java2.Bœ
+B
+=src/main/java/com/assignment/loans/service/ILoansService.java2
+
+package4
+!
+com.assignment.loans.service5
+/
+*com.assignment.loans.service.ILoansService7
+
+	interface8
+
+access9
+
+public10
+
+simple name11
+
+ILoansService12
+
+
+uses13
+P
+Jcom.assignment.loans.service.ILoansService#createLoan(Ljava/lang/String;)V15
+
+method16
+
+
+createLoan17
+q
+kcom.assignment.loans.service.ILoansService#fetchLoan(Ljava/lang/String;)Lcom/assignment/loans/dto/LoansDto;19
+
+	fetchLoan20
+'
+!com.assignment.loans.dto.LoansDto22
+
+unknown23
+
+returns24
+a
+[com.assignment.loans.service.ILoansService#updateLoan(Lcom/assignment/loans/dto/LoansDto;)Z26
+
+
+updateLoan27
+
+	has param28
+
+is type29
+P
+Jcom.assignment.loans.service.ILoansService#deleteLoan(Ljava/lang/String;)Z31
+
+
+deleteLoan32
+M
+Gcom.assignment.loans.service.ILoansService#fetchLoans()Ljava/util/List;34
+
+
+fetchLoans35J
+
+1
+12Z
+
+3	
+354j™
+
+21
+212223
+@
+33:
+333416 *
+1' '(	26:3B
+	
+9
+10
+
+
+11
+35
+@
+14:
+141516 *
+1 (	26:3B
+	
+9
+10
+
+
+11
+17
+@
+18:
+181916 *
+1 (26:3B
+	
+9
+10
+
+
+11
+20
+@
+25:
+252616 *
+1 (26:3B
+	
+9
+10
+
+
+11
+27
+9
+64
+678 *
+1 (:3B
+	
+9
+10
+
+
+11
+12
+@
+30:
+303116 *
+1! !(26:3B
+	
+9
+10
+
+
+11
+32r»
+
+6613*
+1 (
+
+182124*
+1 (
+
+182113*
+1 (
+
+252128*
+1 ( 
+
+252129*
+1! ()
+
+252113*
+1 ( 
+
+332113*
+1'
+ '(

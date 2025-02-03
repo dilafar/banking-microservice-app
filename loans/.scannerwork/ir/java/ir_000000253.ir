@@ -1,0 +1,42 @@
+
+¨
+
+mapToLoansùcom.assignment.loans.mapper.LoansMapper#mapToLoans(Lcom/assignment/loans/dto/LoansDto;Lcom/assignment/loans/entity/Loans;)Lcom/assignment/loans/entity/Loans;s9loansDto# (4"!com.assignment.loans.dto.LoansDto6loans5 (@"!com.assignment.loans.entity.Loans9loansDto# (4"!com.assignment.loans.dto.LoansDto6loans5 (@"!com.assignment.loans.entity.Loans"Ó/
+-
+ (4"
+getLoanNumber*2	!Unknown!80
+.
+ (5"
+setLoanNumber*2	!Unknown!8-
++
+ (0"
+getLoanType*2	!Unknown!8.
+,
+ (1"
+setLoanType*2	!Unknown!81
+/
+ (8"
+getMobileNumber*2	!Unknown!82
+0
+ (9"
+setMobileNumber*2	!Unknown!8.
+,
+ (2	"
+getTotalLoan*2	!Unknown!8/
+-
+ (3
+"
+setTotalLoan*	2	!Unknown!8/
+-
+ (4"
+getAmountPaid*2	!Unknown!80
+.
+ (5"
+setAmountPaid*2	!Unknown!86
+4
+# (B"
+getOutstandingAmount*2	!Unknown!87
+5
+ (C"
+setOutstandingAmount*2	!Unknown!8
+ (*Ñ/home/runner/work/banking-microservice-app/banking-microservice-app/loans/src/main/java/com/assignment/loans/mapper/LoansMapper.java

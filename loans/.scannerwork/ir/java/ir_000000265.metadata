@@ -1,0 +1,7 @@
+com.assignment.loans.service.impl.LoansServiceImpl#updateLoan(Lcom/assignment/loans/dto/LoansDto;)Z
+false
+617519c4748533a74f4ba2bea7c147f5
+com.assignment.loans.mapper.LoansMapper#mapToLoans(Lcom/assignment/loans/dto/LoansDto;Lcom/assignment/loans/entity/Loans;)Lcom/assignment/loans/entity/Loans;
+==
+!unknownMethod! !unknownMethod!
+findByLoanNumber com.assignment.loans.repository.LoansRepository#findByLoanNumber(Ljava/lang/String;)Ljava/util/Optional;

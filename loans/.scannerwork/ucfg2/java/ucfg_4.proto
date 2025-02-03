@@ -1,0 +1,12 @@
+
+†com.assignment.loans.mapper.LoansMapper#mapToLoansDto(Lcom/assignment/loans/entity/Loans;Lcom/assignment/loans/dto/LoansDto;)Lcom/assignment/loans/dto/LoansDto;è
+Ñ/home/runner/work/banking-microservice-app/banking-microservice-app/loans/src/main/java/com/assignment/loans/mapper/LoansMapper.java (("1*J
+1	 	(";
+ (/
+-
+loansDto!com.assignment.loans.dto.LoansDto:6
+) (6*
+loans!com.assignment.loans.entity.Loans:9
+7 (H-
+loansDto!com.assignment.loans.dto.LoansDtoB+")
+'com.assignment.loans.mapper.LoansMapperH

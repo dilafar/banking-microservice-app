@@ -1,0 +1,6 @@
+com.assignment.loans.controller.LoansController#fetchLoans()LResponseEntity;
+false
+d80460ad3d1977d7cb7107ed37b29d2a
+==
+!unknownMethod! !unknownMethod!
+fetchLoans com.assignment.loans.service.ILoansService#fetchLoans()Ljava/util/List;

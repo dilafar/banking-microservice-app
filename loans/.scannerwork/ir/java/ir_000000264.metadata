@@ -1,0 +1,11 @@
+com.assignment.loans.service.impl.LoansServiceImpl#fetchLoan(Ljava/lang/String;)Lcom/assignment/loans/dto/LoansDto;
+false
+3ec914f447e4833de304593c71c25a65
+com.assignment.loans.dto.LoansDto#<init>()V
+com.assignment.loans.dto.LoansDto#instance-init#
+com.assignment.loans.mapper.LoansMapper#mapToLoansDto(Lcom/assignment/loans/entity/Loans;Lcom/assignment/loans/dto/LoansDto;)Lcom/assignment/loans/dto/LoansDto;
+java.util.Optional#isEmpty()Z
+java.util.Optional#orElseThrow(Ljava/util/function/Supplier;)Ljava/lang/Object;
+==
+!unknownMethod! !unknownMethod!
+findByMobileNumber com.assignment.loans.repository.LoansRepository#findByMobileNumber(Ljava/lang/String;)Ljava/util/Optional;
