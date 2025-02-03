@@ -11,7 +11,7 @@ on:
 env:
   AWS_REGION: us-east-1
   ECR_REPOSITORY: banking-app
-  EKS_CLUSTER: banking-eks
+  EKS_CLUSTER: eks-terraform-2
 defaults:
   run:
     shell: bash
@@ -37,7 +37,7 @@ jobs:
 
       - name: Deploy to EKS
         run: |
-          sleep 30
+          sleep 60
           kubectl label namespace banking-ns istio-injection=enabled
           kubectl rollout restart deployment banking-frontend -n banking-ns
           sleep 180
