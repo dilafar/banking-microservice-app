@@ -17,6 +17,7 @@ env:
   AWS_REGION: us-east-1
   ECR_REPOSITORY: banking-app
   EKS_CLUSTER: banking-eks
+  AWS_S3_BUCKET: banking-microservice-jar
   CACHE_DIR: /home/runner/work/_temp/trivy
 defaults:
   run:
@@ -40,6 +41,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
             node-version: '16'
+
+      - name: Configure AWS CLI
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
 
       - name: Application Version increment
         id: read-version
@@ -75,6 +83,11 @@ jobs:
           mvn clean package
           mvn test
 
+      - name: upload jar to s3  env.AWS_REGION
+        run: |
+          cd configserver
+          aws s3 cp target/*.jar s3://${{ env.AWS_S3_BUCKET }}/configserver-v${{ env.IMAGE_VERSION }}.jar
+
       - name: Start the configserver JAR
         run: |
           cd configserver
@@ -103,6 +116,18 @@ jobs:
         run: |
           bash trivy-docker-image-scan.sh configserver/Dockerfile ${{ env.CACHE_DIR }}
 
+      - name: OPA Docker Scan
+        run: |
+          cd configserver
+          docker run --rm \
+            -v $(pwd):/project \
+            openpolicyagent/conftest test --policy dockerfile-security.rego Dockerfile
+
+      - name: Docker Lint
+        run: |
+          cd configserver
+          docker run --rm -i hadolint/hadolint < Dockerfile | tee hadolint_lint.txt
+
       - name: Build & Upload image to ECR
         uses: appleboy/docker-ecr-action@master
         with:
@@ -116,13 +141,6 @@ jobs:
           dockerfile: configserver/Dockerfile
           context: configserver
 
-      - name: Configure AWS CLI
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
-
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
@@ -130,4 +148,8 @@ jobs:
       - name: Trivy Scan Deployed Account Imange
         run: |
           bash trivy-k8s-scan.sh ${{ secrets.REGISTRY }}/${{ env.ECR_REPOSITORY }}:configserver-v${{ env.IMAGE_VERSION }} ${{ env.CACHE_DIR }}
+
+      - name: CIS bench-mark docker
+        run: |
+          bash trivy-docker-bench.sh ${{ secrets.REGISTRY }}/${{ env.ECR_REPOSITORY }}:configserver-v${{ env.IMAGE_VERSION }} trivy-bench-configserver.json 
 

@@ -12,6 +12,7 @@ env:
   AWS_REGION: us-east-1
   ECR_REPOSITORY: banking-app
   EKS_CLUSTER: eks-terraform-2
+  TARGET_URL: https://awsbanking.cncloudnet.com
 defaults:
   run:
     shell: bash
@@ -49,7 +50,7 @@ jobs:
       - name: Run OWASP ZAP Baseline Scan
         uses: zaproxy/action-baseline@v0.10.0
         with:
-          target: ${{ secrets.TARGET_URL }}
+          target: ${{ env.TARGET_URL }}
           fail_action: false
           allow_issue_writing: false
 

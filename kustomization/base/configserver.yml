@@ -23,6 +23,9 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8071
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 100
 
 ---
 apiVersion: v1

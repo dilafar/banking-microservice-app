@@ -24,7 +24,10 @@ spec:
           image: 588738570846.dkr.ecr.us-east-1.amazonaws.com/banking-app:frontend-v0.0.1-98
           imagePullPolicy: Always
           ports:
-            - containerPort: 80
+            - containerPort: 8000
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 101
           resources:
             requests:
               memory: "100Mi"
@@ -47,7 +50,7 @@ spec:
     app: banking-frontend
   ports:
     - port: 80
-      targetPort: 80
+      targetPort: 8000
       protocol: TCP
       name: http
 
