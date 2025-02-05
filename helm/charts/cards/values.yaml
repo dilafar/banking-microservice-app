@@ -1,7 +1,7 @@
 appName: cards
 appReplicas: 2
 appImage: 794038214817.dkr.ecr.us-east-1.amazonaws.com/banking-app
-appVersion: cards-v3.3.5-102
+appVersion: cards-v3.3.5-104
 containerPort: 9000
 servicePort: 9000
 serviceType: ClusterIP

@@ -1,7 +1,7 @@
 appName: configserver
 appReplicas: 2
 appImage: 794038214817.dkr.ecr.us-east-1.amazonaws.com/banking-app
-appVersion: configserver-v3.3.5-102
+appVersion: configserver-v3.3.5-104
 containerPort: 8071
 servicePort: 8071
 serviceType: ClusterIP

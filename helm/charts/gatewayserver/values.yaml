@@ -1,7 +1,7 @@
 appName: gatewayserver
 appReplicas: 2
 appImage: 794038214817.dkr.ecr.us-east-1.amazonaws.com/banking-app
-appVersion: gateway-v3.3.5-102
+appVersion: gateway-v3.3.5-104
 containerPort: 8072
 servicePort: 80
 serviceType: ClusterIP
