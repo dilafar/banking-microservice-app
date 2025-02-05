@@ -1,6 +1,6 @@
 com.assignment.loans.service.impl.LoansServiceImpl#updateLoan(Lcom/assignment/loans/dto/LoansDto;)Z
 false
-3e2a1411d4c66271f5895b6127728e2a
+617519c4748533a74f4ba2bea7c147f5
 com.assignment.loans.mapper.LoansMapper#mapToLoans(Lcom/assignment/loans/dto/LoansDto;Lcom/assignment/loans/entity/Loans;)Lcom/assignment/loans/entity/Loans;
 ==
 !unknownMethod! !unknownMethod!
