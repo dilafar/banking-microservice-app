@@ -151,6 +151,10 @@ jobs:
           cd accounts
           docker run --rm -i hadolint/hadolint < Dockerfile | tee hadolint_accounts.txt
 
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
       - name: Build & Upload image to ECR
         uses: appleboy/docker-ecr-action@master
         with:
@@ -163,10 +167,6 @@ jobs:
             daemon_off: false
             dockerfile: accounts/Dockerfile
             context: accounts
-
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v2
 
       - name: Trivy Scan Deployed Account Imange
         run: |
