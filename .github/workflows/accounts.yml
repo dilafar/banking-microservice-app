@@ -28,7 +28,7 @@ env:
   AWS_REGION: us-east-1
   ECR_REPOSITORY: banking-app
   EKS_CLUSTER: banking-eks
-  AWS_S3_BUCKET: banking-microservice-jar
+  AWS_S3_BUCKET: banking-microservice-artifact
   CACHE_DIR: /home/runner/work/_temp/trivy
 defaults:
   run:

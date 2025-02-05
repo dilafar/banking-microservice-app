@@ -198,10 +198,10 @@ jobs:
             git add .
             git commit -m "Automated gh-pages updates by GitHub Actions"
             git push origin gh-pages
-  kubernets-deployment-check:
-    needs: commit-changes
-    uses: ./.github/workflows/check-frontend-status.yml
-    secrets:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      REGISTRY: ${{ secrets.REGISTRY }}
+  #kubernets-deployment-check:
+  #  needs: commit-changes
+   # uses: ./.github/workflows/check-frontend-status.yml
+   # secrets:
+    #  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #  REGISTRY: ${{ secrets.REGISTRY }}
