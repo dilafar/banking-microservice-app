@@ -1,13 +1,13 @@
 
-1.0&banking-microservice_banking-app-loansJavaFrontend"1738865422105*java2.B‘
-Q
-Lsrc/main/java/com/assignment/loans/exception/LoanAlreadyExistsException.java2
+1.0&banking-microservice_banking-app-loansJavaFrontend"1738877380702*java2.B±
+P
+Ksrc/main/java/com/assignment/loans/exception/ResourceNotFoundException.java2
 
 package4
 #
 com.assignment.loans.exception5
->
-9com.assignment.loans.exception.LoanAlreadyExistsException7
+=
+8com.assignment.loans.exception.ResourceNotFoundException7
 
 	exception8
 
@@ -16,8 +16,8 @@ Lsrc/main/java/com/assignment/loans/exception/LoanAlreadyExistsException.java2
 public10
 
 simple name11
- 
-LoanAlreadyExistsException12
+
+ResourceNotFoundException12
 
 ResponseStatus14
 
@@ -29,8 +29,8 @@ Lsrc/main/java/com/assignment/loans/exception/LoanAlreadyExistsException.java2
 
 
 uses19
-[
-Ucom.assignment.loans.exception.LoanAlreadyExistsException#<init>(Ljava/lang/String;)V21
+~
+xcom.assignment.loans.exception.ResourceNotFoundException#<init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V21
 
 method22
 
@@ -47,7 +47,7 @@ Ucom.assignment.loans.exception.LoanAlreadyExistsException#<init>(Ljava/lang/Str
 9
 64
 678 *
-1 ((:3B
+1 (':3B
 	
 9
 10
@@ -77,7 +77,7 @@ Ucom.assignment.loans.exception.LoanAlreadyExistsException#<init>(Ljava/lang/Str
 1 (
 
 6619*
-1 ((
+1 ('
 
 20623*
-1 (&
+1 (%
