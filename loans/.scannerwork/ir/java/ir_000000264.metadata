@@ -1,6 +1,6 @@
 com.assignment.loans.service.impl.LoansServiceImpl#fetchLoan(Ljava/lang/String;)Lcom/assignment/loans/dto/LoansDto;
 false
-e340ef19eabee680c56f0405c0651035
+c59ea08b4f4c88718b28a695c8adeec2
 com.assignment.loans.dto.LoansDto#<init>()V
 com.assignment.loans.dto.LoansDto#instance-init#
 com.assignment.loans.mapper.LoansMapper#mapToLoansDto(Lcom/assignment/loans/entity/Loans;Lcom/assignment/loans/dto/LoansDto;)Lcom/assignment/loans/dto/LoansDto;
