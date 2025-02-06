@@ -27,7 +27,7 @@ defaults:
     shell: bash
 
 jobs:
-  build-and-push:
+  frontend-job:
     runs-on: ubuntu-latest
 
     outputs:

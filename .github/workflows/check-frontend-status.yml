@@ -48,7 +48,7 @@ jobs:
           echo "✅ Successfully deployed at $(date)"
 
       - name: Run ZAP Scan
-        run: docker run -v $(pwd):/zap/workdir/:rw --network=host -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t https://awsbanking.cncloudnet.com -g gen.conf | tee reports/zap.conf || true
+        run: docker run -v $(pwd):/zap/wrk:rw --network=host -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t https://awsbanking.cncloudnet.com -g gen.conf | tee reports/zap.conf || true
 
       - name: Configure Git
         run: |

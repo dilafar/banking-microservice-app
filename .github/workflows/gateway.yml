@@ -24,7 +24,7 @@ defaults:
     shell: bash
 
 jobs:
-  build-and-push:
+  gateway-job:
     runs-on: ubuntu-latest
 
     steps:
