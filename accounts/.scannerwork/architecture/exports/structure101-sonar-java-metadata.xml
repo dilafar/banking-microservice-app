@@ -27,9 +27,9 @@
   <dependency-types>
     <dependency-type name="uses" />
     <dependency-type name="references" />
+    <dependency-type name="is type" />
     <dependency-type name="has param" />
     <dependency-type name="calls" />
-    <dependency-type name="is type" />
     <dependency-type name="extends" />
     <dependency-type name="returns" />
     <dependency-type name="implements" />
