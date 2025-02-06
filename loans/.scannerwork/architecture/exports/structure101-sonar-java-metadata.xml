@@ -26,11 +26,11 @@
   <dependency-types>
     <dependency-type name="extends" />
     <dependency-type name="calls" />
-    <dependency-type name="implements" />
     <dependency-type name="uses" />
-    <dependency-type name="references" />
-    <dependency-type name="is type" />
     <dependency-type name="returns" />
     <dependency-type name="has param" />
+    <dependency-type name="implements" />
+    <dependency-type name="references" />
+    <dependency-type name="is type" />
   </dependency-types>
 </flavor>

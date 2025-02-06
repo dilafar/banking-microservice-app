@@ -3,5 +3,5 @@ projectKey=banking-microservice_banking-app-loans
 serverUrl=https://sonarcloud.io
 serverVersion=8.0.0.59516
 dashboardUrl=https://sonarcloud.io/dashboard?id=banking-microservice_banking-app-loans
-ceTaskId=AZTdKz971bYxmzkigHXL
-ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZTdKz971bYxmzkigHXL
+ceTaskId=AZTdSZa1Euk96vOI_hXA
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZTdSZa1Euk96vOI_hXA
