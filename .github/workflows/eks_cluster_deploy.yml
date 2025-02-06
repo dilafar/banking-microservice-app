@@ -22,7 +22,7 @@ defaults:
     shell: bash
 
 jobs:
-  build-and-push:
+  eks-deploy:
     runs-on: ubuntu-latest
 
     steps:

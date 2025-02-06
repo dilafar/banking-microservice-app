@@ -24,7 +24,7 @@ defaults:
     shell: bash
 
 jobs:
-  build-and-push:
+  eureka-server-job:
     runs-on: ubuntu-latest
 
     steps:
