@@ -1,6 +1,6 @@
 appName: configserver
 appReplicas: 2
-appImage: 794038214817.dkr.ecr.us-east-1.amazonaws.com/banking-app
+appImage: aksemployeerepo.azurecr.io/banking-app
 appVersion: configserver-v
 containerPort: 8071
 servicePort: 8071

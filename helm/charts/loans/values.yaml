@@ -1,6 +1,6 @@
 appName: loans
 appReplicas: 2
-appImage: 794038214817.dkr.ecr.us-east-1.amazonaws.com/banking-app
+appImage: aksemployeerepo.azurecr.io/banking-app
 appVersion: loans-v
 containerPort: 8090
 servicePort: 8090

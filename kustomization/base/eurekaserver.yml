@@ -16,7 +16,7 @@ spec:
         app: eurekaserver
     spec:
       imagePullSecrets:
-        - name: aws-registry-key
+        - name: azure-registry-key
       containers:
         - name: eurekaserver
           image: 794038214817.dkr.ecr.us-east-1.amazonaws.com/banking-app:eurekaserver-v

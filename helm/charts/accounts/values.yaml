@@ -1,6 +1,6 @@
 appName: accounts
 appReplicas: 2
-appImage: 794038214817.dkr.ecr.us-east-1.amazonaws.com/banking-app
+appImage: aksemployeerepo.azurecr.io/banking-app
 appVersion: accounts-v
 containerPort: 8080
 servicePort: 8080

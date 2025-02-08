@@ -1,6 +1,6 @@
 appName: banking-frontend
 appReplicas: 2
-appImage: 794038214817.dkr.ecr.us-east-1.amazonaws.com/banking-app
+appImage: aksemployeerepo.azurecr.io/banking-app
 appVersion: frontend-v
 containerPort: 80
 servicePort: 80
