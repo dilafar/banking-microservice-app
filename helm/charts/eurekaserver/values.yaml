@@ -1,7 +1,7 @@
 appName: eurekaserver
 appReplicas: 2
 appImage: aksemployeerepo.azurecr.io/banking-app
-appVersion: eurekaserver-v3.3.5-117
+appVersion: eurekaserver-v3.3.5-118
 containerPort: 8070
 servicePort: 8070
 serviceType: ClusterIP
