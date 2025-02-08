@@ -9,11 +9,11 @@
     <nested-types>
       <nested-type name="folder" sep="." icon="source.gif" />
       <nested-type name="file" sep="." icon="source.gif" />
+      <nested-type name="interface" sep="." icon="source.gif" />
+      <nested-type name="method" sep="." icon="source.gif" />
       <nested-type name="class" sep="." icon="source.gif" />
       <nested-type name="field" sep="." icon="source.gif" />
-      <nested-type name="method" sep="." icon="source.gif" />
       <nested-type name="exception" sep="." icon="source.gif" />
-      <nested-type name="interface" sep="." icon="source.gif" />
     </nested-types>
     <virtual-types>
       <virtual-type nature="root" icon="root.gif" />
@@ -24,13 +24,13 @@
     </virtual-types>
   </item-types>
   <dependency-types>
-    <dependency-type name="implements" />
-    <dependency-type name="is type" />
     <dependency-type name="returns" />
-    <dependency-type name="uses" />
-    <dependency-type name="references" />
-    <dependency-type name="calls" />
     <dependency-type name="has param" />
+    <dependency-type name="uses" />
+    <dependency-type name="calls" />
+    <dependency-type name="implements" />
+    <dependency-type name="references" />
+    <dependency-type name="is type" />
     <dependency-type name="extends" />
   </dependency-types>
 </flavor>
