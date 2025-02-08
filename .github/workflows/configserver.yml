@@ -30,7 +30,7 @@ jobs:
   configserver-job:
     runs-on: ubuntu-latest
     permissions:
-      id-token: write  # ✅ Fixes the error
+      id-token: write
       contents: read
     steps:
 
