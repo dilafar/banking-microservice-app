@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
-      contents: read
+      contents: write
     outputs:
       output1: ${{ steps.imageVersion.outputs.VERSION }}
 
