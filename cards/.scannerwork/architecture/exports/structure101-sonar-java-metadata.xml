@@ -29,8 +29,8 @@
     <dependency-type name="returns" />
     <dependency-type name="calls" />
     <dependency-type name="implements" />
-    <dependency-type name="is type" />
     <dependency-type name="references" />
+    <dependency-type name="is type" />
     <dependency-type name="extends" />
   </dependency-types>
 </flavor>
