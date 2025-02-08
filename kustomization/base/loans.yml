@@ -23,7 +23,7 @@ spec:
         - name: azure-registry-key
       containers:
         - name: loans
-          image: 794038214817.dkr.ecr.us-east-1.amazonaws.com/banking-app:loans-v
+          image: aksemployeerepo.azurecr.io/banking-app:loans-v
           imagePullPolicy: Always
           ports:
             - containerPort: 8090

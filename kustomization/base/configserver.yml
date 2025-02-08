@@ -19,7 +19,7 @@ spec:
         - name: azure-registry-key
       containers:
         - name: configserver
-          image: 794038214817.dkr.ecr.us-east-1.amazonaws.com/banking-app:configserver-v3.3.5-110
+          image: aksemployeerepo.azurecr.io/banking-app:configserver-v
           imagePullPolicy: Always
           ports:
             - containerPort: 8071
