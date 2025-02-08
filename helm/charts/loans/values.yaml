@@ -1,7 +1,7 @@
 appName: loans
 appReplicas: 2
 appImage: aksemployeerepo.azurecr.io/banking-app
-appVersion: loans-v3.3.5-116
+appVersion: loans-v3.3.5-117
 containerPort: 8090
 servicePort: 8090
 serviceType: ClusterIP

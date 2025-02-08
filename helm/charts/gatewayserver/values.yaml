@@ -1,7 +1,7 @@
 appName: gatewayserver
 appReplicas: 2
 appImage: aksemployeerepo.azurecr.io/banking-app
-appVersion: gateway-v3.3.5-116
+appVersion: gateway-v3.3.5-117
 containerPort: 8072
 servicePort: 80
 serviceType: ClusterIP

@@ -19,7 +19,7 @@ spec:
         - name: azure-registry-key
       containers:
         - name: eurekaserver
-          image: aksemployeerepo.azurecr.io/banking-app:eurekaserver-v3.3.5-116
+          image: aksemployeerepo.azurecr.io/banking-app:eurekaserver-v3.3.5-117
           imagePullPolicy: Always
           ports:
             - containerPort: 8070

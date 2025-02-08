@@ -1,7 +1,7 @@
 appName: accounts
 appReplicas: 2
 appImage: aksemployeerepo.azurecr.io/banking-app
-appVersion: accounts-v3.3.5-116
+appVersion: accounts-v3.3.5-117
 containerPort: 8080
 servicePort: 8080
 serviceType: ClusterIP
