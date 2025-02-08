@@ -16,10 +16,10 @@ spec:
         app: configserver
     spec:
       imagePullSecrets:
-        - name: aws-registry-key
+        - name: azure-registry-key
       containers:
         - name: configserver
-          image: 794038214817.dkr.ecr.us-east-1.amazonaws.com/banking-app:configserver-v
+          image: 794038214817.dkr.ecr.us-east-1.amazonaws.com/banking-app:configserver-v3.3.5-110
           imagePullPolicy: Always
           ports:
             - containerPort: 8071

@@ -18,7 +18,7 @@ spec:
         tier: frontend
     spec:
       imagePullSecrets:
-        - name: aws-registry-key
+        - name: azure-registry-key
       containers:
         - name: banking-frontend
           image: 794038214817.dkr.ecr.us-east-1.amazonaws.com/banking-app:frontend-v
@@ -28,13 +28,13 @@ spec:
           securityContext:
             runAsNonRoot: true
             runAsUser: 101
-          resources:
-            requests:
-              memory: "100Mi"
-              cpu: "120m"
-            limits:
-              memory: "150Mi"
-              cpu: "200m"
+        #  resources:
+         #   requests:
+         #     memory: "100Mi"
+         #     cpu: "120m"
+         #   limits:
+         #     memory: "150Mi"
+         #     cpu: "200m"
 
 ---
 apiVersion: v1

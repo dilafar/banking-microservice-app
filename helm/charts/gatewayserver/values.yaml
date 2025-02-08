@@ -1,6 +1,6 @@
 appName: gatewayserver
 appReplicas: 2
-appImage: 794038214817.dkr.ecr.us-east-1.amazonaws.com/banking-app
+appImage: aksemployeerepo.azurecr.io/banking-app
 appVersion: gateway-v
 containerPort: 8072
 servicePort: 80

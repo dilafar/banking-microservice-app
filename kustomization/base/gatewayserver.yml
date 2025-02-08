@@ -16,7 +16,7 @@ spec:
         app: gatewayserver
     spec:
       imagePullSecrets:
-        - name: aws-registry-key
+        - name: azure-registry-key
       containers:
         - name: gatewayserver
           image: 794038214817.dkr.ecr.us-east-1.amazonaws.com/banking-app:gateway-v

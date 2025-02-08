@@ -14,17 +14,20 @@ on:
         required: true
       SONAR_URL:
         required: true
-      AWS_ACCESS_KEY_ID:
+      AZURE_CLIENT_ID:
         required: true
-      AWS_SECRET_ACCESS_KEY:
+      AZURE_TENANT_ID:
         required: true
-      REGISTRY:
+      AZURE_SUBSCRIPTION_ID:
+        required: true
+      ACR_LOGIN_SERVER:
+        required: true
+      ACR_USERNAME:
+        required: true
+      ACR_PASSWORD:
         required: true
 env:
-  AWS_REGION: us-east-1
-  ECR_REPOSITORY: banking-app
-  EKS_CLUSTER: banking-eks
-  AWS_S3_BUCKET: banking-microservice-artifact
+  ACR_REPOSITORY: banking-app
   CACHE_DIR: /home/runner/work/_temp/trivy
 defaults:
   run:
@@ -44,12 +47,12 @@ jobs:
           java-version: '17'
           distribution: 'corretto'
 
-      - name: Configure AWS CLI
-        uses: aws-actions/configure-aws-credentials@v2
+      - name: Log in to Azure
+        uses: azure/login@v1
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Increment app version
         run: |
@@ -130,30 +133,28 @@ jobs:
           cd loans
           docker run --rm -i hadolint/hadolint < Dockerfile | tee hadolint_loans.txt
 
-      - name: Build & Upload image to ECR
-        uses: appleboy/docker-ecr-action@master
+      - name: Log in to Azure Container Registry
+        uses: azure/docker-login@v1
         with:
-          access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          registry: ${{ secrets.REGISTRY }}
-          repo: ${{ env.ECR_REPOSITORY }}
-          region: ${{ env.AWS_REGION }}
-          tags: loans-v${{ env.IMAGE_VERSION }}
-          daemon_off: false
-          dockerfile: loans/Dockerfile
-          context: loans
+          login-server: ${{ secrets.ACR_LOGIN_SERVER }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
 
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v2
+      - name: Build & Push Docker Image to ACR
+        uses: docker/build-push-action@v5
+        with:
+          context: loans
+          file: loans/Dockerfile
+          push: true
+          tags: ${{ secrets.ACR_LOGIN_SERVER }}/${{ env.ACR_REPOSITORY }}:loans-v${{ env.IMAGE_VERSION }}
 
       - name: Trivy Scan Deployed Account Imange
         run: |
-          bash trivy-k8s-scan.sh ${{ secrets.REGISTRY }}/${{ env.ECR_REPOSITORY }}:loans-v${{ env.IMAGE_VERSION }} ${{ env.CACHE_DIR }} trivy-loans.json
+          bash trivy-k8s-scan.sh ${{ secrets.ACR_LOGIN_SERVER }}/${{ env.ACR_REPOSITORY }}:loans-v${{ env.IMAGE_VERSION }} ${{ env.CACHE_DIR }} trivy-loans.json
 
       - name: Run CIS Docker Benchmark
         run: |
-          bash trivy-docker-bench.sh ${{ secrets.REGISTRY }}/${{ env.ECR_REPOSITORY }}:loans-v${{ env.IMAGE_VERSION }} trivy-bench-loans.json
+          bash trivy-docker-bench.sh ${{ secrets.ACR_LOGIN_SERVER }}/${{ env.ACR_REPOSITORY }}:loans-v${{ env.IMAGE_VERSION }} trivy-bench-loans.json
 
       - name: Configure Git
         run: |

@@ -7,7 +7,7 @@ spec:
   project: default
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: banking-ns
   source:
     repoURL: https://github.com/dilafar/banking-microservice-app.git
     path: kustomization/overlays/dev
