@@ -4,7 +4,7 @@ on:
     outputs:
       IMAGE_VERSION:
         description: "The first output string"
-        value: ${{ jobs.build-and-push.outputs.output1 }}
+        value: ${{ jobs.accounts-job.outputs.output1 }}
     inputs:
       build_number:
         required: true
