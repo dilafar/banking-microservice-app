@@ -23,7 +23,7 @@ spec:
         - name: azure-registry-key
       containers:
         - name: cards
-          image: aksemployeerepo.azurecr.io/banking-app:cards-v
+          image: aksemployeerepo.azurecr.io/banking-app:cards-v3.3.5-116
           imagePullPolicy: Always
           ports:
             - containerPort: 9000
