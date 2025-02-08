@@ -3,5 +3,5 @@ projectKey=banking-app24
 serverUrl=https://sonarcloud.io
 serverVersion=8.0.0.59516
 dashboardUrl=https://sonarcloud.io/dashboard?id=banking-app24
-ceTaskId=AZTnKwDiW6Xa-tpdaUfb
-ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZTnKwDiW6Xa-tpdaUfb
+ceTaskId=AZTnvWc8NsJM0OGUOAoX
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZTnvWc8NsJM0OGUOAoX
