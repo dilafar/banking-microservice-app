@@ -18,7 +18,7 @@ spec:
       initContainers:
         - name: mydb-available
           image: busybox:1.28
-          command: [ 'sh','-c',"until nslookup 34.201.147.73; do echo waiting for database; sleep 4; done" ]
+          command: [ 'sh', '-c', "until nslookup 3.85.124.152; do echo waiting for database; sleep 4; done" ]
       imagePullSecrets:
         - name: azure-registry-key
       containers:
