@@ -1,6 +1,6 @@
 com.assignment.loans.service.impl.LoansServiceImpl#fetchLoans()Ljava/util/List;
 false
-7dd3b8aa939f6d6ab1c2916ce0b1489e
+0b5aceceac9e662c458e30fb1d7c1268
 com.assignment.loans.dto.LoansDto#<init>()V
 com.assignment.loans.dto.LoansDto#instance-init#
 com.assignment.loans.exception.ResourceNotFoundException#<init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
