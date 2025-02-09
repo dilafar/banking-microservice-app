@@ -19,7 +19,7 @@ spec:
         - name: azure-registry-key
       containers:
         - name: gatewayserver
-          image: aksemployeerepo.azurecr.io/banking-app:gateway-v3.3.5-119
+          image: aksemployeerepo.azurecr.io/banking-app:gateway-v3.3.5-120
           imagePullPolicy: Always
           ports:
             - containerPort: 8072
