@@ -1,7 +1,7 @@
 appName: banking-frontend
 appReplicas: 2
 appImage: aksemployeerepo.azurecr.io/banking-app
-appVersion: frontend-v0.0.11-118
+appVersion: frontend-v0.0.12-119
 containerPort: 80
 servicePort: 80
 serviceType: ClusterIP

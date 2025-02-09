@@ -21,7 +21,7 @@ spec:
         - name: azure-registry-key
       containers:
         - name: banking-frontend
-          image: aksemployeerepo.azurecr.io/banking-app:frontend-v0.0.11-118
+          image: aksemployeerepo.azurecr.io/banking-app:frontend-v0.0.12-119
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
