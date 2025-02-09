@@ -3,5 +3,5 @@ projectKey=banking-microservice_banking-app-cards
 serverUrl=https://sonarcloud.io
 serverVersion=8.0.0.59516
 dashboardUrl=https://sonarcloud.io/dashboard?id=banking-microservice_banking-app-cards
-ceTaskId=AZTrGlcd1bYxmzkig0Y_
-ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZTrGlcd1bYxmzkig0Y_
+ceTaskId=AZTr74hXEuk96vOIAOwp
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZTr74hXEuk96vOIAOwp
