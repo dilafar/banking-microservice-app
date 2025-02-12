@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a full-stack Employee Management System developed using **Spring Boot** for the backend and **Angular** for the frontend. It follows **DevSecOps** principles and is deployed on **AWS** using Kubernetes.
+This project is a full-stack microservice based System developed using **Spring Boot** for the backend and **React** for the frontend. It follows **DevSecOps** principles and is deployed on **AWS** using Kubernetes.
 
 ## 🛠 Technologies Used
 
@@ -14,23 +14,58 @@ This project is a full-stack Employee Management System developed using **Spring
 
 ### Frontend
 
-- **Angular** (UI Framework)
+- **React** (UI Framework)
 
 ### DevOps Tools
 
-- **CI/CD & Configuration Management**: Jenkins, Ansible, GitHub
-- **Containerization & Orchestration**: Kubernetes, Helm, Kustomize, Docker, Docker Compose
-- **Security & Compliance**: Cosign, HashiCorp Vault, TruffleHog, Checkstyle, NodeJsScan, SonarQube, Semgrep, Trivy, Kubescape, Hadolint, Retire.js, Maven Dependency Check, OWASP ZAP, Open Policy Agent (OPA), DefectDojo
-- **Artifact & Dependency Management**: Nexus Repository, Maven, ArtifactHub
-- **Monitoring & Alerting**: Prometheus, Grafana, Alert Manager
-- **Infrastructure as Code (IaC)**: Terraform
-- **Continuous Deployment & GitOps**: ArgoCD
+#### 🔹 **CI/CD & Configuration Management**
+- Jenkins
+- Ansible
+- GitHub
+- GitHub Actions
+
+#### 🔹 **Containerization & Orchestration**
+- Kubernetes
+- Helm
+- Kustomize
+- Docker
+- Docker Compose
+
+#### 🔹 **Security & Compliance**
+- Checkstyle & NodeJsScan (Code Quality Analysis)
+- SonarQube (SAST Scanning)
+- Trivy (Vulnerability Scanning & CIS Benchmark for Docker)
+- Hadolint (Dockerfile Linting)
+- Maven Dependency Check
+- OWASP ZAP (DAST Scanning)
+- Open Policy Agent (OPA) (Policy Enforcement)
+- Let's Encrypt ACME & Cert Manager (Automated TLS Certificate Management)
+- Jacoco (Code Coverage Analysis)
+
+#### 🔹 **Artifact & Dependency Management**
+- AWS S3 Bucket
+- Maven
+- ArtifactHub
+
+#### 🔹 **Monitoring & Alerting**
+- Prometheus
+- Grafana
+- Alert Manager
+
+#### 🔹 **Infrastructure as Code (IaC)**
+- Terraform
+
+#### 🔹 **Continuous Deployment & GitOps**
+- ArgoCD
+
+#### 🔹 **Service Mesh**
+- Istio Service Mesh
 
 ### AWS Services Used
 
-- **Networking & Load Balancing**: ALB, Route 53, AWS Certificate Manager, VPC
+- **Networking & Load Balancing**: NLB(Network LoadBalancer), Route 53, AWS Certificate Manager, VPC
 - **Compute & Container Management**: Amazon EKS, Amazon EC2
-- **Storage & Secrets Management**: AWS RDS (MySQL), AWS Secrets Manager, AWS S3 Bucket
+- **Storage & Secrets Management**: AWS Secrets Manager, AWS S3 Bucket
 - **Container Registry & CDN**: Amazon ECR, Amazon CloudFront
 
 ### AWS Load Balancer Controller Installation
