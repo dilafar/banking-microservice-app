@@ -23,6 +23,7 @@ This project is a full-stack microservice based System developed using **Spring 
 - Ansible
 - GitHub
 - GitHub Actions
+- Chart Releaser
 
 #### 🔹 **Containerization & Orchestration**
 - Kubernetes
