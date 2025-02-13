@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a full-stack Employee Management System developed using **Spring Boot** for the backend and **Angular** for the frontend. It follows **DevSecOps** principles and is deployed on **AWS** using Kubernetes.
+This project is a full-stack microservice based System developed using **Spring Boot** for the backend and **React** for the frontend. It follows **DevSecOps** principles and is deployed on **AWS** using Kubernetes.
 
 ## 🛠 Technologies Used
 
@@ -14,23 +14,59 @@ This project is a full-stack Employee Management System developed using **Spring
 
 ### Frontend
 
-- **Angular** (UI Framework)
+- **React** (UI Framework)
 
 ### DevOps Tools
 
-- **CI/CD & Configuration Management**: Jenkins, Ansible, GitHub
-- **Containerization & Orchestration**: Kubernetes, Helm, Kustomize, Docker, Docker Compose
-- **Security & Compliance**: Cosign, HashiCorp Vault, TruffleHog, Checkstyle, NodeJsScan, SonarQube, Semgrep, Trivy, Kubescape, Hadolint, Retire.js, Maven Dependency Check, OWASP ZAP, Open Policy Agent (OPA), DefectDojo
-- **Artifact & Dependency Management**: Nexus Repository, Maven, ArtifactHub
-- **Monitoring & Alerting**: Prometheus, Grafana, Alert Manager
-- **Infrastructure as Code (IaC)**: Terraform
-- **Continuous Deployment & GitOps**: ArgoCD
+#### 🔹 **CI/CD & Configuration Management**
+- Jenkins
+- Ansible
+- GitHub
+- GitHub Actions
+- Chart Releaser
+
+#### 🔹 **Containerization & Orchestration**
+- Kubernetes
+- Helm
+- Kustomize
+- Docker
+- Docker Compose
+
+#### 🔹 **Security & Compliance**
+- Checkstyle & NodeJsScan (Code Quality Analysis)
+- SonarQube (SAST Scanning)
+- Trivy (Vulnerability Scanning & CIS Benchmark for Docker)
+- Hadolint (Dockerfile Linting)
+- Maven Dependency Check
+- OWASP ZAP (DAST Scanning)
+- Open Policy Agent (OPA) (Policy Enforcement)
+- Let's Encrypt ACME & Cert Manager (Automated TLS Certificate Management)
+- Jacoco (Code Coverage Analysis)
+
+#### 🔹 **Artifact & Dependency Management**
+- AWS S3 Bucket
+- Maven
+- ArtifactHub
+
+#### 🔹 **Monitoring & Alerting**
+- Prometheus
+- Grafana
+- Alert Manager
+
+#### 🔹 **Infrastructure as Code (IaC)**
+- Terraform
+
+#### 🔹 **Continuous Deployment & GitOps**
+- ArgoCD
+
+#### 🔹 **Service Mesh**
+- Istio Service Mesh
 
 ### AWS Services Used
 
-- **Networking & Load Balancing**: ALB, Route 53, AWS Certificate Manager, VPC
+- **Networking & Load Balancing**: NLB(Network LoadBalancer), Route 53, AWS Certificate Manager, VPC
 - **Compute & Container Management**: Amazon EKS, Amazon EC2
-- **Storage & Secrets Management**: AWS RDS (MySQL), AWS Secrets Manager, AWS S3 Bucket
+- **Storage & Secrets Management**: AWS Secrets Manager, AWS S3 Bucket
 - **Container Registry & CDN**: Amazon ECR, Amazon CloudFront
 
 ### AWS Load Balancer Controller Installation
@@ -123,6 +159,9 @@ docker-compose down
 - The backend services depend on the MySQL service to be healthy before they can start.
 - The frontend communicates via Nginx, which handles routing and SSL termination.
 
+
+
+
 Application Diagram
 
 ![Frame 7](https://github.com/user-attachments/assets/5c3e61fe-fa36-4caf-815e-ebe4064b0a3f)
@@ -191,18 +230,14 @@ mvn spring-boot:run
 Now, the Employee Management application is connected to a persistent **AWS RDS MySQL database** and ready for production deployment. 🚀
 
 ## 🧾 Argocd App
-Argocd UI : https://argocd.cloud-emgmt.com
 
-![argo-aws-employee](https://github.com/user-attachments/assets/1e4241ca-e52c-4e94-82a1-8bf798187fc3)
+![microservice](https://github.com/user-attachments/assets/98a148cb-f95f-450b-87f6-0b222eaa4c98)
+
 
 ## 🧾 Prometheus and Grafana
 
+![prometheus-monitor](https://github.com/user-attachments/assets/7cf66bf7-4851-4eb1-91cb-0c6fef164a94)
 
-
-## 🧾 Hasicorp Vault
-Hasicorp Vault UI : https://kmsvault.cncloudnet.com:8200/
-
-![vault-img](https://github.com/user-attachments/assets/5fb9d1f2-7d0d-4c25-9469-d2489e66f3a2)
 
 ## 🤝 Contributing
 
