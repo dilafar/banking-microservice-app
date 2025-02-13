@@ -234,6 +234,7 @@ Now, the Employee Management application is connected to a persistent **AWS RDS 
 
 ## 🧾 Prometheus and Grafana
 
+![prometheus-monitor](https://github.com/user-attachments/assets/7cf66bf7-4851-4eb1-91cb-0c6fef164a94)
 
 
 ## 🤝 Contributing
