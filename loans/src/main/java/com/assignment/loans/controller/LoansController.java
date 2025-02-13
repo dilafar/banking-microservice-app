@@ -6,6 +6,9 @@ import com.assignment.loans.dto.LoansContactInfo;
 import com.assignment.loans.dto.LoansDto;
 import com.assignment.loans.dto.ResponseDto;
 import com.assignment.loans.service.ILoansService;
+import io.micrometer.core.annotation.Timed;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Timer;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -14,11 +17,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -38,6 +39,7 @@ import java.util.List;
 )
 //@CrossOrigin(origins = "*")
 @RestController
+@Timed("bank.loan")
 @RequestMapping(path = "/api", produces = {MediaType.APPLICATION_JSON_VALUE})
 @Validated
 public class LoansController {
@@ -50,11 +52,14 @@ public class LoansController {
 
     private final LoansContactInfo loansContactInfo;
 
+    private final MeterRegistry meterRegistry;
+
     @Autowired
-    public LoansController(ILoansService iLoansService, Environment environment, LoansContactInfo loansContactInfo){
+    public LoansController(ILoansService iLoansService, Environment environment, LoansContactInfo loansContactInfo, MeterRegistry meterRegistry){
         this.loansService = iLoansService;
         this.environment = environment;
         this.loansContactInfo = loansContactInfo;
+        this.meterRegistry = meterRegistry;
     }
 
     @Operation(
@@ -80,7 +85,15 @@ public class LoansController {
     public ResponseEntity<ResponseDto> createLoan(@Valid @RequestParam
                                                   @Pattern(regexp="(^$|[0-9]{10})",message = "Mobile number must be 10 digits")
                                                   String mobileNumber) {
-        loansService.createLoan(mobileNumber);
+        Timer apiCreateSecondsCount = Timer.builder("bank_loan_create")
+                .tags("method", "POST", "status", "201") // Adjust status as needed
+                .register(meterRegistry);
+        apiCreateSecondsCount.record(() -> {
+
+            loansService.createLoan(mobileNumber);
+        });
+
+
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(new ResponseDto(LoansConstants.STATUS_201, LoansConstants.MESSAGE_201));
@@ -137,9 +150,16 @@ public class LoansController {
     )
     @PutMapping("/update")
     public ResponseEntity<ResponseDto> updateLoanDetails(@Valid @RequestBody LoansDto loansDto) {
+        Timer apiCreateSecondsCount = Timer.builder("bank_loan_update")
+                .tags("method", "PUT", "status", "204") // Adjust status as needed
+                .register(meterRegistry);
+
         System.out.println("Received loan update request: " + loansDto);
         boolean isUpdated = loansService.updateLoan(loansDto);
         if(isUpdated) {
+            apiCreateSecondsCount.record(() -> {
+                System.out.println("successfully updated...");
+            });
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body(new ResponseDto(LoansConstants.STATUS_200, LoansConstants.MESSAGE_200));

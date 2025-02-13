@@ -6,7 +6,9 @@ import com.assignment.accounts.dto.CustomerDto;
 import com.assignment.accounts.dto.ErrorResponseDto;
 import com.assignment.accounts.dto.ResponseDto;
 import com.assignment.accounts.service.IAccountsService;
-import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Timer;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -16,7 +18,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -40,13 +41,17 @@ public class AccountsController {
 
 
     private final AccountsContactInfo accountsContactInfo;
+
+    private final MeterRegistry meterRegistry;
+
     @Autowired
     public AccountsController(IAccountsService iAccountsService,
                               AccountsContactInfo accountsContactInfo,
-                              Environment environment) {
+                              Environment environment, MeterRegistry meterRegistry) {
         this.iAccountsService = iAccountsService;
         this.accountsContactInfo = accountsContactInfo;
         this.environment = environment;
+        this.meterRegistry = meterRegistry;
     }
 
     @Operation(
@@ -59,7 +64,15 @@ public class AccountsController {
     )
     @PostMapping("/create")
     public ResponseEntity<ResponseDto> createAccount(@Valid @RequestBody CustomerDto customerDto){
-        iAccountsService.createAccount(customerDto);
+        Timer apiCreateSecondsCount = Timer.builder("bank_account_create")
+                .tags("method", "POST", "status", "201") // Adjust status as needed
+                .register(meterRegistry);
+
+        apiCreateSecondsCount.record(() -> {
+
+            iAccountsService.createAccount(customerDto);
+        });
+
         return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseDto(AccountsConstants.STATUS_201,AccountsConstants.MESSAGE_201));
     }
 
@@ -103,8 +116,15 @@ public class AccountsController {
     )
     @PutMapping("/update")
     public ResponseEntity<ResponseDto> updateAccountsDetails(@Valid @RequestBody CustomerDto customerDto){
+        Timer apiCreateSecondsCount = Timer.builder("bank_account_update")
+                .tags("method", "PUT", "status", "204") // Adjust status as needed
+                .register(meterRegistry);
+
         boolean isUpdated = iAccountsService.updateAccount(customerDto);
         if(isUpdated){
+            apiCreateSecondsCount.record(() -> {
+                System.out.println("successfully updated...");
+            });
             return ResponseEntity.status(HttpStatus.OK).body(
                     new ResponseDto(AccountsConstants.STATUS_200,AccountsConstants.MESSAGE_200)
             );

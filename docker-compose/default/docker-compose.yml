@@ -1,6 +1,6 @@
 services:
   client:
-    image: fadhiljr/mssample:frontend-v4.0
+    image: fadhiljr/mssample:frontend-v11.0
     container_name: frontend
     ports:
       - "443:443"
@@ -35,7 +35,7 @@ services:
         service: microservice-db-config
 
   configserver:
-    image: "fadhiljr/mssample:configserver-20.0"
+    image: "fadhiljr/mssample:configserver-20.2"
     container_name: configserver-ms
     ports:
       - "8071:8071"
@@ -50,7 +50,7 @@ services:
       service: microservice-base-config
 
   eurekaserver:
-    image: "fadhiljr/mssample:eurekaserver-20.0"
+    image: "fadhiljr/mssample:eurekaserver-20.2"
     container_name: eurekaserver-ms
     ports:
       - "8070:8070"
@@ -70,7 +70,7 @@ services:
       SPRING_APPLICATION_NAME: "eurekaserver"
 
   accounts:
-    image: "fadhiljr/mssample:accounts-20.0"
+    image: "fadhiljr/mssample:accounts-20.2"
     container_name: accounts-ms
     ports:
       - "8080:8080"
@@ -95,7 +95,7 @@ services:
       service: microservice-eureka-config
 
   loans:
-    image: "fadhiljr/mssample:loans-20.0"
+    image: "fadhiljr/mssample:loans-20.2"
     container_name: loans-ms
     ports:
       - "8090:8090"
@@ -120,7 +120,7 @@ services:
       service: microservice-eureka-config
 
   cards:
-    image: "fadhiljr/mssample:cards-20.0"
+    image: "fadhiljr/mssample:cards-20.2"
     container_name: cards-ms
     ports:
       - "9000:9000"
@@ -145,7 +145,7 @@ services:
       service: microservice-eureka-config
 
   gatewayserver:
-    image: "fadhiljr/mssample:gatewayserver-21.0"
+    image: "fadhiljr/mssample:gatewayserver-21.2"
     container_name: gatewayserver-ms
     ports:
       - "8072:8072"
@@ -167,6 +167,23 @@ services:
     extends:
       file: common-config.yml
       service: microservice-eureka-config
+
+  prometheus:
+    image: prom/prometheus:v2.44.0
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ../../monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    image: grafana/grafana:9.5.2
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    volumes:
+      - ../../monitoring/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
 
 
 networks:

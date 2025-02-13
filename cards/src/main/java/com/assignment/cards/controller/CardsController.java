@@ -6,6 +6,8 @@ import com.assignment.cards.dto.CardsDto;
 import com.assignment.cards.dto.ErrorResponseDto;
 import com.assignment.cards.dto.ResponseDto;
 import com.assignment.cards.service.ICardsService;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Timer;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -17,7 +19,6 @@ import jakarta.validation.constraints.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -48,11 +49,14 @@ public class CardsController {
 
     private final CardsContactInfo cardsContactInfo;
 
+    private final MeterRegistry meterRegistry;
+
     @Autowired
-    public CardsController(ICardsService iCardsService, CardsContactInfo cardsContactInfo , Environment environment){
+    public CardsController(ICardsService iCardsService, CardsContactInfo cardsContactInfo , Environment environment, MeterRegistry meterRegistry){
         this.iCardsService = iCardsService;
         this.cardsContactInfo =cardsContactInfo;
         this.environment = environment;
+        this.meterRegistry = meterRegistry;
     }
 
 
@@ -77,7 +81,14 @@ public class CardsController {
     public ResponseEntity<ResponseDto> createCard (@Valid @RequestParam
                                                    @Pattern(regexp="(^$|[0-9]{10})",message = "Mobile number must be 10 digits")
                                                    String mobileNumber){
-        iCardsService.createCard(mobileNumber);
+        Timer apiCreateSecondsCount = Timer.builder("bank_card_create")
+                .tags("method", "POST", "status", "201") // Adjust status as needed
+                .register(meterRegistry);
+        apiCreateSecondsCount.record(() -> {
+
+            iCardsService.createCard(mobileNumber);
+        });
+
         return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseDto(CardsConstants.STATUS_201,CardsConstants.MESSAGE_201));
     }
 
@@ -130,8 +141,14 @@ public class CardsController {
     })
     @PutMapping("/update")
     public ResponseEntity<ResponseDto>updateCardDetails(@Valid @RequestBody CardsDto cardsDto){
+        Timer apiCreateSecondsCount = Timer.builder("bank_card_update")
+                .tags("method", "PUT", "status", "204") // Adjust status as needed
+                .register(meterRegistry);
         boolean isUpdated = iCardsService.updateCard(cardsDto);
         if(isUpdated){
+            apiCreateSecondsCount.record(() -> {
+                System.out.println("successfully updated...");
+            });
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto(CardsConstants.STATUS_200,CardsConstants.MESSAGE_200));
         }else{
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseDto(CardsConstants.STATUS_417,CardsConstants.MESSAGE_417_UPDATE));

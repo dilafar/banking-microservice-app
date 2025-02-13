@@ -3,6 +3,7 @@ package com.assignment.accounts.controller;
 import com.assignment.accounts.dto.CustomerDetailsDto;
 import com.assignment.accounts.dto.ErrorResponseDto;
 import com.assignment.accounts.service.ICustomerService;
+import io.micrometer.core.annotation.Timed;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -26,6 +27,7 @@ import java.util.List;
 )
 //@CrossOrigin(origins = "*")
 @RestController
+@Timed("bank.customer")
 @RequestMapping(path = "/api",produces = {MediaType.APPLICATION_JSON_VALUE})
 @Validated
 public class CustomerController {
