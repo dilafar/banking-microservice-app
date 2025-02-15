@@ -1,8 +1,8 @@
-# Full CI/CD pipelines for employee management application, a Java-based dynamic web application with a database.
+# Complete CI/CD pipelines for a Bank Management System, a dynamic web application built with a microservices architecture using Spring Cloud.
 
 ## Overview
 
-This project is a full-stack microservice based System developed using **Spring Boot** for the backend and **React** for the frontend. It follows **DevSecOps** principles and is deployed on **AWS** using Kubernetes.
+This project is a full-stack, microservices-based system developed using **Spring Boot** for the backend and **React** for the frontend. It follows **DevSecOps** principles and is deployed on **AWS** using Kubernetes. The Spring Boot Microservice Banking Application manages accounts, cards, and loans through a web-based platform built on a microservices architecture. It adheres to Spring Cloud best practices, including Netflix Eureka for service discovery, Spring Cloud Config for centralized configuration, and Spring Cloud Gateway for API management.
 
 ## 🛠 Technologies Used
 
