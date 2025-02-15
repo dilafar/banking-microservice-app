@@ -85,6 +85,18 @@ This project is a full-stack, microservices-based system developed using **Sprin
 - Since the application uses an Application Load Balancer (ALB), ExternalDNS manages DNS records via Kubernetes ingress resources.
 - TLS certificates were provisioned using AWS Certificate Manager, ensuring secure HTTPS connections through Kubernetes ingress resources.
 
+### External Secrets Management with AWS
+
+- AWS Secrets Manager is used to store and manage sensitive data such as API keys, database credentials, etc.
+- Deploy the `ExternalSecrets` operator in Kubernetes to manage the synchronization of secrets from AWS Secrets Manager into Kubernetes Secrets.
+- Create an IAM policy and role in AWS that provides the necessary permissions to access AWS Secrets Manager.
+- Attach the policy to the IAM role.
+- Associate the IAM role with a Kubernetes service account using AWS IAM Roles for Service Accounts (IRSA) to allow the external secrets operator to authenticate and fetch secrets from AWS.
+- Configure the `ExternalSecrets` deployment to use the service account, enabling the automatic synchronization of secrets into Kubernetes secrets.
+- The operator fetches secrets from AWS Secrets Manager and syncs them into Kubernetes namespaces, ensuring secure and seamless access to sensitive data.
+- This setup enables cloud-agnostic secret management while securely integrating AWS Secrets Manager with Kubernetes.
+
+
 ![aws-vault-cert](https://github.com/user-attachments/assets/873afc02-8386-4b46-a5fa-b4a5117a5df7)
 
 ## 🚀 Setup & Installation
