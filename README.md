@@ -96,7 +96,22 @@ This project is a full-stack, microservices-based system developed using **Sprin
 - The operator fetches secrets from AWS Secrets Manager and syncs them into Kubernetes namespaces, ensuring secure and seamless access to sensitive data.
 - This setup enables cloud-agnostic secret management while securely integrating AWS Secrets Manager with Kubernetes.
 
+### Istio Installation on AWS EKS
 
+- Add the official Istio Helm repository to your Helm configuration.  
+- Update Helm repositories to fetch the latest charts.    
+- Install the `istio-base` chart to create the necessary Istio Custom Resource Definitions (CRDs).  
+- Install the Istio control plane (`istiod`) in the `istio-system` namespace.  
+- This component handles service discovery, traffic routing, and security policies.  
+- Install an Istio ingress gateway to manage incoming external traffic.  
+- Configure it to use an AWS Network Load Balancer (NLB) for handling requests.  
+- Create a security group that allows inbound HTTP (80) and HTTPS (443) traffic.  
+- Attach this security group to the Istio ingress gateway for external access.  
+- Store `istio-cert.pem` and `istio-key.pem` in AWS Secrets Manager.  
+- Fetch the certificate through External Secrets and configure Istio to allow HTTPS traffic from the gateway.  
+- Configure Istio to enforce mTLS for secure service-to-service communication.  
+- Ensure all services are using encrypted and authenticated connections within the mesh.  
+- Deploy applications and configure Istio traffic rules (VirtualServices, DestinationRules).
 
 ![aws-vault-cert](https://github.com/user-attachments/assets/873afc02-8386-4b46-a5fa-b4a5117a5df7)
 
