@@ -133,7 +133,7 @@ git clone https://github.com/dilafar/anguler-springboot-aws-migration.git
 cd anguler-springboot-aws-migration
 ```
 
-### 2️⃣ Backend Microservice Setup (Spring Boot)
+### 2️⃣ Backend Microservices Setup (Spring Boot)
 
 #### 🔹 Build & Run Locally
 
