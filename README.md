@@ -117,7 +117,15 @@ This project is a full-stack, microservices-based system developed using **Sprin
 
 ## 🚀 Setup & Installation
 ### Starting services locally without Docker
-
+Every microservice is a Spring Boot application and can be started locally using an IDE or the ../mvnw spring-boot:run command. Please note that the supporting services, Config Server and Eureka Server, must be started before any other applications. Additionally, the Gateway Server must be started before the Accounts, Loans, and Cards services.
+If everything goes well, you can access the following services at given location:
+* Eureka Server - http://localhost:8070
+* Config Server - http://localhost:8071
+* Gateway Server - http://localhost:8072
+* Accounts Server - http://localhost:8080
+* Cards Server - http://localhost:9000
+* Loans Server - http://localhost:8090
+* ReactJS(Vite) frontend - http://localhost:5173
 ### 1️⃣ Clone the Repository
 
 ```sh
@@ -125,24 +133,24 @@ git clone https://github.com/dilafar/anguler-springboot-aws-migration.git
 cd anguler-springboot-aws-migration
 ```
 
-### 2️⃣ Backend Setup (Spring Boot)
+### 2️⃣ Backend Microservice Setup (Spring Boot)
 
 #### 🔹 Build & Run Locally
 
 ```sh
-cd employeemanager
+cd <microservice>
 mvn clean install
 mvn spring-boot:run
 ```
 
-### 3️⃣ Frontend Setup (Angular)
+### 3️⃣ Frontend Setup (ReactJS)
 
 #### 🔹 Install Dependencies & Start
 
 ```sh
-cd employeemanagerfrontend
+cd frontend
 npm install
-ng serve --open
+npm run dev
 ```
 
 ### Starting services locally with docker-compose
