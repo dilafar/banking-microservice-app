@@ -113,7 +113,8 @@ This project is a full-stack, microservices-based system developed using **Sprin
 - Ensure all services are using encrypted and authenticated connections within the mesh.  
 - Deploy applications and configure Istio traffic rules (VirtualServices, DestinationRules).
 
-![aws-vault-cert](https://github.com/user-attachments/assets/873afc02-8386-4b46-a5fa-b4a5117a5df7)
+![awsbanking](https://github.com/user-attachments/assets/0b4b7f43-bf8e-4e97-9bf8-9618370934a1)
+
 
 ## 🚀 Setup & Installation
 ### Starting services locally without Docker
