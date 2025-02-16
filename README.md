@@ -65,14 +65,14 @@ This project is a full-stack, microservices-based system developed using **Sprin
 #### 🔹 **Certificate Manager**
 - Let's Encrypt
 
-### Azure Services Used
+### 🏢 Azure Services Used
 
 - **Networking & Load Balancing**: Public IP Address , Azure LoadBalancer, Azure DNS, Azure Virtual Network
 - **Compute & Container Management**: AKS, Azure VM
 - **Storage & Secrets Management**: Azure Key Vault, Azure MySQL Database
 - **Container Registry & CDN**: Azure Container Registry, Azure CloudFront
 
-### Nginx Ingress Controller Installation
+### 🏢 Nginx Ingress Controller Installation
 #### To install the Nginx Ingress Controller:
 
 ### 1. Retrieve Node Resource Group
@@ -106,7 +106,7 @@ az network public-ip create --resource-group MC_aks-rg_aks-demo_eastus --name AK
      --set controller.service.loadBalancerIP="172.191.40.85"
    ```
 
-### Domain & DNS Management
+### 🏢 Domain & DNS Management
 
 - **Azure Tenant ID**: Retrieve using `az account show --query "tenantId"`
 - **Azure Subscription ID**: Retrieve using `az account show --query "id"`
@@ -135,7 +135,7 @@ az network public-ip create --resource-group MC_aks-rg_aks-demo_eastus --name AK
 - Associate MSI with AKS Cluster Virtual Machine Scale Sets (VMSS)
 - Create Kubernetes Secret for the `azure.json` file and Deploy ExternalDNS
 
-### Setting Up Azure Key Vault with External Secrets on AKS
+### 🏢 Setting Up Azure Key Vault with External Secrets on AKS
 
 - Before setting up External Secrets, collect the necessary details:
    - **Azure Tenant ID**: Retrieve using `az account show --query "tenantId"`
@@ -220,7 +220,7 @@ spec:
       key: secret/dbpassword
 ```
 
-### Istio Installation on Azure AKS
+### 🏢 ### Istio Installation on Azure AKS
 
 - Add the official Istio Helm repository to your Helm configuration.  
 - Update Helm repositories to fetch the latest charts.    
@@ -242,7 +242,7 @@ spec:
 
 
 ## 🚀 Setup & Installation
-### Starting services locally without Docker
+### 🏢 Starting services locally without Docker
 Every microservice is a Spring Boot application and can be started locally using an IDE or the ../mvnw spring-boot:run command. Please note that the supporting services, Config Server and Eureka Server, must be started before any other applications. Additionally, the Gateway Server must be started before the Accounts, Loans, and Cards services.
 If everything goes well, you can access the following services at given location:
 * Eureka Server - http://localhost:8070
@@ -279,7 +279,7 @@ npm install
 npm run dev
 ```
 
-### Starting services locally with docker-compose
+### 🏢 Starting services locally with docker-compose
 
 ### 1️⃣ Start All Services
 
@@ -329,7 +329,7 @@ Application Diagram
 
 ![Frame 7](https://github.com/user-attachments/assets/ac11fde0-f234-463a-8649-9f45740f3950)
 
-Architecture diagram
+Architecture Diagram
 
 ![Vulnarability Scanning](https://github.com/user-attachments/assets/784e0bac-4881-496d-851f-6e20fecdf7c0)
 
