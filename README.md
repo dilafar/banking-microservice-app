@@ -62,6 +62,9 @@ This project is a full-stack, microservices-based system developed using **Sprin
 #### 🔹 **Service Mesh**
 - Istio Service Mesh
 
+#### 🔹 **Certificate Manager**
+- Let's Encrypt
+
 ### AWS Services Used
 
 - **Networking & Load Balancing**: NLB(Network LoadBalancer), Route 53, AWS Certificate Manager, VPC
