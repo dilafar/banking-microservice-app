@@ -65,21 +65,21 @@ This project is a full-stack, microservices-based system developed using **Sprin
 #### 🔹 **Certificate Manager**
 - Let's Encrypt
 
-### AWS Services Used
+### 🏢 AWS Services Used
 
 - **Networking & Load Balancing**: NLB(Network LoadBalancer), Route 53, AWS Certificate Manager, VPC
 - **Compute & Container Management**: Amazon EKS, Amazon EC2
 - **Storage & Secrets Management**: AWS Secrets Manager, AWS S3 Bucket
 - **Container Registry & CDN**: Amazon ECR, Amazon CloudFront
 
-### AWS Load Balancer Controller Installation
+### 🏢 AWS Load Balancer Controller Installation
 #### To install the AWS Load Balancer Controller:
 
 - An IAM policy was created to grant the necessary permissions.
 - An IAM service account was created and linked to the policy.
 - The AWS Load Balancer Controller was installed using Helm, utilizing the created service account.
 
-### Domain & DNS Management
+### 🏢 Domain & DNS Management
 
 - The domain was registered on Google Cloud and hosted on AWS Route 53.
 - Kubernetes ExternalDNS was used to manage DNS records dynamically, ensuring a cloud-agnostic approach.
@@ -88,7 +88,7 @@ This project is a full-stack, microservices-based system developed using **Sprin
 - Since the application uses an Application Load Balancer (ALB), ExternalDNS manages DNS records via Kubernetes ingress resources.
 - TLS certificates were provisioned using AWS Certificate Manager, ensuring secure HTTPS connections through Kubernetes ingress resources.
 
-### External Secrets Management with AWS
+### 🏢 External Secrets Management with AWS
 
 - AWS Secrets Manager is used to store and manage sensitive data such as API keys, database credentials, etc.
 - Deploy the `ExternalSecrets` operator in Kubernetes to manage the synchronization of secrets from AWS Secrets Manager into Kubernetes Secrets.
@@ -99,7 +99,7 @@ This project is a full-stack, microservices-based system developed using **Sprin
 - The operator fetches secrets from AWS Secrets Manager and syncs them into Kubernetes namespaces, ensuring secure and seamless access to sensitive data.
 - This setup enables cloud-agnostic secret management while securely integrating AWS Secrets Manager with Kubernetes.
 
-### Istio Installation on AWS EKS
+### 🏢 Istio Installation on AWS EKS
 
 - Add the official Istio Helm repository to your Helm configuration.  
 - Update Helm repositories to fetch the latest charts.    
@@ -121,7 +121,7 @@ This project is a full-stack, microservices-based system developed using **Sprin
 
 
 ## 🚀 Setup & Installation
-### Starting services locally without Docker
+### 🏢 Starting services locally without Docker
 Every microservice is a Spring Boot application and can be started locally using an IDE or the ../mvnw spring-boot:run command. Please note that the supporting services, Config Server and Eureka Server, must be started before any other applications. Additionally, the Gateway Server must be started before the Accounts, Loans, and Cards services.
 If everything goes well, you can access the following services at given location:
 * Eureka Server - http://localhost:8070
@@ -158,7 +158,7 @@ npm install
 npm run dev
 ```
 
-### Starting services locally with docker-compose
+### 🏢 Starting services locally with docker-compose
 
 ### 1️⃣ Start All Services
 
@@ -208,7 +208,7 @@ Application Diagram
 
 ![Frame 7](https://github.com/user-attachments/assets/ac11fde0-f234-463a-8649-9f45740f3950)
 
-Architecture diagram
+Architecture Diagram
 
 ![ee2](https://github.com/user-attachments/assets/837c8dd7-a098-48f0-b89a-80f5a2245ec8)
 
@@ -218,9 +218,6 @@ Cluster Diagram
 
 
 ## Database Configuration
-
-### 🏢 Default Database (HSQLDB)
-By default, the Employee Management application uses an **in-memory database (HSQLDB)**. This database is automatically populated with data at startup. 
 
 ### 🛠️ MySQL Configuration
 If a persistent database is required, the application can be configured to use **MySQL**. The necessary **Connector/J (MySQL JDBC Driver)** dependency is already included in the `pom.xml` file.
@@ -250,7 +247,7 @@ Modify the `application.yml` file to include the **AWS RDS** database configurat
 ```yaml
 spring:
   datasource:
-    url: jdbc:mysql://<RDS_HOST>:3306/employeemanager
+    url: jdbc:mysql://<RDS_HOST>:3306/
     username: <RDS_USERNAME>
     password: <RDS_PASSWORD>
     driver-class-name: com.mysql.cj.jdbc.Driver
