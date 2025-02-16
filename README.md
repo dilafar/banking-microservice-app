@@ -385,7 +385,7 @@ Run the application with the configured **AWS RDS** database:
 mvn spring-boot:run
 ```
 
-Now, the Employee Management application is connected to a persistent **AWS RDS MySQL database** and ready for production deployment. 🚀
+Now, the Bank Management System application is connected to a persistent **Azure MySQL database** and ready for production deployment. 🚀
 
 ## 🧾 Argocd App
 
