@@ -25,7 +25,7 @@
       <module name="eurekaserver" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="loans" options="-parameters" />
-      <module name="message" options="-parameters" />
+      <module name="message" options="" />
     </option>
   </component>
 </project>
