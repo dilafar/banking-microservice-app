@@ -247,7 +247,7 @@ Modify the `application.yml` file to include the **AWS RDS** database configurat
 ```yaml
 spring:
   datasource:
-    url: jdbc:mysql://<RDS_HOST>:3306/
+    url: jdbc:mysql://<RDS_HOST>:3306/<database-name>
     username: <RDS_USERNAME>
     password: <RDS_PASSWORD>
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -264,7 +264,7 @@ Run the application with the configured **AWS RDS** database:
 mvn spring-boot:run
 ```
 
-Now, the Employee Management application is connected to a persistent **AWS RDS MySQL database** and ready for production deployment. 🚀
+Now, the Bank Management System application is connected to a persistent **AWS RDS MySQL database** and ready for production deployment. 🚀
 
 ## 🧾 Argocd App
 
