@@ -62,41 +62,162 @@ This project is a full-stack, microservices-based system developed using **Sprin
 #### 🔹 **Service Mesh**
 - Istio Service Mesh
 
-### AWS Services Used
+### Azure Services Used
 
-- **Networking & Load Balancing**: NLB(Network LoadBalancer), Route 53, AWS Certificate Manager, VPC
-- **Compute & Container Management**: Amazon EKS, Amazon EC2
-- **Storage & Secrets Management**: AWS Secrets Manager, AWS S3 Bucket
-- **Container Registry & CDN**: Amazon ECR, Amazon CloudFront
+- **Networking & Load Balancing**: Public IP Address , Azure LoadBalancer, Azure DNS, Azure Virtual Network
+- **Compute & Container Management**: AKS, Azure VM
+- **Storage & Secrets Management**: Azure Key Vault, Azure MySQL Database
+- **Container Registry & CDN**: Azure Container Registry, Azure CloudFront
 
-### AWS Load Balancer Controller Installation
-#### To install the AWS Load Balancer Controller:
+### Nginx Ingress Controller Installation
+#### To install the Nginx Ingress Controller:
 
-- An IAM policy was created to grant the necessary permissions.
-- An IAM service account was created and linked to the policy.
-- The AWS Load Balancer Controller was installed using Helm, utilizing the created service account.
+### 1. Retrieve Node Resource Group
+To get the node resource group for your AKS cluster, run:
+```sh
+az aks show --resource-group aks-rg1 --name aksdemo1 --query nodeResourceGroup -o tsv
+```
+### 2. Create a Public IP Address for Ingress Controller
+Create a static public IP address for the ingress controller:
+```sh
+az network public-ip create --resource-group MC_aks-rg_aks-demo_eastus --name AKSPublicIPForIngress --sku Standard --allocation-method static --query publicIp.ipAddress -o tsv
+```
+### 3. Install NGINX Ingress Controller
+1. Create a namespace for the ingress controller:
+   ```sh
+   kubectl create namespace ingress-controller
+   ```
+2. Add the official stable repository and update Helm charts:
+   ```sh
+   helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+   helm repo update
+   ```
+3. Install the ingress controller using Helm:
+   ```sh
+   helm install ingress-nginx ingress-nginx/ingress-nginx \
+     --namespace ingress-controller \
+     --set controller.replicaCount=2 \
+     --set controller.nodeSelector."kubernetes\.io/os"=linux \
+     --set defaultBackend.nodeSelector."kubernetes\.io/os"=linux \
+     --set controller.service.externalTrafficPolicy=Local \
+     --set controller.service.loadBalancerIP="172.191.40.85"
+   ```
 
 ### Domain & DNS Management
 
-- The domain was registered on Google Cloud and hosted on AWS Route 53.
-- Kubernetes ExternalDNS was used to manage DNS records dynamically, ensuring a cloud-agnostic approach.
-- To handle Route 53 access, an IAM policy and IAM service account were created, assigning the necessary IAM role to the Kubernetes service account.
-- The ExternalDNS deployment was configured with the service account, allowing DNS record management through Kubernetes ingress or service resources.
-- Since the application uses an Application Load Balancer (ALB), ExternalDNS manages DNS records via Kubernetes ingress resources.
-- TLS certificates were provisioned using AWS Certificate Manager, ensuring secure HTTPS connections through Kubernetes ingress resources.
+- **Azure Tenant ID**: Retrieve using `az account show --query "tenantId"`
+- **Azure Subscription ID**: Retrieve using `az account show --query "id"`
+- The `azure.json` file contains authentication details for External DNS to interact with Azure DNS. It includes:
+   - **Tenant ID**
+   - **Subscription ID**
+   - **Resource Group containing DNS zones**
+   - **User Assigned Managed Identity ID**
+   ```json
+   {
+     "tenantId": "<your-tenant-id>",
+     "subscriptionId": "<your-subscription-id>",
+     "resourceGroup": "dns-zones", 
+     "useManagedIdentityExtension": true,
+     "userAssignedIdentityID": "<your-msi-id>"  
+   }
+   ```
+- The `external-dns.yml` file contains Kubernetes resources required for deploying ExternalDNS:
+   - **ServiceAccount**: Defines access permissions.
+   - **ClusterRole & ClusterRoleBinding**: Grants necessary RBAC permissions.
+   - **Deployment**: Deploys External DNS with the correct provider settings for Azure.
+- Create Managed Service Identity (MSI) for External DNS
+- Assign Azure Role to MSI
+   - **Role**: `Contributor`
+- Take **Client ID** from the MSI **Overview** tab and update `azure.json` under `userAssignedIdentityID`.
+- Associate MSI with AKS Cluster Virtual Machine Scale Sets (VMSS)
+- Create Kubernetes Secret for the `azure.json` file and Deploy ExternalDNS
 
-### External Secrets Management with AWS
+### Setting Up Azure Key Vault with External Secrets on AKS
 
-- AWS Secrets Manager is used to store and manage sensitive data such as API keys, database credentials, etc.
-- Deploy the `ExternalSecrets` operator in Kubernetes to manage the synchronization of secrets from AWS Secrets Manager into Kubernetes Secrets.
-- Create an IAM policy and role in AWS that provides the necessary permissions to access AWS Secrets Manager.
-- Attach the policy to the IAM role.
-- Associate the IAM role with a Kubernetes service account using AWS IAM Roles for Service Accounts (IRSA) to allow the external secrets operator to authenticate and fetch secrets from AWS.
-- Configure the `ExternalSecrets` deployment to use the service account, enabling the automatic synchronization of secrets into Kubernetes secrets.
-- The operator fetches secrets from AWS Secrets Manager and syncs them into Kubernetes namespaces, ensuring secure and seamless access to sensitive data.
-- This setup enables cloud-agnostic secret management while securely integrating AWS Secrets Manager with Kubernetes.
+- Before setting up External Secrets, collect the necessary details:
+   - **Azure Tenant ID**: Retrieve using `az account show --query "tenantId"`
+   - **Azure Subscription ID**: Retrieve using `az account show --query "id"`
+- Add the External Secrets Helm chart repository and install it in your AKS cluster to manage secrets.
+   ```sh
+   helm repo add external-secrets https://charts.external-secrets.io
+   helm install external-secrets external-secrets/external-secrets --namespace external-secrets --create-namespace --set installCRDs=true
+   ```
+- Create an Azure Key Vault to securely store your secrets.
+   ```sh
+   az keyvault create --resource-group aks-rg --name keyvault-aks-db
+   ```
+- Add a secret, for example, a database password, to your Key Vault.
+   ```sh
+   az keyvault secret set --vault-name keyvault-aks-db --name "dbpassword" --value "<password>"
+   ```
+- Create a managed identity that will be used by AKS to access the Azure Key Vault.
+   ```sh
+   az identity create --name access-keyvault --resource-group aks-rg
+   ```
+- Assign the necessary permissions for the managed identity to access secrets in Azure Key Vault.
+   ```sh
+   export USER_ASSIGNED_IDENTITY_CLIENT_ID="$(az identity show --name access-keyvault --resource-group aks-rg --query 'clientId' -otsv)"
+   export USER_ASSIGNED_IDENTITY_OBJECT_ID="$(az identity show --name access-keyvault --resource-group aks-rg --query 'principalId' -otsv)"
+   az keyvault set-policy --name keyvault-aks-db --secret-permissions get --object-id "${USER_ASSIGNED_IDENTITY_OBJECT_ID}"
+   ```
+- Additionally, assign the `Key Vault Secrets Officer` role to the managed identity.
+   ```sh
+   az role assignment create --assignee "${USER_ASSIGNED_IDENTITY_OBJECT_ID}" --role "Key Vault Secrets Officer" --scope /subscriptions/<subscription-id>/resourceGroups/aks-rg/providers/Microsoft.KeyVault/vaults/keyvault-aks-db
+   ```
+- Create a Kubernetes service account for External Secrets with Azure Workload Identity annotations.
+   ```yaml
+   apiVersion: v1
+   kind: ServiceAccount
+   metadata:
+     annotations:
+       azure.workload.identity/client-id: ${USER_ASSIGNED_IDENTITY_CLIENT_ID}
+       azure.workload.identity/tenant-id: ${TENANT_ID}
+     name: external-secrets-sa
+     namespace: external-secrets
+   ```
+- Replace `${USER_ASSIGNED_IDENTITY_CLIENT_ID}` and `${TENANT_ID}` with the correct values.
+- Federate the Azure Managed Identity with your AKS cluster by creating a federated identity credential.
+   ```sh
+   export SERVICE_ACCOUNT_ISSUER="$(az aks show --resource-group aks-rg --name aks-demo --query 'oidcIssuerProfile.issuerUrl' -otsv)"
+   az identity federated-credential create --name "kubernetes-federated-credential" --identity-name access-keyvault --resource-group aks-rg --issuer "${SERVICE_ACCOUNT_ISSUER}" --subject       "system:serviceaccount:external-secrets:external-secrets-sa"
+   ```
+- Create a `ClusterSecretStore` resource to configure External Secrets to fetch secrets from Azure Key Vault.
+```yaml
+apiVersion: external-secrets.io/v1beta1
+kind: ClusterSecretStore
+metadata:
+  name: azure-secret-store
+spec:
+  provider:
+    azurekv:
+      authType: WorkloadIdentity
+      vaultUrl: "https://keyvault-aks-db.vault.azure.net"
+      serviceAccountRef:
+        name: external-secrets-sa
+        namespace: external-secrets
+```
+- Now, create an `ExternalSecret` resource to pull the secret from Azure Key Vault into Kubernetes.
+```yaml
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: mysql-db-password-secret
+  namespace: employee
+spec:
+  refreshInterval: "1h"
+  secretStoreRef:
+    name: azure-secret-store
+    kind: ClusterSecretStore
+  target:
+    name: mysql-db-password
+    creationPolicy: Owner
+  data:
+  - secretKey: password
+    remoteRef:
+      key: secret/dbpassword
+```
 
-### Istio Installation on AWS EKS
+### Istio Installation on Azure AKS
 
 - Add the official Istio Helm repository to your Helm configuration.  
 - Update Helm repositories to fetch the latest charts.    
@@ -104,10 +225,10 @@ This project is a full-stack, microservices-based system developed using **Sprin
 - Install the Istio control plane (`istiod`) in the `istio-system` namespace.  
 - This component handles service discovery, traffic routing, and security policies.  
 - Install an Istio ingress gateway to manage incoming external traffic.  
-- Configure it to use an AWS Network Load Balancer (NLB) for handling requests.  
-- Create a security group that allows inbound HTTP (80) and HTTPS (443) traffic.  
-- Attach this security group to the Istio ingress gateway for external access.  
-- Store `istio-cert.pem` and `istio-key.pem` in AWS Secrets Manager.  
+- Configure it to use an Azure Load Balancer for handling requests.  
+- Create a network security group that allows inbound HTTP (80) and HTTPS (443) traffic.  
+- Attach this network security group to the subnet within the cluster's virtual network to enable external access.  
+- Store `istio-cert.pem` and `istio-key.pem` in Azure Key Vault.  
 - Fetch the certificate through External Secrets and configure Istio to allow HTTPS traffic from the gateway.  
 - Configure Istio to enforce mTLS for secure service-to-service communication.  
 - Ensure all services are using encrypted and authenticated connections within the mesh.  
