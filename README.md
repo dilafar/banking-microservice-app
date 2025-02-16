@@ -211,7 +211,7 @@ Architecture diagram
 
 Cluster Diagram
 
-![Frame 11](https://github.com/user-attachments/assets/9b571e6b-ab6e-41bd-bed0-aa8561f13193)
+![Frame 9](https://github.com/user-attachments/assets/26c7870e-d43f-4d2b-a860-ac234163e820)
 
 
 ## Database Configuration
