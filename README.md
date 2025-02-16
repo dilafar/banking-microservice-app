@@ -337,9 +337,6 @@ Cluster Diagram
 
 ## Database Configuration
 
-### 🏢 Default Database (HSQLDB)
-By default, the Employee Management application uses an **in-memory database (HSQLDB)**. This database is automatically populated with data at startup. 
-
 ### 🛠️ MySQL Configuration
 If a persistent database is required, the application can be configured to use **MySQL**. The necessary **Connector/J (MySQL JDBC Driver)** dependency is already included in the `pom.xml` file.
 
@@ -356,21 +353,21 @@ docker run -e MYSQL_ROOT_PASSWORD=petclinic \
 Alternatively, you can install **MySQL Community Server 5.7 GA** manually from the official [MySQL downloads page](https://dev.mysql.com/downloads/).
 
 ### 🔧 Configuring MySQL for Production
-For **production deployment**, it is recommended to use **AWS RDS (Relational Database Service)** to ensure scalability and reliability.
+For **production deployment**, it is recommended to use **Azure MySql (Relational Database Service)** to ensure scalability and reliability.
 
-### 1️⃣ Set Up an AWS RDS Database
-- Create an **Amazon RDS instance** with **MySQL** as the database engine.
+### 1️⃣ Set Up an Azure MySql Database
+- Create an **Azure MySql instance** with **MySQL** as the database engine.
 - Configure **username, password, and host** details.
 
-### 2️⃣ Update `application.yml` with RDS Configuration
-Modify the `application.yml` file to include the **AWS RDS** database configuration:
+### 2️⃣ Update `application.yml` with Azure MySql Configuration
+Modify the `application.yml` file to include the **Azure MySql** database configuration:
 
 ```yaml
 spring:
   datasource:
-    url: jdbc:mysql://<RDS_HOST>:3306/employeemanager
-    username: <RDS_USERNAME>
-    password: <RDS_PASSWORD>
+    url: jdbc:mysql://<Azure_MySql_HOST>:3306/employeemanager
+    username: <Azure_MySql_USERNAME>
+    password: <Azure_MySql_PASSWORD>
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
