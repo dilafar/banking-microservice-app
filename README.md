@@ -207,7 +207,7 @@ Application Diagram
 
 Architecture diagram
 
-![ee2](https://github.com/user-attachments/assets/837c8dd7-a098-48f0-b89a-80f5a2245ec8)
+![Vulnarability Scanning](https://github.com/user-attachments/assets/784e0bac-4881-496d-851f-6e20fecdf7c0)
 
 Cluster Diagram
 
