@@ -1,8 +1,8 @@
-# Full CI/CD pipelines for employee management application, a Java-based dynamic web application with a database.
+# Complete CI/CD pipelines for a Bank Management System, a dynamic web application built with a microservices architecture using Spring Cloud.
 
 ## Overview
 
-This project is a full-stack microservice based System developed using **Spring Boot** for the backend and **React** for the frontend. It follows **DevSecOps** principles and is deployed on **AWS** using Kubernetes.
+This project is a full-stack, microservices-based system developed using **Spring Boot** for the backend and **React** for the frontend. It follows **DevSecOps** principles and is deployed on **AWS** using Kubernetes. The Spring Boot Microservice Banking Application manages accounts, cards, and loans through a web-based platform built on a microservices architecture. It adheres to Spring Cloud best practices, including Netflix Eureka for service discovery, Spring Cloud Config for centralized configuration, and Spring Cloud Gateway for API management.
 
 ## 🛠 Technologies Used
 
@@ -85,11 +85,49 @@ This project is a full-stack microservice based System developed using **Spring 
 - Since the application uses an Application Load Balancer (ALB), ExternalDNS manages DNS records via Kubernetes ingress resources.
 - TLS certificates were provisioned using AWS Certificate Manager, ensuring secure HTTPS connections through Kubernetes ingress resources.
 
-![aws-vault-cert](https://github.com/user-attachments/assets/873afc02-8386-4b46-a5fa-b4a5117a5df7)
+### External Secrets Management with AWS
+
+- AWS Secrets Manager is used to store and manage sensitive data such as API keys, database credentials, etc.
+- Deploy the `ExternalSecrets` operator in Kubernetes to manage the synchronization of secrets from AWS Secrets Manager into Kubernetes Secrets.
+- Create an IAM policy and role in AWS that provides the necessary permissions to access AWS Secrets Manager.
+- Attach the policy to the IAM role.
+- Associate the IAM role with a Kubernetes service account using AWS IAM Roles for Service Accounts (IRSA) to allow the external secrets operator to authenticate and fetch secrets from AWS.
+- Configure the `ExternalSecrets` deployment to use the service account, enabling the automatic synchronization of secrets into Kubernetes secrets.
+- The operator fetches secrets from AWS Secrets Manager and syncs them into Kubernetes namespaces, ensuring secure and seamless access to sensitive data.
+- This setup enables cloud-agnostic secret management while securely integrating AWS Secrets Manager with Kubernetes.
+
+### Istio Installation on AWS EKS
+
+- Add the official Istio Helm repository to your Helm configuration.  
+- Update Helm repositories to fetch the latest charts.    
+- Install the `istio-base` chart to create the necessary Istio Custom Resource Definitions (CRDs).  
+- Install the Istio control plane (`istiod`) in the `istio-system` namespace.  
+- This component handles service discovery, traffic routing, and security policies.  
+- Install an Istio ingress gateway to manage incoming external traffic.  
+- Configure it to use an AWS Network Load Balancer (NLB) for handling requests.  
+- Create a security group that allows inbound HTTP (80) and HTTPS (443) traffic.  
+- Attach this security group to the Istio ingress gateway for external access.  
+- Store `istio-cert.pem` and `istio-key.pem` in AWS Secrets Manager.  
+- Fetch the certificate through External Secrets and configure Istio to allow HTTPS traffic from the gateway.  
+- Configure Istio to enforce mTLS for secure service-to-service communication.  
+- Ensure all services are using encrypted and authenticated connections within the mesh.  
+- Deploy applications and configure Istio traffic rules (VirtualServices, DestinationRules).
+
+
+![awsbanking](https://github.com/user-attachments/assets/0b4b7f43-bf8e-4e97-9bf8-9618370934a1)
+
 
 ## 🚀 Setup & Installation
 ### Starting services locally without Docker
-
+Every microservice is a Spring Boot application and can be started locally using an IDE or the ../mvnw spring-boot:run command. Please note that the supporting services, Config Server and Eureka Server, must be started before any other applications. Additionally, the Gateway Server must be started before the Accounts, Loans, and Cards services.
+If everything goes well, you can access the following services at given location:
+* Eureka Server - http://localhost:8070
+* Config Server - http://localhost:8071
+* Gateway Server - http://localhost:8072
+* Accounts Server - http://localhost:8080
+* Cards Server - http://localhost:9000
+* Loans Server - http://localhost:8090
+* ReactJS(Vite) frontend - http://localhost:5173
 ### 1️⃣ Clone the Repository
 
 ```sh
@@ -97,24 +135,24 @@ git clone https://github.com/dilafar/anguler-springboot-aws-migration.git
 cd anguler-springboot-aws-migration
 ```
 
-### 2️⃣ Backend Setup (Spring Boot)
+### 2️⃣ Backend Microservices Setup (Spring Boot)
 
 #### 🔹 Build & Run Locally
 
 ```sh
-cd employeemanager
+cd <microservice>
 mvn clean install
 mvn spring-boot:run
 ```
 
-### 3️⃣ Frontend Setup (Angular)
+### 3️⃣ Frontend Setup (ReactJS)
 
 #### 🔹 Install Dependencies & Start
 
 ```sh
-cd employeemanagerfrontend
+cd frontend
 npm install
-ng serve --open
+npm run dev
 ```
 
 ### Starting services locally with docker-compose
@@ -128,7 +166,8 @@ docker-compose up -d
 ```
 The -d flag runs the services in detached mode.
 
-![docker-compose-up](https://github.com/user-attachments/assets/13172c0b-ef56-48f6-a3d4-568025f24736)
+![docker-compose-ms](https://github.com/user-attachments/assets/67449473-4041-4109-bc7c-914582d6c42d)
+
 
 ### 2️⃣ Verify Running Containers
 
@@ -164,17 +203,15 @@ docker-compose down
 
 Application Diagram
 
-![Frame 7](https://github.com/user-attachments/assets/5c3e61fe-fa36-4caf-815e-ebe4064b0a3f)
+![Frame 7](https://github.com/user-attachments/assets/ac11fde0-f234-463a-8649-9f45740f3950)
 
+Architecture diagram
 
-Architecture Diagram
+![ee2](https://github.com/user-attachments/assets/837c8dd7-a098-48f0-b89a-80f5a2245ec8)
 
-![Vulnarability Scanning](https://github.com/user-attachments/assets/784e0bac-4881-496d-851f-6e20fecdf7c0)
+Cluster Diagram
 
-
-Cluster Architecture
-
-![Frame 9](https://github.com/user-attachments/assets/26c7870e-d43f-4d2b-a860-ac234163e820)
+![Frame 11](https://github.com/user-attachments/assets/9b571e6b-ab6e-41bd-bed0-aa8561f13193)
 
 
 ## Database Configuration
