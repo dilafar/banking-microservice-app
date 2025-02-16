@@ -62,6 +62,9 @@ This project is a full-stack, microservices-based system developed using **Sprin
 #### 🔹 **Service Mesh**
 - Istio Service Mesh
 
+#### 🔹 **Certificate Manager**
+- Let's Encrypt
+
 ### Azure Services Used
 
 - **Networking & Load Balancing**: Public IP Address , Azure LoadBalancer, Azure DNS, Azure Virtual Network
