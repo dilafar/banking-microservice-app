@@ -368,7 +368,7 @@ Modify the `application.yml` file to include the **Azure MySql** database config
 ```yaml
 spring:
   datasource:
-    url: jdbc:mysql://<Azure_MySql_HOST>:3306/employeemanager
+    url: jdbc:mysql://<Azure_MySql_HOST>:3306/<database-name>
     username: <Azure_MySql_USERNAME>
     password: <Azure_MySql_PASSWORD>
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -379,7 +379,7 @@ spring:
 ```
 
 ### 3️⃣ Start the Application
-Run the application with the configured **AWS RDS** database:
+Run the application with the configured **Azure MySql** database:
 
 ```sh
 mvn spring-boot:run
