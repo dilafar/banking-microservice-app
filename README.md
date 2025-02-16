@@ -325,15 +325,15 @@ docker-compose down
 
 
 
-Application Diagram
+## 🧾 Application Diagram
 
 ![Frame 7](https://github.com/user-attachments/assets/ac11fde0-f234-463a-8649-9f45740f3950)
 
-Architecture Diagram
+## 🧾 Architecture Diagram
 
 ![Vulnarability Scanning](https://github.com/user-attachments/assets/784e0bac-4881-496d-851f-6e20fecdf7c0)
 
-Cluster Diagram
+## 🧾 Cluster Diagram
 
 ![Frame 9](https://github.com/user-attachments/assets/26c7870e-d43f-4d2b-a860-ac234163e820)
 
