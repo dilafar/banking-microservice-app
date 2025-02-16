@@ -216,6 +216,9 @@ Cluster Diagram
 
 ![Frame 11](https://github.com/user-attachments/assets/9b571e6b-ab6e-41bd-bed0-aa8561f13193)
 
+## 🧾 Backup and Restore
+
+![backup2](https://github.com/user-attachments/assets/c2ac3a8b-63bd-4698-a606-a35af3f9f95c)
 
 ## Database Configuration
 
