@@ -5,7 +5,7 @@ metadata:
   namespace: banking-ns
 spec:
   hosts:
-    - "awsbanking.employee-mgmt.com"
+    - "azurebanking.employee-mgmt.com"
   gateways:
     - istio-gateway
   http:
