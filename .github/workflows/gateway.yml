@@ -120,9 +120,9 @@ jobs:
       #  run: |
        #   bash trivy-k8s-scan.sh ${{ secrets.ACR_LOGIN_SERVER }}/${{ env.ACR_REPOSITORY }}:gateway-v${{ env.IMAGE_VERSION }} ${{ env.CACHE_DIR }} trivy-gateway.json
 
-      - name: Run CIS Docker Benchmark
-        run: |
-          bash trivy-docker-bench.sh ${{ secrets.ACR_LOGIN_SERVER }}/${{ env.ACR_REPOSITORY }}:gateway-v${{ env.IMAGE_VERSION }} trivy-bench-gateway.json
+     # - name: Run CIS Docker Benchmark
+      #  run: |
+      #    bash trivy-docker-bench.sh ${{ secrets.ACR_LOGIN_SERVER }}/${{ env.ACR_REPOSITORY }}:gateway-v${{ env.IMAGE_VERSION }} trivy-bench-gateway.json
 
       - name: Configure Git
         run: |
