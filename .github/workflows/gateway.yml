@@ -133,8 +133,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git pull origin main || true
+          git pull origin microservice-azure || true
           cp gateway/hadolint_gateway.txt reports/docker-lint/hadolint_gateway.txt
           git add .
           git commit -m "gateway microservice changes updated by GitHub Actions"
-          git push origin main
+          git push origin microservice-azure
