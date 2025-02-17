@@ -32,16 +32,16 @@ const Cabin = styled.div`
 //  color: var(--color-green-700); 
 //`;
 //isLoading,
-function UserRow({ cabin }) {
+function UserRow({ customer }) {
  
   return (
 
       <TableRow role="row">
-        <Cabin>{cabin.name}</Cabin>
-        <Cabin>{cabin.email}</Cabin>
-        <Cabin>{cabin.loansDto.loanNumber}</Cabin>
-        <Cabin>{cabin.cardsDto.cardNumber}</Cabin>
-        <Cabin>{cabin.accountsDto.accountNumber}</Cabin>
+        <Cabin>{customer.name}</Cabin>
+        <Cabin>{customer.email}</Cabin>
+        <Cabin>{customer.loansDto.loanNumber}</Cabin>
+        <Cabin>{customer.cardsDto.cardNumber}</Cabin>
+        <Cabin>{customer.accountsDto.accountNumber}</Cabin>
       </TableRow>
    
   );

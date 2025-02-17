@@ -1,6 +1,6 @@
 services:
   client:
-    image: ghcr.io/dilafar/banking-microservice-app/frontend:v1.0
+    image: ghcr.io/dilafar/banking-microservice-app/frontend:v1.1
     container_name: frontend
     ports:
       - "443:443"

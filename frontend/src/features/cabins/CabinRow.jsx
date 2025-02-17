@@ -1,12 +1,11 @@
 /* eslint-disable react/prop-types */
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import CreateCabinForm from './CreateCabinForm';
-import { useDeleteEmployee } from '../../hooks/useDeleteEmployee';
 import { HiTrash } from 'react-icons/hi2';
 import Modal from '../../ui/Modal';
 import ConfirmDelete from '../../ui/ConfirmDelete';
 import Menus from '../../ui/Menus';
+import { useDeleteCard } from '../../hooks/cards/useDeleteCards';
 
 
  const TableRow = styled.div`
@@ -39,23 +38,23 @@ const Cabin = styled.div`
  // color: var(--color-green-700); 
 //`;
 //isLoading,
-function CabinRow({ cabin }) {
-  const {isDeleting, deleteEmployee} = useDeleteEmployee();
-  const {id: employeeId} = cabin;
+function CabinRow({ card }) {
+  const {isDeleting , deleteCard} = useDeleteCard();
+  const {mobileNumber: Id} = card;
  
   return (
 
       <TableRow role="row">
-        <Cabin>{cabin.cardsDto.cardNumber}</Cabin>
-        <Cabin>{cabin.cardsDto.cardType}</Cabin>
-        <Cabin>{cabin.cardsDto.totalLimit}</Cabin>
-        <Cabin>{cabin.cardsDto.amountUsed}</Cabin>
-        <Cabin>{cabin.cardsDto.availableAmount}</Cabin>
+        <Cabin>{card.cardNumber}</Cabin>
+        <Cabin>{card.cardType}</Cabin>
+        <Cabin>{card.totalLimit}</Cabin>
+        <Cabin>{card.amountUsed}</Cabin>
+        <Cabin>{card.availableAmount}</Cabin>
         <div>
           <Modal>
             <Menus.Menu>
-              <Menus.Toggle id={employeeId}/>
-              <Menus.List id={employeeId}>
+              <Menus.Toggle id={Id}/>
+              <Menus.List id={Id}>
                 <Modal.Open opens="delete">
                   <Menus.Button icon={<HiTrash />} >Delete</Menus.Button>
                 </Modal.Open>
@@ -64,14 +63,14 @@ function CabinRow({ cabin }) {
       
 
           <Modal.Window name="edit">
-            <CreateCabinForm cabinToEdit={cabin}/>
+            <CreateCabinForm cabinToEdit={card}/>
           </Modal.Window>
        
           <Modal.Window name="delete">
             <ConfirmDelete 
               resourceName='employee'
               disabled={isDeleting}
-              onConfirm={() =>  deleteEmployee(employeeId) }
+              onConfirm={() =>  deleteCard(Id) }
             />
             </Modal.Window>
           </Menus.Menu>
@@ -83,17 +82,6 @@ function CabinRow({ cabin }) {
    
   );
 }
-
-CabinRow.propTypes = {
-  cabin: PropTypes.shape({
-    id:  PropTypes.number,
-    name: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    phone: PropTypes.string.isRequired,
-    jobTitle: PropTypes.string.isRequired,
-  }).isRequired,
-};
-
 export default CabinRow
 
 

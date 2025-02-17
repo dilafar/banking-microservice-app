@@ -4,20 +4,20 @@ import Form from "../../ui/Form";
 import Button from "../../ui/Button";
 import { useForm } from "react-hook-form";
 import FormRow from "../../ui/FormRow";
-import { useCreateEmployee } from "../../hooks/useCreateEmployee";
 import { useUpdateEmployee } from "../../hooks/useUpdateEmployee";
+import { useCreateAccount } from "../../hooks/accounts/useCreateAccount";
 
 function CreateBookingForm({cabinToEdit = {},onCloseModel}) {
-  const {id:editId , ...editValues} = cabinToEdit;
+  const {mobileNumber:editId} = cabinToEdit;
   const isEditSession = Boolean(editId);
   const { register, handleSubmit, reset, formState } = useForm({
-    defaultValues: isEditSession ? editValues : {},
+    defaultValues: isEditSession ? cabinToEdit : {},
   });
 
   const { errors } = formState;
   console.log(errors);
 
-  const {createEmployee, isCreating} = useCreateEmployee();
+  const {createAccount , isCreating} = useCreateAccount();
   const {updateEmployee} = useUpdateEmployee();
 
   
@@ -33,7 +33,7 @@ function CreateBookingForm({cabinToEdit = {},onCloseModel}) {
         } 
       })
     }else{
-      createEmployee(data,{
+      createAccount(data,{
         onSuccess: (data) =>{
           console.log(data);
           reset();
@@ -51,27 +51,65 @@ function CreateBookingForm({cabinToEdit = {},onCloseModel}) {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit, onError)} type={onCloseModel ? "model":"regular"}>
-      <FormRow label="Name" error={errors?.name?.message}>
-      <Input type="text" id="name"  {...register("name" ,{
-            required: "This field is required",
-          })}/>
-      </FormRow>
 
-      <FormRow label="Email Address" error={errors?.name?.message}>
-        <Input type="text" id="email"   {...register("email",{
-          required: "This field is required",
-        })}/>
-      </FormRow>
 
-      <FormRow label="Phone" error={errors?.name?.message}>
-        <Input type="number" id="phone"  {...register("phone",{
-          required: "This field is required",
-          min:{
-            value: 1,
-            message: "Capacity should be at least 1"
-          }
-        })}/>
-      </FormRow>
+      {
+        !isEditSession && (
+          <>
+              <FormRow label="Name" error={errors?.name?.message}>
+                <Input type="text" id="name"  {...register("name" ,{
+                  required: "This field is required",
+                   minLength:{
+                     value: 5,
+                     message: "The length of the customer name should be between 5 and 30"
+                   }
+
+                })}/>
+              </FormRow>
+
+              <FormRow label="Email Address" error={errors?.email?.message}>
+                <Input type="text" id="email"   {...register("email",{
+                 required: "This field is required",
+                 pattern: {
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                  message: "Invalid email format",
+                },
+               })}/>
+              </FormRow>
+
+              <FormRow label="Mobile Number" error={errors?.mobileNumber?.message}>
+                <Input type="number" id="mobileNumber"  {...register("mobileNumber",{
+                   required: "This field is required",
+                         
+                      pattern: {
+                         value: /^[0-9]{10}$/,
+                         message: "Invalid mobile number format",
+                      },
+                       
+                   })}/>
+              </FormRow>
+          </>
+        )
+      }
+
+      {
+        isEditSession && (
+          <>
+           <FormRow label="Mobile Number" error={errors?.mobileNumber?.message}>
+            <Input type="number" id="mobileNumber" readOnly {...register("mobileNumber",{
+              required: "This field is required",
+              min:{
+               value: 1,
+               message: "Capacity should be at least 1"
+              }
+             })}/>
+           </FormRow>
+
+               ⚠️ Update function for Accounts Under Construction ❗❗❗
+                  😊 Soon will be Released for Production .... 😊  
+          </>
+        )
+      }
 
       <FormRow>
         {/* type is an HTML attribute! */}

@@ -9,7 +9,7 @@ function Cabins() {
   return (
     <>
       <Row type="horizontal">
-        <Heading as="h1">All cabins</Heading>
+        <Heading as="h1">Cards</Heading>
         <p>Filter/Sort</p>
       </Row>
       <Row>

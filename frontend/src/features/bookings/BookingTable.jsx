@@ -1,15 +1,15 @@
 import Spinner from '../../ui/Spinner';
 import CabinRow from './BookingRow';
-import { useEmployees } from '../../hooks/useEmployees';
+import { useAccounts } from '../../hooks/accounts/useAccounts';
 import Empty from '../../ui/Empty';
 import Table from '../../ui/Table';
 import Menus from '../../ui/Menus';
 
 
 function BookingTable() {
-  const {isLoading , cabins} = useEmployees();
+  const {isLoading,users} = useAccounts();
   if (isLoading) return <Spinner />;
-  if (!cabins.length) return <Empty  resourceName="employees" />;
+  if (!users.length) return <Empty  resourceName="employees" />;
 
   return (
       <Menus>
@@ -21,8 +21,8 @@ function BookingTable() {
           <div>branchAddress</div>
           <div>Action</div>
         </Table.Header>
-        <Table.Body data={cabins}
-          render={(cabin) => <CabinRow cabin={cabin} key={cabin.id} />}
+        <Table.Body data={users}
+          render={(customer) => <CabinRow customer={customer} key={customer.id} />}
         />
       </Table>   
       </Menus>

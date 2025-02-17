@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import styled from 'styled-components';
 import CreateCabinForm from './CreateBookingForm';
-import { useDeleteEmployee } from '../../hooks/useDeleteEmployee';
+import { useDeleteAccount } from '../../hooks/accounts/useDeleteAccount';
 import { HiPencil, HiTrash } from 'react-icons/hi2';
 import Modal from '../../ui/Modal';
 import ConfirmDelete from '../../ui/ConfirmDelete';
@@ -27,22 +27,22 @@ const Cabin = styled.div`
   font-family: 'Sono';
 `;
 //isLoading,
-function BookingRow({ cabin }) {
-  const {isDeleting, deleteEmployee} = useDeleteEmployee();
-  const {id: employeeId} = cabin;
+function BookingRow({ customer }) {
+  const {isDeleting , deleteAccount} = useDeleteAccount();
+  const {mobileNumber: Id} = customer.cardsDto;
  
   return (
 
       <TableRow role="row">
-        <Cabin>{cabin.email}</Cabin>
-        <Cabin>{cabin.accountsDto.accountNumber}</Cabin>
-        <Cabin>{cabin.accountsDto.accountType}</Cabin>
-        <Cabin>{cabin.accountsDto.branchAddress}</Cabin>
+        <Cabin>{customer.email}</Cabin>
+        <Cabin>{customer.accountsDto.accountNumber}</Cabin>
+        <Cabin>{customer.accountsDto.accountType}</Cabin>
+        <Cabin>{customer.accountsDto.branchAddress}</Cabin>
         <div>
           <Modal>
             <Menus.Menu>
-              <Menus.Toggle id={employeeId}/>
-              <Menus.List id={employeeId}>
+              <Menus.Toggle id={Id}/>
+              <Menus.List id={Id}>
                 <Modal.Open opens="edit">
                    <Menus.Button icon={<HiPencil />} >Edit</Menus.Button>
                 </Modal.Open>
@@ -55,14 +55,14 @@ function BookingRow({ cabin }) {
       
 
           <Modal.Window name="edit">
-            <CreateCabinForm cabinToEdit={cabin}/>
+            <CreateCabinForm cabinToEdit={customer.cardsDto}/>
           </Modal.Window>
        
           <Modal.Window name="delete">
             <ConfirmDelete 
               resourceName='employee'
               disabled={isDeleting}
-              onConfirm={() =>  deleteEmployee(employeeId) }
+              onConfirm={() =>  deleteAccount(Id) }
             />
             </Modal.Window>
           </Menus.Menu>

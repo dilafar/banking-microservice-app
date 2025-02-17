@@ -1,15 +1,15 @@
 import Spinner from '../../ui/Spinner';
 import CabinRow from './CabinRow';
-import { useEmployees } from '../../hooks/useEmployees';
+import { useCards } from '../../hooks/cards/useCards';
 import Empty from '../../ui/Empty';
 import Table from '../../ui/Table';
 import Menus from '../../ui/Menus';
 
 
 function CabinTable() {
-  const {isLoading , cabins} = useEmployees();
+  const {isLoading,cards} = useCards();
   if (isLoading) return <Spinner />;
-  if (!cabins.length) return <Empty  resourceName="employees" />;
+  if (!cards.length) return <Empty  resourceName="employees" />;
 
   return (
       <Menus>
@@ -22,8 +22,8 @@ function CabinTable() {
           <div>availableAmount</div>
           <div>Action</div>
         </Table.Header>
-        <Table.Body data={cabins}
-          render={(cabin) => <CabinRow cabin={cabin} key={cabin.id} />}
+        <Table.Body data={cards}
+          render={(card) => <CabinRow card={card} key={card.id} />}
         />
       </Table>   
       </Menus>
