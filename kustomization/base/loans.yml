@@ -18,7 +18,7 @@ spec:
       initContainers:
         - name: mydb-available
           image: busybox:1.28
-          command: [ 'sh', '-c', "until nslookup 3.85.124.152; do echo waiting for database; sleep 4; done" ]
+          command: [ 'sh', '-c', "until nslookup mysql; do echo waiting for database; sleep 4; done" ]
       imagePullSecrets:
         - name: azure-registry-key
       containers:
@@ -44,9 +44,9 @@ spec:
                   key: SPRING_PROFILES_ACTIVE
                   name: bank-cm
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:mysql://3.85.124.152:3306/loansdb"
+              value: "jdbc:mysql://mysql:3306/loansdb"
             - name: SPRING_DATASOURCE_USERNAME
-              value: "admin"
+              value: "employee"
             - name: SPRING_DATASOURCE_PASSWORD
               valueFrom:
                 secretKeyRef:

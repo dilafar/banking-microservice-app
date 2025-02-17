@@ -16,6 +16,8 @@ spring:
         cors-configurations:
           '[/**]':
             allowedOrigins:
+              - "https://azurebanking.employee-mgmt.com"
+              - "https://azuremcdev.employee-mgmt.com"
               - "https://awsbanking.employee-mgmt.com"
               - "https://awsmcdev.employee-mgmt.com"
               - "http://localhost:5173"
