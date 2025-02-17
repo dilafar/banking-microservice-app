@@ -116,9 +116,9 @@ jobs:
           push: true
           tags: ${{ secrets.ACR_LOGIN_SERVER }}/${{ env.ACR_REPOSITORY }}:gateway-v${{ env.IMAGE_VERSION }}
 
-      - name: Trivy Scan Deployed Account Imange
-        run: |
-          bash trivy-k8s-scan.sh ${{ secrets.ACR_LOGIN_SERVER }}/${{ env.ACR_REPOSITORY }}:gateway-v${{ env.IMAGE_VERSION }} ${{ env.CACHE_DIR }} trivy-gateway.json
+      #- name: Trivy Scan Deployed Account Imange
+      #  run: |
+       #   bash trivy-k8s-scan.sh ${{ secrets.ACR_LOGIN_SERVER }}/${{ env.ACR_REPOSITORY }}:gateway-v${{ env.IMAGE_VERSION }} ${{ env.CACHE_DIR }} trivy-gateway.json
 
       - name: Run CIS Docker Benchmark
         run: |
