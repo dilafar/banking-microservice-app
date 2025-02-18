@@ -1,6 +1,7 @@
-com.assignment.cards.controller.CardsController#fetchCardDetails(Ljava/lang/String;Ljava/lang/String;)LResponseEntity;
+com.assignment.cards.controller.CardsController#deleteCardDetails(Ljava/lang/String;)LResponseEntity;
 false
-cbe71615e67fba20d5cdf1f0cfce32f5
+6da56a934c34a785f06b79b938b21362
+com.assignment.cards.dto.ResponseDto#instance-init#
 ==
 !unknownMethod! !unknownMethod!
-fetchCard com.assignment.cards.service.ICardsService#fetchCard(Ljava/lang/String;)Lcom/assignment/cards/dto/CardsDto;
+deleteCard com.assignment.cards.service.ICardsService#deleteCard(Ljava/lang/String;)Z

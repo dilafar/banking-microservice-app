@@ -1,7 +1,7 @@
-com.assignment.cards.controller.CardsController#createCard(Ljava/lang/String;)LResponseEntity;
+com.assignment.cards.controller.CardsController#updateCardDetails(Lcom/assignment/cards/dto/CardsDto;)LResponseEntity;
 false
-705f639dded4ebf6e469546121be7123
+92080fa55db09c83c494370b847d0fcb
 com.assignment.cards.dto.ResponseDto#instance-init#
 ==
 !unknownMethod! !unknownMethod!
-createCard com.assignment.cards.service.ICardsService#createCard(Ljava/lang/String;)V
+updateCard com.assignment.cards.service.ICardsService#updateCard(Lcom/assignment/cards/dto/CardsDto;)Z

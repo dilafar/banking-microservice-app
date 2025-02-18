@@ -1,6 +1,3 @@
-com.assignment.cards.controller.CardsController#fetchCardDetails()LResponseEntity;
+com.assignment.cards.constants.CardsConstants#<init>()V
 false
-e2aecf544d23a47fadc8acd20b79b050
-==
-!unknownMethod! !unknownMethod!
-fetchCards com.assignment.cards.service.ICardsService#fetchCards()Ljava/util/List;
+463844070639bea36d27a2efc700a837

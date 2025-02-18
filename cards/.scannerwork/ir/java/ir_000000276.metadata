@@ -1,3 +1,8 @@
-com.assignment.cards.dto.ResponseDto#instance-init#
+com.assignment.cards.exception.GlobalExceptionHandler#handleGlobalException(Ljava/lang/Exception;LWebRequest;)LResponseEntity;
 false
-19f59ac128231d17f65bbe932142836a
+7e242e3d65069a27f7db724c447383f0
+com.assignment.cards.dto.ErrorResponseDto#instance-init#
+java.time.LocalDateTime#now()Ljava/time/LocalDateTime;
+==
+!unknownMethod! !unknownMethod!
+getMessage java.lang.Throwable#getMessage()Ljava/lang/String;
