@@ -1,6 +1,6 @@
 com.assignment.cards.controller.CardsController#createCard(Ljava/lang/String;)LResponseEntity;
 false
-a450a3d6747de164f9e95ad2e18bd135
+2d80319147108f042ba87c8fda8e867e
 com.assignment.cards.dto.ResponseDto#instance-init#
 ==
 !unknownMethod! !unknownMethod!
