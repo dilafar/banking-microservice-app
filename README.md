@@ -135,6 +135,10 @@ az network public-ip create --resource-group MC_aks-rg_aks-demo_eastus --name AK
 - Associate MSI with AKS Cluster Virtual Machine Scale Sets (VMSS)
 - Create Kubernetes Secret for the `azure.json` file and Deploy ExternalDNS
 
+
+![externaldns](https://github.com/user-attachments/assets/cb920968-354b-4e00-8022-237c10b21380)
+
+
 ### 🏢 Setting Up Azure Key Vault with External Secrets on AKS
 
 - Before setting up External Secrets, collect the necessary details:
@@ -238,7 +242,7 @@ spec:
 - Deploy applications and configure Istio traffic rules (VirtualServices, DestinationRules).
 
 
-![awsbanking](https://github.com/user-attachments/assets/0b4b7f43-bf8e-4e97-9bf8-9618370934a1)
+![azure](https://github.com/user-attachments/assets/30c5ca22-1e87-41a0-8e3f-5c5c7c9136a9)
 
 
 ## 🚀 Setup & Installation
