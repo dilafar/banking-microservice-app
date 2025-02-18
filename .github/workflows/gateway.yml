@@ -116,25 +116,25 @@ jobs:
           push: true
           tags: ${{ secrets.ACR_LOGIN_SERVER }}/${{ env.ACR_REPOSITORY }}:gateway-v${{ env.IMAGE_VERSION }}
 
-      #- name: Trivy Scan Deployed Account Imange
-      #  run: |
-       #   bash trivy-k8s-scan.sh ${{ secrets.ACR_LOGIN_SERVER }}/${{ env.ACR_REPOSITORY }}:gateway-v${{ env.IMAGE_VERSION }} ${{ env.CACHE_DIR }} trivy-gateway.json
+      - name: Trivy Scan Deployed Account Imange
+        run: |
+          bash trivy-k8s-scan.sh ${{ secrets.ACR_LOGIN_SERVER }}/${{ env.ACR_REPOSITORY }}:gateway-v${{ env.IMAGE_VERSION }} ${{ env.CACHE_DIR }} trivy-gateway.json
 
-     # - name: Run CIS Docker Benchmark
-      #  run: |
-      #    bash trivy-docker-bench.sh ${{ secrets.ACR_LOGIN_SERVER }}/${{ env.ACR_REPOSITORY }}:gateway-v${{ env.IMAGE_VERSION }} trivy-bench-gateway.json
+      - name: Run CIS Docker Benchmark
+        run: |
+          bash trivy-docker-bench.sh ${{ secrets.ACR_LOGIN_SERVER }}/${{ env.ACR_REPOSITORY }}:gateway-v${{ env.IMAGE_VERSION }} trivy-bench-gateway.json
 
-#      - name: Configure Git
-#        run: |
-#          git config --global user.name "github-actions[bot]"
-#          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-#
-#      - name: Commit and Push Changes
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#        run: |
-#          git pull origin microservice-azure || true
-#          cp gateway/hadolint_gateway.txt reports/docker-lint/hadolint_gateway.txt
-#          git add .
-#          git commit -m "gateway microservice changes updated by GitHub Actions"
-#          git push origin microservice-azure
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit and Push Changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git pull origin microservice-azure || true
+          cp gateway/hadolint_gateway.txt reports/docker-lint/hadolint_gateway.txt
+          git add .
+          git commit -m "gateway microservice changes updated by GitHub Actions"
+          git push origin microservice-azure
