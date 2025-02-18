@@ -1,7 +1,6 @@
 com.assignment.loans.controller.LoansController#createLoan(Ljava/lang/String;)LResponseEntity;
 false
-01deca9eb504d8a1d22b1ae21adb4280
+083f879cb7d6e9d2f18fdf404582f408
 com.assignment.loans.dto.ResponseDto#instance-init#
 ==
 !unknownMethod! !unknownMethod!
-createLoan com.assignment.loans.service.ILoansService#createLoan(Ljava/lang/String;)V

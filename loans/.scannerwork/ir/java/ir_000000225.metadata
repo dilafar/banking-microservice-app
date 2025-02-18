@@ -1,6 +1,6 @@
 com.assignment.loans.controller.LoansController#deleteLoanDetails(Ljava/lang/String;)LResponseEntity;
 false
-948463823dca8f6cb076eb96368e0003
+9d2ee87a142815afdd24cf13c9c661ac
 com.assignment.loans.dto.ResponseDto#instance-init#
 ==
 !unknownMethod! !unknownMethod!

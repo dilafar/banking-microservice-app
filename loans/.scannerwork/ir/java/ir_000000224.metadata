@@ -1,6 +1,6 @@
 com.assignment.loans.controller.LoansController#updateLoanDetails(Lcom/assignment/loans/dto/LoansDto;)LResponseEntity;
 false
-2904f986462ab9e0eef522487a163c49
+380c9ee4b6d389f2bcc8b424359b336d
 com.assignment.loans.dto.ResponseDto#instance-init#
 ==
 !unknownMethod! !unknownMethod!
