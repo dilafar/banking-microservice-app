@@ -1,6 +1,6 @@
 services:
   client:
-    image: ghcr.io/dilafar/banking-microservice-app/frontend:v1.0
+    image: ghcr.io/dilafar/banking-microservice-app/frontend:v1.1
     container_name: frontend
     ports:
       - "443:443"
@@ -15,24 +15,24 @@ services:
       service: microservice-db-config
 
   loansdb:
-      container_name: loansdb
-      ports:
-        - 3307:3306
-      environment:
-        MYSQL_DATABASE: loansdb
-      extends:
-        file: common-config.yml
-        service: microservice-db-config
+    container_name: loansdb
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_DATABASE: loansdb
+    extends:
+      file: common-config.yml
+      service: microservice-db-config
 
   cardsdb:
-      container_name: cardsdb
-      ports:
-        - 3308:3306
-      environment:
-        MYSQL_DATABASE: cardsdb
-      extends:
-        file: common-config.yml
-        service: microservice-db-config
+    container_name: cardsdb
+    ports:
+      - 3308:3306
+    environment:
+      MYSQL_DATABASE: cardsdb
+    extends:
+      file: common-config.yml
+      service: microservice-db-config
 
   configserver:
     image: "ghcr.io/dilafar/banking-microservice-app/configserver:v1.0"
@@ -61,8 +61,8 @@ services:
       start_period: 10s
       timeout: 10s
     depends_on:
-        configserver:
-          condition: service_healthy
+      configserver:
+        condition: service_healthy
     extends:
       file: common-config.yml
       service: microservice-configserver-config
@@ -185,7 +185,62 @@ services:
     volumes:
       - ../../monitoring/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
 
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.15.2
+    container_name: elasticsearch
+    environment:
+      - node.name=elasticsearch
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - 'ES_JAVA_OPTS=-Xms512m -Xmx512m'
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    networks:
+      - elk
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.15.2
+    container_name: logstash
+    volumes:
+      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./logstash/pipeline/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+      - /logs/sample.log:/usr/share/logstash/data/sample.log
+      - ./logs:/usr/share/logstash/logs
+    ports:
+      - 5000:5000
+    environment:
+      - 'LS_JAVA_OPTS=-Xmx256m -Xms256m'
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.15.2
+    container_name: kibana
+    ports:
+      - 5601:5601
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+      - 'NODE_OPTIONS=--max-old-space-size=2048'
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+
 
 networks:
   banks:
     driver: "bridge"
+  elk:
+    driver: "bridge"
+
+volumes:
+  es-data:
+    driver: local
