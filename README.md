@@ -294,7 +294,7 @@ docker-compose up -d
 ```
 The -d flag runs the services in detached mode.
 
-![docker-compose-ms](https://github.com/user-attachments/assets/67449473-4041-4109-bc7c-914582d6c42d)
+![dc-1](https://github.com/user-attachments/assets/4ef0c2fa-7dce-4f74-9787-b88a40fd5ceb)
 
 
 ### 2️⃣ Verify Running Containers
