@@ -44,7 +44,6 @@ This project is a full-stack, microservices-based system developed using **Sprin
 - Jacoco (Code Coverage Analysis)
 
 #### 🔹 **Artifact & Dependency Management**
-- AWS S3 Bucket
 - Maven
 - ArtifactHub
 
