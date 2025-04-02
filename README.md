@@ -67,7 +67,7 @@ This project is a full-stack, microservices-based system developed using **Sprin
 
 ### 🏢 AWS Services Used
 
-- **Networking & Load Balancing**: NLB(Network LoadBalancer), Route 53, AWS Certificate Manager, VPC
+- **Networking & Load Balancing**: NLB(Network LoadBalancer), Route 53, VPC
 - **Compute & Container Management**: Amazon EKS, Amazon EC2
 - **Storage & Secrets Management**: AWS Secrets Manager, AWS S3 Bucket
 - **Container Registry & CDN**: Amazon ECR, Amazon CloudFront
