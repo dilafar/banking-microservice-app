@@ -19,7 +19,6 @@ This project is a full-stack, microservices-based system developed using **Sprin
 ### DevOps Tools
 
 #### 🔹 **CI/CD & Configuration Management**
-- Jenkins
 - Ansible
 - GitHub
 - GitHub Actions
