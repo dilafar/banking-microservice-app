@@ -9,7 +9,7 @@ This project is a full-stack, microservices-based system developed using **Sprin
 ### Backend
 
 - **Spring Boot** (REST API)
-- **MySQL** (AWS RDS)
+- **MySQL** (Azure Mysql)
 - **Maven** (Build tool)
 
 ### Frontend
@@ -19,7 +19,6 @@ This project is a full-stack, microservices-based system developed using **Sprin
 ### DevOps Tools
 
 #### 🔹 **CI/CD & Configuration Management**
-- Jenkins
 - Ansible
 - GitHub
 - GitHub Actions
