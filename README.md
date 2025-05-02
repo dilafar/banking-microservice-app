@@ -168,7 +168,7 @@ docker-compose up -d
 ```
 The -d flag runs the services in detached mode.
 
-![dc-1](https://github.com/user-attachments/assets/6323c716-398b-4f19-8a19-791b15c98c74)
+![docker-compose-new](https://github.com/user-attachments/assets/9674f66d-77f5-4a07-b9fb-0e36bb71a60c)
 
 
 ### 2️⃣ Verify Running Containers
@@ -277,6 +277,13 @@ Now, the Bank Management System application is connected to a persistent **AWS R
 
 ![prometheus-monitor](https://github.com/user-attachments/assets/7cf66bf7-4851-4eb1-91cb-0c6fef164a94)
 
+## 🧾 Apache Kafka
+
+![kafka1](https://github.com/user-attachments/assets/7e09ec24-1f21-4a6b-85de-7bbc35d02dc8)
+
+![kafka2](https://github.com/user-attachments/assets/e1aaf3c6-ea6f-4dfc-adf4-c431e90aa0c1)
+
+![kafka3](https://github.com/user-attachments/assets/3f452c14-8dec-4eaa-b37c-b015322b8f16)
 
 ## 🤝 Contributing
 
