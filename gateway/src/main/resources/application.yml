@@ -17,6 +17,8 @@ spring:
             allowedOrigins:
               - "https://awsbanking.cncloudnet.com"
               - "https://awsmcdev.cncloudnet.com"
+              - "https://awsbanking.employee-mgmt.com"
+              - "https://awsmcdev.employee-mgmt.com"
               - "http://localhost:5173"
               - "https://localhost"
             allowedMethods:

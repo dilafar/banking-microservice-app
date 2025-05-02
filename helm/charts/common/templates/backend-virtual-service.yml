@@ -5,7 +5,7 @@ metadata:
   namespace: banking-ns
 spec:
   hosts:
-    - "awsmcdev.cncloudnet.com"
+    - "awsmcdev.employee-mgmt.com"
   gateways:
     - istio-gateway
   http:
