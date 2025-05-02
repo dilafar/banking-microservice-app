@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const apiInstance = axios.create({
-  baseURL: "https://awsmcdev.cncloudnet.com/qncbank",
+ // baseURL: "https://azuremcdev.employee-mgmt.com/qncbank",
+    baseURL: "http://localhost:8072/qncbank",
 });
 
 

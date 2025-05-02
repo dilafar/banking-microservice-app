@@ -21,7 +21,7 @@ spec:
         - name: aws-registry-key
       containers:
         - name: banking-frontend
-          image: 794038214817.dkr.ecr.us-east-1.amazonaws.com/banking-app:frontend-v
+          image: 794038214817.dkr.ecr.us-east-1.amazonaws.com/banking-app:frontend-v2
           imagePullPolicy: Always
           ports:
             - containerPort: 8000

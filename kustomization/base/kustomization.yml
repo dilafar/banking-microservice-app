@@ -11,3 +11,14 @@ resources:
   - cards.yml
   - loans.yml
   - frontend.yml
+  - kafka.yml
+  - kafka-cm.yml
+  - kafka-network.yml
+  - kafka-pvc.yml
+  - kafka-stateful-set.yml
+  - kafka-ui.yml
+  - kafka-zookeeper-stateful-set.yml
+  - message.yml
+  - storage-class.yml
+  - zool-log-pvc.yml
+  - zool-pvc.yml

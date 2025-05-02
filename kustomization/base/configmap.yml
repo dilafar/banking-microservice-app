@@ -13,3 +13,6 @@ data:
   SPRING_PROFILES_ACTIVE: "default"
   SPRING_CONFIG_IMPORT: "configserver:http://configserver:8071/"
   EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eurekaserver:8070/eureka/"
+  SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS: "kafka:9092"
+  KAFKA_CLUSTERS_0_NAME: "kafka_ms_test"
+  KAFKA_CLUSTERS_0_BOOTSTRAP_SERVERS: "kafka:9092"

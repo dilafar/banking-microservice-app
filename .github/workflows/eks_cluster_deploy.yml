@@ -29,9 +29,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      #- name: Pull Latest Changes
-       # run: git pull origin main
-
       - name: Configure AWS CLI
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -45,8 +42,8 @@ jobs:
       - name: Print config file
         run: cat ~/.kube/config
 
-    #  - name: Login to ECR
-    #    run: kubectl create secret docker-registry aws-registry-key --docker-server=${{ secrets.REGISTRY }} --docker-username=AWS  --docker-password=$(aws ecr get-login-password) -n banking-ns
+      - name: Login to ECR
+        run: kubectl create secret docker-registry aws-registry-key --docker-server=${{ secrets.REGISTRY }} --docker-username=AWS  --docker-password=$(aws ecr get-login-password) -n banking-ns
 
       - name: Deploy Helm
         uses: bitovi/github-actions-deploy-eks-helm@v1.2.8

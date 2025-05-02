@@ -1,0 +1,6 @@
+appName: message
+appReplicas: 1
+appImage: 794038214817.dkr.ecr.us-east-1.amazonaws.com/banking-app
+appVersion: message-v2
+containerPort: 9010
+

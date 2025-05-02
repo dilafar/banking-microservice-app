@@ -1,7 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
-import Cabins from "./pages/Cabins";
-import Bookings from "./pages/Bookings";
+import Cards from "./pages/Cards.jsx";
+import Accounts from "./pages/Accounts.jsx";
 import NewUsers from "./pages/Users";
 import Settings from "./pages/Settings";
 import Account from "./pages/Account";
@@ -32,8 +32,8 @@ function App() {
         <Route element={<AppLayout />}>
           <Route index element={<Navigate replace to="dashboard" />} />    
           <Route path="dashboard" element={<Dashboard />} />
-          <Route path="cards" element={<Cabins />} />
-          <Route path="accounts" element={<Bookings/>} />
+          <Route path="cards" element={<Cards />} />
+          <Route path="accounts" element={<Accounts/>} />
           <Route path="users" element={<NewUsers />} />
           <Route path="loans" element={<Settings />} />
           <Route path="account" element={<Account/>} />

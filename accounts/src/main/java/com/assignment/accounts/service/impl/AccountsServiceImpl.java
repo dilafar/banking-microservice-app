@@ -30,6 +30,7 @@ public class AccountsServiceImpl implements IAccountsService {
     private static final Logger log = LoggerFactory.getLogger(AccountsServiceImpl.class);
     private AccountsRepository accountsRepository;
     private CustomerRepository customerRepository;
+    private final StreamBridge streamBridge;
 
     /**
      * @param customerDto - CustomerDto Object
@@ -43,8 +44,16 @@ public class AccountsServiceImpl implements IAccountsService {
         }
         Customer savedCustomer = customerRepository.save(customer);
         Accounts savedAccount = accountsRepository.save(createNewAccounts(savedCustomer));
+        sendCommunication(savedAccount,savedCustomer);
     }
 
+    private void sendCommunication(Accounts accounts, Customer customer){
+        var accountsMsgDto = new AccountMsgDto(accounts.getAccountNumber(),customer.getName(),customer.getEmail()
+                ,customer.getMobileNumber());
+        log.info("Sending Communicaton request for the details: {}",accountsMsgDto);
+        var result = streamBridge.send("sendCommunication-out-0",accountsMsgDto);
+        log.info("Is the Communication request successfully triggered?:{}",result);
+    }
 
     @Override
     public CustomerDto fetchAccount(String mobileNumber) {

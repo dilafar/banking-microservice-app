@@ -169,13 +169,3 @@ jobs:
           git add .
           git commit -m "loans microservice changes updated by GitHub Actions"
           git push origin main
-
-    #  - name: SonarQube Quality Gate check
-    #    id: sonarqube-quality-gate-check
-    #    uses: sonarsource/sonarqube-quality-gate-action@master
-    #    with:
-     #     scanMetadataReportFile: loans/.scannerwork/report-task.txt
-    #      pollingTimeoutSec: 300
-     #   env:
-      #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      #    SONAR_HOST_URL: ${{ secrets.SONAR_URL }}

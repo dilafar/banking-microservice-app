@@ -23,7 +23,7 @@ spec:
         - name: aws-registry-key
       containers:
         - name: accounts
-          image: 794038214817.dkr.ecr.us-east-1.amazonaws.com/banking-app:accounts-v
+          image: 794038214817.dkr.ecr.us-east-1.amazonaws.com/banking-app:accounts-v2
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -42,6 +42,11 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   key: SPRING_PROFILES_ACTIVE
+                  name: bank-cm
+            - name: SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS
+              valueFrom:
+                configMapKeyRef:
+                  key: SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS
                   name: bank-cm
             - name: SPRING_DATASOURCE_URL
               value: "jdbc:mysql://3.85.124.152:3306/accountsdb"

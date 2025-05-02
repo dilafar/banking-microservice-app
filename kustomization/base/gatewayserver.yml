@@ -19,7 +19,7 @@ spec:
         - name: aws-registry-key
       containers:
         - name: gatewayserver
-          image: 794038214817.dkr.ecr.us-east-1.amazonaws.com/banking-app:gateway-v
+          image: 794038214817.dkr.ecr.us-east-1.amazonaws.com/banking-app:gateway-v2
           imagePullPolicy: Always
           ports:
             - containerPort: 8072

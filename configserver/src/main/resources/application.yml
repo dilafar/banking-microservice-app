@@ -3,14 +3,11 @@ spring:
     name: "configserver"
   profiles:
     active: git
-  # active: native
   cloud:
     config:
       server:
         git:
           uri: "https://github.com/dilafar/config.git"
-        #native:
-          #search-locations: "classpath:/config"
           default-label: main
           timeout: 5
           clone-on-start: true

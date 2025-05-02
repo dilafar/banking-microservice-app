@@ -1,0 +1,7 @@
+appName: kafka-ui
+appReplicas: 1
+appImage: provectuslabs/kafka-ui
+appVersion: latest
+containerPort: 8080
+servicePort: 8050
+serviceType: LoadBalancer

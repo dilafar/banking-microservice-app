@@ -9,7 +9,7 @@ import Button from 'ui/Button';
 import ButtonText from 'ui/ButtonText';
 import Checkbox from 'ui/Checkbox';
 
-import BookingDataBox from 'features/bookings/BookingDataBox';
+import BookingDataBox from 'features/bookings/AccountsDataBox';
 
 import { useBooking } from 'features/bookings/useBooking';
 import { useMoveBack } from 'hooks/useMoveBack';

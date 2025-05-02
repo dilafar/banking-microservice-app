@@ -9,8 +9,7 @@ spring:
     gateway:
       discovery:
         locator:
-          #enabled: true
-          enabled: false  # after custom Route Added
+          enabled: false
           lower-case-service-id: true
       globalcors:
         cors-configurations:
@@ -60,5 +59,3 @@ logging:
     com:
       assignment:
         gateway: DEBUG
-
-#*.com

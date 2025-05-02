@@ -10,7 +10,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 @SpringBootApplication
 @EnableConfigurationProperties(value = {LoansContactInfo.class})
@@ -18,21 +17,21 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @OpenAPIDefinition(
 		info=@Info(
 				title = "Loans microservice Rest API Documentation",
-				description = "EazyBank Loans microservice Rest API Documentation",
+				description = "Loans microservice Rest API Documentation",
 				version = "v1",
 				contact = @Contact(
 						name = "ahamed fadhil",
 						email = "fadhilahamed07@gmail.com",
-						url = "https://www.eazybytes.com"
+						url = "https://www.bank.com"
 				),
 				license = @License(
 						name = "Apache 2.0",
-						url = "https://www.eazybytes.com"
+						url = "https://www.bank.com"
 				)
 		),
 		externalDocs = @ExternalDocumentation(
 				description = "rest documentation",
-				url = "https://www.eazybytes.com/swagger-ui.html"
+				url = "https://www.bank.com/swagger-ui.html"
 		)
 )
 public class LoansApplication {
