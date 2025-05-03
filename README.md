@@ -129,6 +129,7 @@ If everything goes well, you can access the following services at given location
 * Accounts Server - http://localhost:8080
 * Cards Server - http://localhost:9000
 * Loans Server - http://localhost:8090
+* Message Server - http://localhost:9010
 * ReactJS(Vite) frontend - http://localhost:5173
 ### 1️⃣ Clone the Repository
 
