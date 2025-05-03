@@ -205,7 +205,8 @@ docker-compose down
 
 ## 🧾 Application Diagram
 
-![Frame 7](https://github.com/user-attachments/assets/ac11fde0-f234-463a-8649-9f45740f3950)
+![Frame 7 (1)](https://github.com/user-attachments/assets/a7101068-3098-4e4b-b0e7-bd0c1309fe29)
+
 
 ## 🧾 Architecture Diagram
 
